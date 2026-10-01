@@ -7,6 +7,7 @@ import {
   Users,
   ShieldCheck,
   Sparkles,
+  Calendar,
   CalendarCheck,
   Compass,
   ArrowRight,

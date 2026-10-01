@@ -183,7 +183,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                     isActive ? 'text-saath-600 stroke-[2.4]' : 'text-stone-600 stroke-[1.8]'
                   }`}
                 />
-                {item.badge && (
+                {(item as any).badge && (
                   <span className="absolute top-0 right-0 w-2.5 h-2.5 rounded-full bg-saath-600 ring-2 ring-white"></span>
                 )}
               </div>
