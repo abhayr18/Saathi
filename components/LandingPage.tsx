@@ -367,13 +367,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     <div className="space-y-12 sm:space-y-20 pb-20">
       
       {/* ─── 0. TOP SPOTLIGHT: EXPERIENCE SAATHI FROM ALL 4 PERSPECTIVES (IMAGE 2) ─── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6">
-        <div className="bg-gradient-to-r from-orange-500 via-saath-600 to-amber-500 rounded-3xl p-6 sm:p-9 text-white shadow-elevated flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 sm:pt-6">
+        <div className="bg-gradient-to-r from-orange-500 via-saath-600 to-amber-500 rounded-2xl sm:rounded-3xl p-4 sm:p-9 text-white shadow-elevated flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6">
           <div className="space-y-2 max-w-2xl">
-            <span className="text-xs font-black uppercase tracking-wider bg-white/20 text-white px-3.5 py-1 rounded-full border border-white/30 inline-block">
+            <span className="text-[10px] sm:text-xs font-black uppercase tracking-wider bg-white/20 text-white px-3 py-0.5 sm:py-1 rounded-full border border-white/30 inline-block">
               {isMr ? 'थेट चाचणी व सिम्युलेशन' : 'Interactive Prototype'}
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black font-display text-white">
+            <h2 className="text-xl sm:text-3xl font-black font-display text-white">
               {isMr ? 'प्लॅटफॉर्मचा अनुभव विविध भूमिकेतून घ्या' : 'Experience Saathi from all 4 Perspectives'}
             </h2>
             <p className="text-xs sm:text-sm text-orange-100/95 leading-relaxed">
@@ -385,7 +385,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
           <button
             onClick={() => onOpenRoleModal && onOpenRoleModal()}
-            className="bg-white text-stone-900 hover:bg-orange-50 font-black text-xs sm:text-sm px-6 sm:px-7 py-3.5 rounded-full transition-all shadow-lg shrink-0 flex items-center gap-2.5 active:scale-98"
+            className="bg-white text-stone-900 hover:bg-orange-50 font-black text-xs sm:text-sm px-5 sm:px-7 py-3 sm:py-3.5 rounded-full transition-all shadow-lg shrink-0 flex items-center justify-center gap-2.5 active:scale-95 w-full sm:w-auto"
           >
             <span>🎭</span>
             <span>{isMr ? 'भूमिका निवडक पॉपअप उघडा' : 'Open Role Switcher Modal'}</span>
@@ -396,15 +396,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
       {/* ─── 1. HERO SECTION (MaiHoonNa Inspired) ─── */}
       <section className="relative pt-2 sm:pt-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
           {/* Left Column: Mission, Headlines, Search & Action Bar */}
-          <div className="lg:col-span-7 space-y-6 sm:space-y-7">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-7">
             
             {/* Eyebrow Badge with Pulse */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-50 border border-orange-200 text-saath-800 text-xs sm:text-sm font-extrabold shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-orange-50 border border-orange-200 text-saath-800 text-[11px] sm:text-sm font-extrabold shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <Sparkles className="w-4 h-4 text-saath-600" />
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-saath-600" />
               <span>
                 {isMr
                   ? "भारतातील पहिली जोडलेली ज्येष्ठ संगोपन परिसंस्था"
@@ -413,18 +413,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             </div>
 
             {/* MaiHoonNa Authentic Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-stone-900 tracking-tight font-display leading-[1.12]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-stone-900 tracking-tight font-display leading-[1.14]">
               {isMr ? (
                 <>
                   <span className="block text-saath-600">वय वाढले तरी जगण्याचा आनंद कमी होऊ नये.</span>
-                  <span className="block text-stone-900 text-3xl sm:text-4xl lg:text-5xl mt-2 font-bold font-sans">
+                  <span className="block text-stone-900 text-2xl sm:text-4xl lg:text-5xl mt-2 font-bold font-sans">
                     आपुलकीच्या गप्पा. हक्काचा सोबती. आणि दूर राहणाऱ्या कुटुंबाला मनःशांती.
                   </span>
                 </>
               ) : (
                 <>
                   <span className="block text-saath-600">Growing older, without giving up on living.</span>
-                  <span className="block text-stone-900 text-3xl sm:text-4xl lg:text-5xl mt-2 font-bold font-sans">
+                  <span className="block text-stone-900 text-2xl sm:text-4xl lg:text-5xl mt-2 font-bold font-sans">
                     Real conversations. Real activities. Real dignity, delivered with heart.
                   </span>
                 </>
@@ -515,7 +515,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent"></div>
 
               {/* Floating Real-Time Family Observation Card */}
-              <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-elevated border border-white/70 space-y-2.5">
+              <div className="absolute bottom-2.5 sm:bottom-4 left-2.5 sm:left-4 right-2.5 sm:right-4 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-elevated border border-white/70 space-y-1.5 sm:space-y-2.5">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>

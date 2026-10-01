@@ -20,12 +20,14 @@ interface MobileBottomNavProps {
   currentTab: string;
   onTabChange: (tab: string) => void;
   onOpenSos?: () => void;
+  onOpenRoleModal?: () => void;
 }
 
 export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   currentTab,
   onTabChange,
   onOpenSos,
+  onOpenRoleModal,
 }) => {
   const { role, language, notifications, messages, currentSenior, currentStudent } = useApp();
   const isMr = language === 'mr';
@@ -42,8 +44,39 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     m => (role === 'senior' ? m.senderRole === 'student' : m.senderRole === 'senior')
   ).length > 0 ? 1 : 0;
 
-  // Items per role
+  // Items per role or landing context
   const getNavItems = () => {
+    if (currentTab === 'landing') {
+      return [
+        {
+          id: 'landing',
+          label: isMr ? 'मुख्य' : 'Home',
+          icon: Home,
+        },
+        {
+          id: 'discovery',
+          label: isMr ? 'सोबती' : 'Find',
+          icon: Compass,
+        },
+        {
+          id: 'activities',
+          label: isMr ? 'कट्टा' : 'Katta',
+          icon: Users,
+        },
+        {
+          id: 'careplans',
+          label: isMr ? 'प्लॅन्स' : 'Plans',
+          icon: Calendar,
+        },
+        {
+          id: 'roles',
+          label: isMr ? 'भूमिका' : 'Roles',
+          icon: Sparkles,
+          isRoleModal: true,
+        },
+      ];
+    }
+
     if (role === 'senior') {
       return [
         {
@@ -148,6 +181,12 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         label: isMr ? 'मुख्य पान' : 'Public View',
         icon: Home,
       },
+      {
+        id: 'roles',
+        label: isMr ? 'भूमिका' : 'Roles',
+        icon: Sparkles,
+        isRoleModal: true,
+      },
     ];
   };
 
@@ -156,19 +195,31 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   return (
     <nav
       aria-label="Mobile Navigation"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-stone-200/90 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] px-2 py-1.5 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-stone-200/90 shadow-[0_-4px_20px_rgba(0,0,0,0.08)] px-1 sm:px-2 py-1 pb-[max(0.5rem,env(safe-area-inset-bottom))]"
     >
       <div className="flex items-center justify-around">
         {navItems.map(item => {
           const Icon = item.icon;
           const isActive = currentTab === item.id;
 
+          const handleClick = () => {
+            if ((item as any).isRoleModal && onOpenRoleModal) {
+              onOpenRoleModal();
+            } else if ((item as any).isSos && onOpenSos) {
+              onOpenSos();
+            } else {
+              onTabChange(item.id);
+            }
+          };
+
           return (
             <button
               key={item.id}
-              onClick={() => onTabChange(item.id)}
-              className={`flex flex-col items-center justify-center py-1 px-2.5 rounded-2xl transition-all relative min-w-[56px] ${
-                isActive
+              onClick={handleClick}
+              className={`flex flex-col items-center justify-center py-1 px-2 rounded-2xl transition-all relative min-w-[52px] active:scale-92 ${
+                (item as any).isSos
+                  ? 'text-rose-600 font-bold'
+                  : isActive
                   ? 'text-saath-700 font-bold'
                   : 'text-stone-500 hover:text-stone-900 font-medium'
               }`}

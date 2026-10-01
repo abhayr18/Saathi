@@ -115,7 +115,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
       <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-xs transition-all">
         {/* MaiHoonNa inspired streamlined Topbar */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 gap-4">
+          <div className="flex items-center justify-between h-16 sm:h-20 gap-2 sm:gap-4">
             
             {/* 1. Left: Official Saathi Logo Mark & Brand */}
             <div
@@ -125,7 +125,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
               tabIndex={0}
               aria-label="साथी Saathi Home"
             >
-              <SaathiLogo size="md" />
+              <div className="hidden sm:block">
+                <SaathiLogo size="md" />
+              </div>
+              <div className="block sm:hidden">
+                <SaathiLogo size="sm" showSubtitle={false} />
+              </div>
             </div>
 
             {/* 2. Center: Desktop Navigation Links (Clean & MaiHoonNa inspired) */}
@@ -262,12 +267,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
               {/* THE REQUESTED ONE ROLE SWITCHER BUTTON */}
               <button
                 onClick={openRoleModal}
-                className={`px-3 sm:px-3.5 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-2 border shadow-xs ${roleDisplayInfo.badgeColor} hover:brightness-95 hover:shadow-sm active:scale-98`}
+                className={`px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 sm:gap-2 border shadow-xs ${roleDisplayInfo.badgeColor} hover:brightness-95 hover:shadow-sm active:scale-95`}
                 title={isMr ? 'भूमिका बदलण्यासाठी येथे क्लिक करा' : 'Click to switch role perspective'}
                 aria-label="Switch Role Perspective"
               >
-                <span className="flex items-center gap-1.5">
-                  <span className="text-base sm:text-lg leading-none">{roleDisplayInfo.emoji}</span>
+                <span className="flex items-center gap-1 sm:gap-1.5">
+                  <span className="text-sm sm:text-lg leading-none">{roleDisplayInfo.emoji}</span>
                   <span className="hidden sm:inline font-semibold text-stone-600 text-[11px]">
                     {isMr ? 'भूमिका:' : 'Role:'}
                   </span>
@@ -275,7 +280,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                     {isMr ? roleDisplayInfo.titleMr : roleDisplayInfo.titleEn}
                   </span>
                 </span>
-                <ChevronDown className="w-3.5 h-3.5 text-stone-500" />
+                <ChevronDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-stone-500" />
               </button>
 
               {/* Notification Alerts Bell */}
@@ -295,7 +300,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
 
                 {/* Notifications Dropdown */}
                 {showNotifs && (
-                  <div className="absolute right-0 mt-3 w-80 max-w-sm bg-white rounded-2xl shadow-elevated border border-stone-200 p-4 z-50 animate-in fade-in zoom-in-95">
+                  <div className="absolute right-0 mt-3 w-[calc(100vw-2.5rem)] max-w-sm sm:w-80 bg-white rounded-2xl shadow-elevated border border-stone-200 p-4 z-50 animate-in fade-in zoom-in-95">
                     <div className="flex items-center justify-between pb-3 border-b border-stone-100">
                       <h3 className="font-bold text-stone-900 text-sm">Alerts & Real-Time Updates</h3>
                       <span className="text-[11px] text-stone-400 font-medium">

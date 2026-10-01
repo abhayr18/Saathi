@@ -211,6 +211,7 @@ export default function Home() {
         currentTab={currentTab}
         onTabChange={setCurrentTab}
         onOpenSos={() => setIsSosOpen(true)}
+        onOpenRoleModal={() => setIsRoleModalOpen(true)}
       />
     </div>
   );

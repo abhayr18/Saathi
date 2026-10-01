@@ -46,12 +46,14 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* Student Header */}
       <div className="bg-stone-900 rounded-3xl p-6 sm:p-8 text-white shadow-card flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div className="flex items-center gap-4">
-          <img
-            src={currentStudent.profilePhoto}
-            alt={currentStudent.name}
-            className="w-20 h-20 rounded-2xl object-cover border-4 border-saath-500 shadow-md shrink-0"
-          />
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3.5 sm:gap-4">
+          <div className="relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-4 border-saath-500 shadow-md">
+            <img
+              src={currentStudent.profilePhoto}
+              alt={currentStudent.name}
+              className="w-full h-full object-cover"
+            />
+          </div>
           <div className="space-y-1">
             <div className="flex items-center gap-2 flex-wrap">
               <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-white">

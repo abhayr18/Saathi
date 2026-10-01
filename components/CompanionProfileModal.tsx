@@ -65,12 +65,14 @@ export const CompanionProfileModal: React.FC<CompanionProfileModalProps> = ({
           {/* Avatar and Top Stats Bar */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div className="flex flex-col sm:flex-row items-start sm:items-end gap-3 sm:gap-4">
-              <div className="relative">
-                <img
-                  src={student.profilePhoto}
-                  alt={student.name}
-                  className="w-24 h-24 sm:w-32 sm:h-32 rounded-3xl object-cover border-4 border-white shadow-elevated"
-                />
+              <div className="relative shrink-0 w-24 h-24 sm:w-32 sm:h-32">
+                <div className="w-full h-full rounded-3xl overflow-hidden border-4 border-white shadow-elevated">
+                  <img
+                    src={student.profilePhoto}
+                    alt={student.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 {student.isVerified && (
                   <div
                     className="absolute -bottom-1 -right-1 bg-emerald-600 text-white p-1.5 rounded-xl border-2 border-white shadow-md flex items-center justify-center"

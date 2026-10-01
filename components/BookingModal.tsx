@@ -136,11 +136,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
         {/* Top Header */}
         <div className="p-4 sm:p-6 border-b border-stone-100 flex items-center justify-between sticky top-0 bg-white/95 backdrop-blur-md z-10">
           <div className="flex items-center gap-3">
-            <img
-              src={student.profilePhoto}
-              alt={student.name}
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl object-cover border-2 border-saath-500"
-            />
+            <div className="relative shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-2xl overflow-hidden border-2 border-saath-500 shadow-xs">
+              <img
+                src={student.profilePhoto}
+                alt={student.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div>
               <h2 className="text-lg sm:text-xl font-bold text-stone-900 font-display">
                 {step === 'confirmed' ? 'Booking Confirmed! 🎉' : `Book a Session with ${student.name}`}

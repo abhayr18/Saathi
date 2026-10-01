@@ -116,11 +116,13 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
             <UserCheck className="w-5 h-5 text-blue-600" />
           </div>
           <div className="flex items-center gap-3">
-            <img
-              src={activeCompanion.profilePhoto}
-              alt={activeCompanion.name}
-              className="w-12 h-12 rounded-xl object-cover border border-stone-200"
-            />
+            <div className="relative shrink-0 w-12 h-12 rounded-xl overflow-hidden border border-stone-200">
+              <img
+                src={activeCompanion.profilePhoto}
+                alt={activeCompanion.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div>
               <h4 className="font-bold text-stone-900 text-sm">{activeCompanion.name} (21)</h4>
               <p className="text-xs text-stone-500">ADCET Engineering • ★ {activeCompanion.rating}</p>

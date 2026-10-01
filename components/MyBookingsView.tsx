@@ -136,14 +136,16 @@ export const MyBookingsView: React.FC<MyBookingsViewProps> = ({
               >
                 {/* Companion info & session details */}
                 <div className="flex items-start gap-4">
-                  <img
-                    src={
-                      companion?.profilePhoto ||
-                      '/assets/student_aditya.jpg'
-                    }
-                    alt={booking.companionName}
-                    className="w-16 h-16 rounded-2xl object-cover border-2 border-stone-200 shrink-0"
-                  />
+                  <div className="relative shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden border-2 border-stone-200">
+                    <img
+                      src={
+                        companion?.profilePhoto ||
+                        '/assets/student_aditya.jpg'
+                      }
+                      alt={booking.companionName}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
 
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 flex-wrap">

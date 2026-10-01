@@ -59,12 +59,14 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
         </div>
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <img
-              src={currentSenior.profilePhoto}
-              alt={currentSenior.name}
-              className="w-20 h-20 rounded-2xl object-cover border-4 border-white shadow-md shrink-0"
-            />
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3.5 sm:gap-4">
+            <div className="relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-4 border-white shadow-md">
+              <img
+                src={currentSenior.profilePhoto}
+                alt={currentSenior.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/90 border border-orange-200 text-xs font-bold text-saath-800 mb-1 shadow-2xs">
                 <span>📍 {currentSenior.area}, {currentSenior.city}</span>
@@ -235,14 +237,16 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
                 <div className="space-y-4">
                   {/* Top line with photo, match % and rate */}
                   <div className="flex items-start justify-between gap-3">
-                    <div className="relative">
-                      <img
-                        src={student.profilePhoto}
-                        alt={student.name}
-                        className="w-16 h-16 rounded-2xl object-cover border-2 border-stone-200 group-hover:scale-105 transition-transform"
-                      />
+                    <div className="relative shrink-0 w-14 h-14 sm:w-16 sm:h-16">
+                      <div className="w-full h-full rounded-2xl overflow-hidden border-2 border-stone-200">
+                        <img
+                          src={student.profilePhoto}
+                          alt={student.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                        />
+                      </div>
                       {student.isVerified && (
-                        <div className="absolute -bottom-1 -right-1 bg-emerald-600 text-white p-1 rounded-full border-2 border-white">
+                        <div className="absolute -bottom-1 -right-1 bg-emerald-600 text-white p-1 rounded-full border-2 border-white shadow-2xs">
                           <ShieldCheck className="w-3 h-3" />
                         </div>
                       )}
