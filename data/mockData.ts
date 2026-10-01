@@ -22,7 +22,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi', 'English'],
     interests: ['Chess', 'Conversation', 'Walking', 'Technology Help'],
     bio: 'Retired high-school mathematics teacher. Love playing chess in the evenings, staying updated on tech, and walking in the colony park.',
-    profilePhoto: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/senior_rajendra.jpg',
     emergencyContact: {
       name: 'Amit Kulkarni',
       relationship: 'Son (Living in Bangalore)',
@@ -41,7 +41,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi'],
     interests: ['Reading', 'Storytelling', 'Gardening', 'Music'],
     bio: 'Passionate about Marathi literature and classical music. Would love someone to read with me or talk about old Natyasangeet.',
-    profilePhoto: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/senior_sunita.jpg',
     emergencyContact: {
       name: 'Neelima Joshi',
       relationship: 'Daughter (in Pune)',
@@ -60,7 +60,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi', 'Kannada'],
     interests: ['Walking', 'Conversation', 'Gardening'],
     bio: 'Former agricultural officer. Love tending to my rooftop garden and sharing stories of old Maharashtra traditions.',
-    profilePhoto: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/senior_rajendra.jpg',
     emergencyContact: {
       name: 'Sachin Shinde',
       relationship: 'Son (Nearby)',
@@ -79,7 +79,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi', 'English'],
     interests: ['Cooking', 'Storytelling', 'Reading'],
     bio: 'Retired bank manager. Seeking cheerful young companions to discuss current affairs, cook traditional recipes, and read together.',
-    profilePhoto: 'https://images.unsplash.com/photo-1506863530036-1efeddceb993?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/senior_sunita.jpg',
     emergencyContact: {
       name: 'Rohan Patil',
       relationship: 'Son (in Mumbai)',
@@ -98,7 +98,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'English', 'Hindi'],
     interests: ['Technology Help', 'Chess', 'Conversation'],
     bio: 'Keen to master smartphone apps, online UPI payments, and video calling my grandchildren abroad while enjoying friendly chess matches.',
-    profilePhoto: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/senior_rajendra.jpg',
     emergencyContact: {
       name: 'Ketaki Joshi',
       relationship: 'Daughter (in USA)',
@@ -117,7 +117,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi'],
     interests: ['Music', 'Conversation', 'Gardening'],
     bio: 'Love devotional music, morning tea conversations, and keeping indoor houseplants healthy and green.',
-    profilePhoto: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/senior_sunita.jpg',
     emergencyContact: {
       name: 'Mahesh Bhosale',
       relationship: 'Brother',
@@ -136,7 +136,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi'],
     interests: ['Conversation', 'Walking', 'Storytelling'],
     bio: 'Lived in Ashta for 50 years. Love interacting with college youngsters, hearing about engineering projects, and going for evening walks.',
-    profilePhoto: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/senior_rajendra.jpg',
     emergencyContact: {
       name: 'Pramod Chavan',
       relationship: 'Son',
@@ -155,7 +155,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi', 'English'],
     interests: ['Reading', 'Chess & Games', 'Conversation'],
     bio: 'Retired college librarian. Avid reader of historical books and fond of board games and crossword puzzles.',
-    profilePhoto: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/senior_sunita.jpg',
     emergencyContact: {
       name: 'Anita Mahajan',
       relationship: 'Daughter-in-law',
@@ -174,7 +174,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi'],
     interests: ['Walking', 'Storytelling', 'Music'],
     bio: 'Evening walks by the Rankala lake are my favorite routine. Enjoy sharing folkloric stories and old Kolhapur history.',
-    profilePhoto: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/senior_rajendra.jpg',
     emergencyContact: {
       name: 'Ganesh Jadhav',
       relationship: 'Son',
@@ -193,7 +193,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['English', 'Hindi', 'Kannada', 'Marathi'],
     interests: ['Technology Help', 'Gardening', 'Reading'],
     bio: 'Looking for a kind tech-savvy student to help me navigate iPad apps, Kindle books, and share garden tea conversations.',
-    profilePhoto: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/senior_sunita.jpg',
     emergencyContact: {
       name: 'Vikram Rao',
       relationship: 'Son',
@@ -226,7 +226,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'ADCET-CS-2023-042',
-    profilePhoto: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_aditya.jpg',
     totalEarnings: 7850,
     completedSessionsCount: 47,
     availability: [
@@ -258,7 +258,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'KIT-BIO-2024-118',
-    profilePhoto: 'https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_snehal.jpg',
     totalEarnings: 5320,
     completedSessionsCount: 38,
     availability: [
@@ -289,7 +289,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'WCE-ME-2022-094',
-    profilePhoto: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_aditya.jpg',
     totalEarnings: 4160,
     completedSessionsCount: 32,
     availability: [
@@ -319,7 +319,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'DYP-AI-2023-019',
-    profilePhoto: 'https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_snehal.jpg',
     totalEarnings: 6240,
     completedSessionsCount: 39,
     availability: [
@@ -349,7 +349,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'SIBER-BBA-2024-055',
-    profilePhoto: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_aditya.jpg',
     totalEarnings: 2700,
     completedSessionsCount: 22,
     availability: [
@@ -379,7 +379,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'GCP-PH-2022-031',
-    profilePhoto: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_snehal.jpg',
     totalEarnings: 3920,
     completedSessionsCount: 28,
     availability: [
@@ -409,7 +409,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'COEP-ETX-2023-102',
-    profilePhoto: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_aditya.jpg',
     totalEarnings: 7450,
     completedSessionsCount: 42,
     availability: [
@@ -439,7 +439,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'DKTE-FT-2024-088',
-    profilePhoto: 'https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_snehal.jpg',
     totalEarnings: 2600,
     completedSessionsCount: 20,
     availability: [
@@ -469,7 +469,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'BVCOEK-CIV-2022-045',
-    profilePhoto: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_aditya.jpg',
     totalEarnings: 3375,
     completedSessionsCount: 27,
     availability: [
@@ -499,7 +499,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'SPPU-PSY-2023-014',
-    profilePhoto: 'https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_snehal.jpg',
     totalEarnings: 7560,
     completedSessionsCount: 42,
     availability: [
@@ -529,7 +529,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'ADCET-MECH-2024-067',
-    profilePhoto: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_aditya.jpg',
     totalEarnings: 1870,
     completedSessionsCount: 17,
     availability: [
@@ -559,7 +559,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'SUK-AGRI-2022-089',
-    profilePhoto: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_snehal.jpg',
     totalEarnings: 4455,
     completedSessionsCount: 33,
     availability: [
@@ -589,7 +589,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'WCS-ENG-2023-012',
-    profilePhoto: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_aditya.jpg',
     totalEarnings: 2875,
     completedSessionsCount: 23,
     availability: [
@@ -619,7 +619,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: false,
     verificationStatus: 'pending', // for admin verification demo!
     collegeIdUrl: 'KIT-CS-2024-210',
-    profilePhoto: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_snehal.jpg',
     totalEarnings: 1740,
     completedSessionsCount: 12,
     availability: [
@@ -649,7 +649,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'SIU-ARTS-2023-044',
-    profilePhoto: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: '/assets/student_aditya.jpg',
     totalEarnings: 5940,
     completedSessionsCount: 36,
     availability: [
@@ -947,7 +947,7 @@ export const INITIAL_SOCIAL_ACTIVITIES: SocialActivity[] = [
     maxParticipants: 25,
     registeredCount: 19,
     registeredUserIds: ['senior-1', 'student-1', 'senior-2'],
-    imageUrl: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&auto=format&fit=crop&q=80',
+    imageUrl: '/assets/social_katta.jpg',
     hostName: 'डॉ. विजय कुलकर्णी (ज्येष्ठ नागरिक संघ)',
     companionFriendly: true
   },
@@ -965,7 +965,7 @@ export const INITIAL_SOCIAL_ACTIVITIES: SocialActivity[] = [
     maxParticipants: 20,
     registeredCount: 16,
     registeredUserIds: ['senior-1', 'senior-5', 'student-1', 'student-4'],
-    imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=80',
+    imageUrl: '/assets/student_aditya.jpg',
     hostName: 'आदित्य पाटील (कॉलेज साथी लीड)',
     companionFriendly: true
   },
@@ -983,7 +983,7 @@ export const INITIAL_SOCIAL_ACTIVITIES: SocialActivity[] = [
     maxParticipants: 30,
     registeredCount: 24,
     registeredUserIds: ['senior-2', 'senior-6', 'student-2'],
-    imageUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80',
+    imageUrl: '/assets/social_katta.jpg',
     hostName: 'सुनिता देशपांडे व स्नेहा देशमुख',
     companionFriendly: true
   },
@@ -1001,7 +1001,7 @@ export const INITIAL_SOCIAL_ACTIVITIES: SocialActivity[] = [
     maxParticipants: 16,
     registeredCount: 12,
     registeredUserIds: ['senior-1', 'senior-3', 'student-1', 'student-3'],
-    imageUrl: 'https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=600&auto=format&fit=crop&q=80',
+    imageUrl: '/assets/maharashtrian_hero.jpg',
     hostName: 'राजारामपुरी स्पोर्ट्स क्लब',
     companionFriendly: true
   },
@@ -1019,7 +1019,7 @@ export const INITIAL_SOCIAL_ACTIVITIES: SocialActivity[] = [
     maxParticipants: 20,
     registeredCount: 11,
     registeredUserIds: ['senior-3', 'senior-8', 'student-2'],
-    imageUrl: 'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=600&auto=format&fit=crop&q=80',
+    imageUrl: '/assets/social_katta.jpg',
     hostName: 'प्रभाकर शिंदे (माजी कृषी अधिकारी)',
     companionFriendly: true
   }

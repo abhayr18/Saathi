@@ -170,10 +170,26 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (savedStudentId) setCurrentStudentId(savedStudentId);
 
       const savedSeniors = localStorage.getItem(STORAGE_KEYS.SENIORS);
-      if (savedSeniors) setSeniors(JSON.parse(savedSeniors));
+      if (savedSeniors) {
+        try {
+          const parsed = JSON.parse(savedSeniors);
+          const hasUnsplash = parsed.some((s: any) => s.profilePhoto && s.profilePhoto.includes('unsplash'));
+          setSeniors(hasUnsplash ? INITIAL_SENIORS : parsed);
+        } catch {
+          setSeniors(INITIAL_SENIORS);
+        }
+      }
 
       const savedStudents = localStorage.getItem(STORAGE_KEYS.STUDENTS);
-      if (savedStudents) setStudents(JSON.parse(savedStudents));
+      if (savedStudents) {
+        try {
+          const parsed = JSON.parse(savedStudents);
+          const hasUnsplash = parsed.some((s: any) => s.profilePhoto && s.profilePhoto.includes('unsplash'));
+          setStudents(hasUnsplash ? INITIAL_STUDENTS : parsed);
+        } catch {
+          setStudents(INITIAL_STUDENTS);
+        }
+      }
 
       const savedBookings = localStorage.getItem(STORAGE_KEYS.BOOKINGS);
       if (savedBookings) setBookings(JSON.parse(savedBookings));

@@ -139,7 +139,7 @@ export const MyBookingsView: React.FC<MyBookingsViewProps> = ({
                   <img
                     src={
                       companion?.profilePhoto ||
-                      'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200'
+                      '/assets/student_aditya.jpg'
                     }
                     alt={booking.companionName}
                     className="w-16 h-16 rounded-2xl object-cover border-2 border-stone-200 shrink-0"

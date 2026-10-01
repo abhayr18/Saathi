@@ -23,6 +23,7 @@ import { BookingModal } from '@/components/BookingModal';
 import { ReviewModal } from '@/components/ReviewModal';
 import { ObservationModal } from '@/components/ObservationModal';
 import { SosModal } from '@/components/SosModal';
+import { RoleSelectorModal } from '@/components/RoleSelectorModal';
 import { MobileBottomNav } from '@/components/MobileBottomNav';
 
 export default function Home() {
@@ -31,6 +32,7 @@ export default function Home() {
   const [currentTab, setCurrentTab] = useState<string>('landing');
 
   // Modals
+  const [isRoleModalOpen, setIsRoleModalOpen] = useState<boolean>(false);
   const [profileModalStudent, setProfileModalStudent] = useState<StudentProfile | null>(null);
   const [bookingModalStudent, setBookingModalStudent] = useState<StudentProfile | null>(null);
   const [reviewModalBooking, setReviewModalBooking] = useState<Booking | null>(null);
@@ -76,7 +78,11 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F5]">
       {/* Universal Top Navigation & Role Switcher */}
-      <Navbar currentTab={currentTab} onTabChange={setCurrentTab} />
+      <Navbar
+        currentTab={currentTab}
+        onTabChange={setCurrentTab}
+        onOpenRoleModal={() => setIsRoleModalOpen(true)}
+      />
 
       {/* Main Content Area */}
       <main className="flex-1 pb-24 md:pb-8">
@@ -84,6 +90,7 @@ export default function Home() {
           <LandingPage
             onNavigate={setCurrentTab}
             onOpenMatchmaker={() => setIsMatchmakerOpen(true)}
+            onOpenRoleModal={() => setIsRoleModalOpen(true)}
           />
         ) : currentTab === 'activities' ? (
           <SocialActivitiesView />
@@ -190,6 +197,13 @@ export default function Home() {
       <SosModal
         isOpen={isSosOpen}
         onClose={() => setIsSosOpen(false)}
+      />
+
+      {/* Role Selection Modal */}
+      <RoleSelectorModal
+        isOpen={isRoleModalOpen}
+        onClose={() => setIsRoleModalOpen(false)}
+        onNavigateTab={setCurrentTab}
       />
 
       {/* Mobile Bottom Navigation (Persistent thumb bar) */}
