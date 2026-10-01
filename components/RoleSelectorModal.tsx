@@ -202,29 +202,29 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-stone-950/60 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-5 bg-stone-950/60 backdrop-blur-md animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-stone-200 overflow-hidden max-h-[92vh] flex flex-col animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-4xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-stone-200 overflow-hidden max-h-[92vh] flex flex-col animate-in zoom-in-95 duration-200"
         onClick={e => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="px-6 py-5 border-b border-stone-200/80 bg-gradient-to-r from-orange-50/60 via-white to-amber-50/40 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-saath-500 to-amber-500 text-white flex items-center justify-center shadow-md shadow-saath-500/20 text-xl font-bold">
+        <div className="px-4 py-3.5 sm:px-6 sm:py-5 border-b border-stone-200/80 bg-gradient-to-r from-orange-50/60 via-white to-amber-50/40 flex items-center justify-between shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-saath-500 to-amber-500 text-white flex items-center justify-center shadow-md shadow-saath-500/20 text-base sm:text-xl font-bold shrink-0">
               🎭
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-xl sm:text-2xl font-black text-stone-900 font-display">
+              <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+                <h2 className="text-base sm:text-2xl font-black text-stone-900 font-display">
                   {isMr ? 'डेमो भूमिका निवडा' : 'Select Demo Perspective'}
                 </h2>
-                <span className="bg-orange-100 text-saath-800 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full border border-orange-200">
+                <span className="bg-orange-100 text-saath-800 text-[10px] sm:text-[11px] font-extrabold px-2 py-0.5 rounded-full border border-orange-200">
                   Interactive Demo
                 </span>
               </div>
-              <p className="text-xs text-stone-500 mt-0.5">
+              <p className="text-[11px] sm:text-xs text-stone-500 line-clamp-1 sm:line-clamp-none mt-0.5">
                 {isMr
                   ? 'प्लॅटफॉर्मचा अनुभव कोणत्याही भूमिकेतून घ्या — संबंधित डॅशबोर्ड व फीचर्स त्वरित लोड होतील.'
                   : 'Experience Saathi from any stakeholder viewpoint to test features and simulated real-time logs.'}
@@ -234,7 +234,7 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition-colors"
+            className="p-1.5 sm:p-2 rounded-xl text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition-colors shrink-0"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -242,8 +242,8 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
         </div>
 
         {/* Modal Body - 4 Role Cards Grid */}
-        <div className="p-5 sm:p-6 overflow-y-auto space-y-4 max-h-[calc(92vh-160px)]">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="p-3.5 sm:p-6 overflow-y-auto space-y-3 sm:space-y-4 max-h-[calc(92vh-125px)] sm:max-h-[calc(92vh-150px)]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
             {rolesList.map(item => {
               const isActive = role === item.id;
 
@@ -251,7 +251,7 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
                 <div
                   key={item.id}
                   onClick={() => handleSelect(item)}
-                  className={`relative p-5 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between group shadow-xs hover:shadow-card bg-gradient-to-b ${
+                  className={`relative p-3.5 sm:p-5 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between group shadow-xs hover:shadow-card bg-gradient-to-b ${
                     item.themeGradient
                   } ${
                     isActive
@@ -261,53 +261,56 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
                 >
                   {/* Active Indicator Badge */}
                   {isActive && (
-                    <div className="absolute top-3.5 right-3.5 bg-saath-600 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-xs">
-                      <Check className="w-3 h-3 stroke-[3]" />
-                      <span>{isMr ? 'सक्रिय भूमिका' : 'Active View'}</span>
+                    <div className="absolute top-3 right-3 bg-saath-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-xs">
+                      <Check className="w-2.5 h-2.5 stroke-[3]" />
+                      <span>{isMr ? 'सक्रिय' : 'Active'}</span>
                     </div>
                   )}
 
-                  <div className="space-y-3">
+                  <div className="space-y-2.5 sm:space-y-3">
                     {/* Role Header */}
-                    <div className="flex items-start gap-3">
-                      <div className="relative shrink-0">
+                    <div className="flex items-start gap-2.5 sm:gap-3">
+                      {/* Strictly constrained avatar container */}
+                      <div className="relative shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden bg-stone-100 border-2 border-white shadow-xs">
                         <img
                           src={item.photo}
                           alt={item.personNameEn}
-                          className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl object-cover border-2 border-white shadow-sm"
+                          className="w-full h-full object-cover"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         />
-                        <span className="absolute -bottom-1 -right-1 text-xs bg-white rounded-full p-0.5 shadow-2xs">
+                        <span className="absolute bottom-0 right-0 text-[10px] bg-white/95 rounded-tl-md px-1 py-0.5 shadow-2xs">
                           {item.icon}
                         </span>
                       </div>
-                      <div className="pr-16">
+
+                      <div className="flex-1 min-w-0 pr-10 sm:pr-14">
                         <div className="flex items-center gap-1.5 flex-wrap">
-                          <h3 className="text-base font-bold text-stone-900 group-hover:text-saath-700 transition-colors">
+                          <h3 className="text-sm sm:text-base font-bold text-stone-900 group-hover:text-saath-700 transition-colors truncate">
                             {isMr ? item.titleMr : item.titleEn}
                           </h3>
                         </div>
-                        <p className="text-xs font-semibold text-stone-700 mt-0.5">
+                        <p className="text-xs font-semibold text-stone-700 truncate mt-0.5">
                           {isMr ? item.personNameMr : item.personNameEn}
                         </p>
-                        <p className="text-[11px] text-stone-500">{isMr ? item.subtitleMr : item.subtitleEn}</p>
+                        <p className="text-[10px] sm:text-[11px] text-stone-500 truncate">{isMr ? item.subtitleMr : item.subtitleEn}</p>
                       </div>
                     </div>
 
                     {/* Short Description */}
-                    <p className="text-xs text-stone-600 leading-relaxed bg-white/70 p-2.5 rounded-xl border border-stone-100">
+                    <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed bg-white/70 p-2 sm:p-2.5 rounded-xl border border-stone-100">
                       {isMr ? item.descriptionMr : item.descriptionEn}
                     </p>
 
                     {/* Feature Highlights */}
-                    <div className="space-y-1.5 pt-1">
-                      <span className="text-[10px] font-extrabold text-stone-400 uppercase tracking-wider block">
+                    <div className="space-y-1 pt-0.5">
+                      <span className="text-[9px] sm:text-[10px] font-extrabold text-stone-400 uppercase tracking-wider block">
                         {isMr ? 'या भूमिकेतील मुख्य सुविधा:' : 'What you can explore:'}
                       </span>
                       <ul className="space-y-1 text-xs text-stone-700">
                         {(isMr ? item.featuresMr : item.featuresEn).map((f, i) => (
-                          <li key={i} className="flex items-center gap-2">
+                          <li key={i} className="flex items-center gap-1.5 sm:gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-saath-500 shrink-0"></span>
-                            <span className="text-[11px] leading-tight">{f}</span>
+                            <span className="text-[11px] leading-tight text-stone-600">{f}</span>
                           </li>
                         ))}
                       </ul>
@@ -315,14 +318,14 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
                   </div>
 
                   {/* Switch CTA button */}
-                  <div className="pt-4 mt-3 border-t border-stone-200/60 flex items-center justify-between">
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md border ${item.badgeStyle}`}>
+                  <div className="pt-3 mt-2.5 sm:pt-4 sm:mt-3 border-t border-stone-200/60 flex items-center justify-between gap-2">
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md border shrink-0 ${item.badgeStyle}`}>
                       {isMr ? item.tagMr : item.tagEn}
                     </span>
 
                     <button
                       type="button"
-                      className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-2xs ${
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1 shadow-2xs shrink-0 ${
                         isActive
                           ? 'bg-saath-600 text-white font-black'
                           : 'bg-white border border-stone-300 text-stone-800 group-hover:bg-saath-600 group-hover:text-white group-hover:border-saath-600'
@@ -331,13 +334,13 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
                       <span>
                         {isActive
                           ? isMr
-                            ? 'सध्या सुरू आहे ✓'
-                            : 'Currently Viewing ✓'
+                            ? 'सुरू आहे ✓'
+                            : 'Active ✓'
                           : isMr
-                          ? 'या भूमिकेत जा'
-                          : 'Switch to Role'}
+                          ? 'निवडा'
+                          : 'Switch'}
                       </span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <ArrowRight className="w-3 h-3" />
                     </button>
                   </div>
                 </div>
@@ -347,17 +350,17 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
         </div>
 
         {/* Modal Footer Controls (Language Toggle & Reset Data) */}
-        <div className="px-6 py-3.5 bg-stone-50 border-t border-stone-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2">
-            <span className="text-stone-500 font-medium">
+        <div className="px-3.5 py-2.5 sm:px-6 sm:py-3.5 bg-stone-50 border-t border-stone-200 flex flex-wrap items-center justify-between gap-2 text-xs shrink-0">
+          <div className="flex items-center gap-1.5">
+            <span className="text-stone-500 font-medium text-[11px] sm:text-xs hidden sm:inline">
               {isMr ? 'भाषा बदला:' : 'Toggle Language:'}
             </span>
             <button
               onClick={toggleLanguage}
-              className="px-3 py-1 rounded-xl text-xs font-bold bg-white border border-stone-300 text-stone-800 hover:border-saath-500 hover:text-saath-700 transition-colors shadow-2xs flex items-center gap-1.5"
+              className="px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-bold bg-white border border-stone-300 text-stone-800 hover:border-saath-500 hover:text-saath-700 transition-colors shadow-2xs flex items-center gap-1.5"
             >
               <span>🌐</span>
-              <span>{isMr ? 'English मध्ये पहा' : 'मराठीत पहा (Marathi)'}</span>
+              <span>{isMr ? 'English' : 'मराठीत पहा'}</span>
             </button>
           </div>
 
@@ -368,15 +371,15 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
                 showToast(isMr ? 'डेमो डेटा मूळ स्थितीत आणला' : 'Demo data reset to initial state');
                 onClose();
               }}
-              className="px-3 py-1 rounded-xl text-xs font-semibold text-stone-600 hover:text-stone-900 bg-white border border-stone-200 hover:border-stone-300 transition-colors flex items-center gap-1.5 shadow-2xs"
+              className="px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-semibold text-stone-600 hover:text-stone-900 bg-white border border-stone-200 hover:border-stone-300 transition-colors flex items-center gap-1 shadow-2xs"
             >
-              <RotateCcw className="w-3.5 h-3.5 text-stone-500" />
-              <span>{isMr ? 'डेमो डेटा रीसेट करा' : 'Reset Demo Data'}</span>
+              <RotateCcw className="w-3 h-3 text-stone-500" />
+              <span>{isMr ? 'रीसेट डेटा' : 'Reset'}</span>
             </button>
 
             <button
               onClick={onClose}
-              className="px-4 py-1.5 rounded-xl text-xs font-bold bg-stone-900 text-white hover:bg-stone-800 transition-colors"
+              className="px-3 py-1 rounded-xl text-[11px] sm:text-xs font-bold bg-stone-900 text-white hover:bg-stone-800 transition-colors"
             >
               {isMr ? 'बंद करा' : 'Close'}
             </button>
