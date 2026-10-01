@@ -13,6 +13,8 @@ import {
   EmergencyContact,
   VisitObservation,
   CarePlanSubscription,
+  SocialActivity,
+  LanguageMode,
 } from '@/types';
 import {
   INITIAL_SENIORS,
@@ -24,10 +26,14 @@ import {
   INITIAL_NOTIFICATIONS,
   INITIAL_OBSERVATIONS,
   INITIAL_CARE_PLANS,
+  INITIAL_SOCIAL_ACTIVITIES,
 } from '@/data/mockData';
 
 interface AppContextType {
   role: UserRole;
+  language: LanguageMode;
+  setLanguage: (lang: LanguageMode) => void;
+  toggleLanguage: () => void;
   currentSenior: SeniorProfile;
   currentStudent: StudentProfile;
   seniors: SeniorProfile[];
@@ -39,6 +45,9 @@ interface AppContextType {
   notifications: NotificationItem[];
   observations: VisitObservation[];
   carePlans: CarePlanSubscription[];
+  socialActivities: SocialActivity[];
+  registerForActivity: (activityId: string) => void;
+  unregisterFromActivity: (activityId: string) => void;
   switchRole: (role: UserRole) => void;
   setSeniorUser: (seniorId: string) => void;
   setStudentUser: (studentId: string) => void;
@@ -75,10 +84,13 @@ const STORAGE_KEYS = {
   NOTIFICATIONS: 'saath_notifications',
   OBSERVATIONS: 'saath_observations',
   CARE_PLANS: 'saath_care_plans',
+  LANGUAGE: 'saath_language',
+  ACTIVITIES: 'saath_social_activities',
 };
 
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [role, setRoleState] = useState<UserRole>('senior');
+  const [language, setLanguage] = useState<LanguageMode>('mr');
   const [currentSeniorId, setCurrentSeniorId] = useState<string>('senior-1');
   const [currentStudentId, setCurrentStudentId] = useState<string>('student-1');
 
@@ -91,6 +103,49 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [notifications, setNotifications] = useState<NotificationItem[]>(INITIAL_NOTIFICATIONS);
   const [observations, setObservations] = useState<VisitObservation[]>(INITIAL_OBSERVATIONS);
   const [carePlans, setCarePlans] = useState<CarePlanSubscription[]>(INITIAL_CARE_PLANS);
+  const [socialActivities, setSocialActivities] = useState<SocialActivity[]>(INITIAL_SOCIAL_ACTIVITIES);
+
+  const toggleLanguage = () => {
+    setLanguage(prev => (prev === 'mr' ? 'en' : 'mr'));
+  };
+
+  const registerForActivity = (activityId: string) => {
+    const activeUserId = role === 'student' ? currentStudentId : currentSeniorId;
+    setSocialActivities(prev =>
+      prev.map(act => {
+        if (act.id === activityId) {
+          if (act.registeredUserIds.includes(activeUserId)) {
+            showToast('तुम्ही आधीच या उपक्रमासाठी नोंदणी केली आहे! (Already registered)');
+            return act;
+          }
+          showToast('उपक्रमासाठी नोंदणी यशस्वी झाली! (Successfully registered)');
+          return {
+            ...act,
+            registeredCount: act.registeredCount + 1,
+            registeredUserIds: [...act.registeredUserIds, activeUserId],
+          };
+        }
+        return act;
+      })
+    );
+  };
+
+  const unregisterFromActivity = (activityId: string) => {
+    const activeUserId = role === 'student' ? currentStudentId : currentSeniorId;
+    setSocialActivities(prev =>
+      prev.map(act => {
+        if (act.id === activityId && act.registeredUserIds.includes(activeUserId)) {
+          showToast('नोंदणी रद्द केली आहे. (Registration cancelled)');
+          return {
+            ...act,
+            registeredCount: Math.max(0, act.registeredCount - 1),
+            registeredUserIds: act.registeredUserIds.filter(id => id !== activeUserId),
+          };
+        }
+        return act;
+      })
+    );
+  };
 
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -489,6 +544,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setNotifications(INITIAL_NOTIFICATIONS);
       setObservations(INITIAL_OBSERVATIONS);
       setCarePlans(INITIAL_CARE_PLANS);
+      setSocialActivities(INITIAL_SOCIAL_ACTIVITIES);
+      setLanguage('mr');
       showToast('Reset demo state to pristine initial presentation data!');
     } catch (e) {
       console.error(e);
@@ -499,6 +556,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     <AppContext.Provider
       value={{
         role,
+        language,
+        setLanguage,
+        toggleLanguage,
         currentSenior,
         currentStudent,
         seniors,
@@ -510,6 +570,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         notifications,
         observations,
         carePlans,
+        socialActivities,
+        registerForActivity,
+        unregisterFromActivity,
         switchRole,
         setSeniorUser,
         setStudentUser,

@@ -148,52 +148,52 @@ export const CarePlansView: React.FC<CarePlansViewProps> = ({ onSelectPlan, onBo
         </div>
 
         {/* Model 2B: Gold Monthly (Most Popular) */}
-        <div className="bg-gradient-to-b from-stone-900 to-stone-950 text-white rounded-3xl p-6 sm:p-8 shadow-elevated border-2 border-amber-400 flex flex-col justify-between space-y-6 relative">
-          <span className="absolute -top-3 right-6 bg-amber-400 text-stone-900 text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-md">
+        <div className="bg-white text-stone-900 rounded-3xl p-6 sm:p-8 shadow-elevated border-2 border-saath-500 flex flex-col justify-between space-y-6 relative">
+          <span className="absolute -top-3 right-6 bg-saath-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-xs">
             Recommended by Families
           </span>
 
           <div className="space-y-4">
-            <span className="text-xs font-bold text-amber-300 uppercase tracking-wider block">
+            <span className="text-xs font-bold text-saath-700 uppercase tracking-wider block">
               Model 2 & 3: Comprehensive Care
             </span>
-            <h3 className="text-2xl font-black text-white font-display">
+            <h3 className="text-2xl font-black text-stone-900 font-display">
               Gold Saath (8 Visits)
             </h3>
-            <p className="text-xs text-stone-400">
+            <p className="text-xs text-stone-600">
               2 visits per week. Complete peace of mind for children living in another city or abroad.
             </p>
 
             <div className="pt-2">
-              <span className="text-3xl font-black text-amber-300">₹1,099</span>
-              <span className="text-xs font-medium text-stone-400"> / month</span>
+              <span className="text-3xl font-black text-saath-700">₹1,199</span>
+              <span className="text-xs font-medium text-stone-500"> / month</span>
             </div>
 
-            <ul className="space-y-2.5 text-xs text-stone-300 pt-2 border-t border-stone-800">
+            <ul className="space-y-2.5 text-xs text-stone-700 pt-2 border-t border-stone-100">
               <li className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>8 Bi-weekly companionship visits</span>
               </li>
               <li className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>Know My Normal baseline tracking</span>
               </li>
               <li className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>WhatsApp dispatches to son/daughter</span>
               </li>
               <li className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                <Check className="w-4 h-4 text-emerald-600 shrink-0" />
                 <span>Emergency coordination support</span>
               </li>
             </ul>
           </div>
 
           <button
-            onClick={() => handleSubscribe('Gold Saath — 8 Visits / Month (Bi-Weekly)', 1099, 8)}
-            className="w-full bg-amber-400 hover:bg-amber-300 text-stone-950 font-black py-3 rounded-xl text-xs transition-colors shadow-md"
+            onClick={() => handleSubscribe('Gold Saath — 8 Visits / Month (Bi-Weekly)', 1199, 8)}
+            className="w-full bg-saath-600 hover:bg-saath-700 text-white font-black py-3 rounded-xl text-xs transition-colors shadow-xs"
           >
-            Sponsor Gold Plan (₹1,099)
+            Sponsor Gold Plan (₹1,199)
           </button>
         </div>
       </div>

@@ -168,3 +168,25 @@ export interface CompatibilityResult {
   };
   reasons: string[];
 }
+
+export type LanguageMode = 'mr' | 'en';
+
+export interface SocialActivity {
+  id: string;
+  titleMr: string;
+  titleEn: string;
+  category: 'health' | 'culture' | 'tech' | 'games' | 'nature';
+  date: string;
+  time: string;
+  locationMr: string;
+  locationEn: string;
+  descriptionMr: string;
+  descriptionEn: string;
+  maxParticipants: number;
+  registeredCount: number;
+  registeredUserIds: string[];
+  imageUrl: string;
+  hostName: string;
+  companionFriendly: boolean;
+}
+

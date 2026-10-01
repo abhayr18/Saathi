@@ -16,6 +16,8 @@ import { MessagingView } from '@/components/MessagingView';
 import { AdminDashboard } from '@/components/AdminDashboard';
 import { FamilyDashboard } from '@/components/FamilyDashboard';
 import { CarePlansView } from '@/components/CarePlansView';
+import { SocialActivitiesView } from '@/components/SocialActivitiesView';
+import { SmartMatchmakerModal } from '@/components/SmartMatchmakerModal';
 import { CompanionProfileModal } from '@/components/CompanionProfileModal';
 import { BookingModal } from '@/components/BookingModal';
 import { ReviewModal } from '@/components/ReviewModal';
@@ -34,6 +36,7 @@ export default function Home() {
   const [reviewModalBooking, setReviewModalBooking] = useState<Booking | null>(null);
   const [observationModalBooking, setObservationModalBooking] = useState<Booking | null>(null);
   const [isSosOpen, setIsSosOpen] = useState<boolean>(false);
+  const [isMatchmakerOpen, setIsMatchmakerOpen] = useState<boolean>(false);
   const [messagingTargetId, setMessagingTargetId] = useState<string | undefined>(undefined);
 
   // Handlers
@@ -78,7 +81,12 @@ export default function Home() {
       {/* Main Content Area */}
       <main className="flex-1 pb-24 md:pb-8">
         {currentTab === 'landing' ? (
-          <LandingPage onNavigate={setCurrentTab} />
+          <LandingPage
+            onNavigate={setCurrentTab}
+            onOpenMatchmaker={() => setIsMatchmakerOpen(true)}
+          />
+        ) : currentTab === 'activities' ? (
+          <SocialActivitiesView />
         ) : currentTab === 'careplans' ? (
           <CarePlansView
             onSelectPlan={(name, price, visits) => {
@@ -142,6 +150,14 @@ export default function Home() {
           </>
         )}
       </main>
+
+      {/* Smart Matchmaker Modal */}
+      <SmartMatchmakerModal
+        isOpen={isMatchmakerOpen}
+        onClose={() => setIsMatchmakerOpen(false)}
+        onSelectStudent={handleOpenProfile}
+        onBookStudent={handleOpenBooking}
+      />
 
       {/* Profile Detail Modal */}
       <CompanionProfileModal

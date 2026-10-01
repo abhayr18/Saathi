@@ -8,6 +8,7 @@ import {
   NotificationItem,
   VisitObservation,
   CarePlanSubscription,
+  SocialActivity,
 } from '@/types';
 
 export const INITIAL_SENIORS: SeniorProfile[] = [
@@ -21,7 +22,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi', 'English'],
     interests: ['Chess', 'Conversation', 'Walking', 'Technology Help'],
     bio: 'Retired high-school mathematics teacher. Love playing chess in the evenings, staying updated on tech, and walking in the colony park.',
-    profilePhoto: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&auto=format&fit=crop&q=80',
     emergencyContact: {
       name: 'Amit Kulkarni',
       relationship: 'Son (Living in Bangalore)',
@@ -40,7 +41,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi'],
     interests: ['Reading', 'Storytelling', 'Gardening', 'Music'],
     bio: 'Passionate about Marathi literature and classical music. Would love someone to read with me or talk about old Natyasangeet.',
-    profilePhoto: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=400&auto=format&fit=crop&q=80',
     emergencyContact: {
       name: 'Neelima Joshi',
       relationship: 'Daughter (in Pune)',
@@ -59,7 +60,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi', 'Kannada'],
     interests: ['Walking', 'Conversation', 'Gardening'],
     bio: 'Former agricultural officer. Love tending to my rooftop garden and sharing stories of old Maharashtra traditions.',
-    profilePhoto: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&auto=format&fit=crop&q=80',
     emergencyContact: {
       name: 'Sachin Shinde',
       relationship: 'Son (Nearby)',
@@ -78,7 +79,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi', 'English'],
     interests: ['Cooking', 'Storytelling', 'Reading'],
     bio: 'Retired bank manager. Seeking cheerful young companions to discuss current affairs, cook traditional recipes, and read together.',
-    profilePhoto: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1506863530036-1efeddceb993?w=400&auto=format&fit=crop&q=80',
     emergencyContact: {
       name: 'Rohan Patil',
       relationship: 'Son (in Mumbai)',
@@ -97,7 +98,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'English', 'Hindi'],
     interests: ['Technology Help', 'Chess', 'Conversation'],
     bio: 'Keen to master smartphone apps, online UPI payments, and video calling my grandchildren abroad while enjoying friendly chess matches.',
-    profilePhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&auto=format&fit=crop&q=80',
     emergencyContact: {
       name: 'Ketaki Joshi',
       relationship: 'Daughter (in USA)',
@@ -116,7 +117,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi'],
     interests: ['Music', 'Conversation', 'Gardening'],
     bio: 'Love devotional music, morning tea conversations, and keeping indoor houseplants healthy and green.',
-    profilePhoto: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&auto=format&fit=crop&q=80',
     emergencyContact: {
       name: 'Mahesh Bhosale',
       relationship: 'Brother',
@@ -135,7 +136,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi'],
     interests: ['Conversation', 'Walking', 'Storytelling'],
     bio: 'Lived in Ashta for 50 years. Love interacting with college youngsters, hearing about engineering projects, and going for evening walks.',
-    profilePhoto: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?w=400&auto=format&fit=crop&q=80',
     emergencyContact: {
       name: 'Pramod Chavan',
       relationship: 'Son',
@@ -154,7 +155,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi', 'Hindi', 'English'],
     interests: ['Reading', 'Chess & Games', 'Conversation'],
     bio: 'Retired college librarian. Avid reader of historical books and fond of board games and crossword puzzles.',
-    profilePhoto: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&auto=format&fit=crop&q=80',
     emergencyContact: {
       name: 'Anita Mahajan',
       relationship: 'Daughter-in-law',
@@ -173,7 +174,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['Marathi'],
     interests: ['Walking', 'Storytelling', 'Music'],
     bio: 'Evening walks by the Rankala lake are my favorite routine. Enjoy sharing folkloric stories and old Kolhapur history.',
-    profilePhoto: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=400&auto=format&fit=crop&q=80',
     emergencyContact: {
       name: 'Ganesh Jadhav',
       relationship: 'Son',
@@ -192,7 +193,7 @@ export const INITIAL_SENIORS: SeniorProfile[] = [
     languages: ['English', 'Hindi', 'Kannada', 'Marathi'],
     interests: ['Technology Help', 'Gardening', 'Reading'],
     bio: 'Looking for a kind tech-savvy student to help me navigate iPad apps, Kindle books, and share garden tea conversations.',
-    profilePhoto: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=400&auto=format&fit=crop&q=80',
     emergencyContact: {
       name: 'Vikram Rao',
       relationship: 'Son',
@@ -225,7 +226,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'ADCET-CS-2023-042',
-    profilePhoto: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80',
     totalEarnings: 7850,
     completedSessionsCount: 47,
     availability: [
@@ -257,7 +258,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'KIT-BIO-2024-118',
-    profilePhoto: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?w=400&auto=format&fit=crop&q=80',
     totalEarnings: 5320,
     completedSessionsCount: 38,
     availability: [
@@ -288,7 +289,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'WCE-ME-2022-094',
-    profilePhoto: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80',
     totalEarnings: 4160,
     completedSessionsCount: 32,
     availability: [
@@ -318,7 +319,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'DYP-AI-2023-019',
-    profilePhoto: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=400&auto=format&fit=crop&q=80',
     totalEarnings: 6240,
     completedSessionsCount: 39,
     availability: [
@@ -348,7 +349,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'SIBER-BBA-2024-055',
-    profilePhoto: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80',
     totalEarnings: 2700,
     completedSessionsCount: 22,
     availability: [
@@ -378,7 +379,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'GCP-PH-2022-031',
-    profilePhoto: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&auto=format&fit=crop&q=80',
     totalEarnings: 3920,
     completedSessionsCount: 28,
     availability: [
@@ -408,7 +409,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'COEP-ETX-2023-102',
-    profilePhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&auto=format&fit=crop&q=80',
     totalEarnings: 7450,
     completedSessionsCount: 42,
     availability: [
@@ -438,7 +439,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'DKTE-FT-2024-088',
-    profilePhoto: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?w=400&auto=format&fit=crop&q=80',
     totalEarnings: 2600,
     completedSessionsCount: 20,
     availability: [
@@ -468,7 +469,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'BVCOEK-CIV-2022-045',
-    profilePhoto: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&auto=format&fit=crop&q=80',
     totalEarnings: 3375,
     completedSessionsCount: 27,
     availability: [
@@ -498,7 +499,7 @@ export const INITIAL_STUDENTS: StudentProfile[] = [
     isVerified: true,
     verificationStatus: 'verified',
     collegeIdUrl: 'SPPU-PSY-2023-014',
-    profilePhoto: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80',
+    profilePhoto: 'https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=400&auto=format&fit=crop&q=80',
     totalEarnings: 7560,
     completedSessionsCount: 42,
     availability: [
@@ -930,3 +931,97 @@ export const INITIAL_NOTIFICATIONS: NotificationItem[] = [
     timestamp: '3 hours ago'
   }
 ];
+
+export const INITIAL_SOCIAL_ACTIVITIES: SocialActivity[] = [
+  {
+    id: 'act-1',
+    titleMr: 'प्रभात फेरी व हास्य क्लब',
+    titleEn: 'Morning Walk & Laughter Club',
+    category: 'health',
+    date: 'दररोज सकाळी (Daily)',
+    time: '७:०० AM - ८:०० AM',
+    locationMr: 'ताराबाई पार्क / संभाजी उद्यान, कोल्हापूर व पुणे',
+    locationEn: 'Tarabai Park / Sambhaji Garden, Kolhapur & Pune',
+    descriptionMr: 'ताजी सकाळची हवा, प्राणायाम, सोपा हास्ययोग आणि समवयस्क मित्रांसोबत मनमोकळी प्रभातफेरी. सोबत कॉलेजचे तरुण साथीदार मदतीसाठी उपस्थित असतात.',
+    descriptionEn: 'Fresh morning air, gentle pranayam, laughter yoga and pleasant walking with fellow seniors and student companions.',
+    maxParticipants: 25,
+    registeredCount: 19,
+    registeredUserIds: ['senior-1', 'student-1', 'senior-2'],
+    imageUrl: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=600&auto=format&fit=crop&q=80',
+    hostName: 'डॉ. विजय कुलकर्णी (ज्येष्ठ नागरिक संघ)',
+    companionFriendly: true
+  },
+  {
+    id: 'act-2',
+    titleMr: 'स्मार्टफोन व UPI कार्यशाळा',
+    titleEn: 'Smartphones & UPI Made Easy Workshop',
+    category: 'tech',
+    date: 'प्रत्येक रविवार (Every Sunday)',
+    time: '१०:३० AM - १२:०० PM',
+    locationMr: 'टिळक स्मारक मंदिर हॉल / राजारामपुरी कम्युनिटी सेंटर',
+    locationEn: 'Tilak Smarak Mandir / Rajarampuri Community Hall',
+    descriptionMr: 'व्हॉट्सॲपवर फोटो व ऑडिओ पाठवणे, गुगल पे/फोनपे सुरक्षित वापरणे आणि यूट्यूबवर जुनी गाणी शोधणे — कॉलेज विद्यार्थी प्रत्येकाला वैयक्तिक (1:1) शिकवणार!',
+    descriptionEn: '1-on-1 hands-on guidance by college students for WhatsApp, secure UPI payments, and finding classic Marathi songs on YouTube.',
+    maxParticipants: 20,
+    registeredCount: 16,
+    registeredUserIds: ['senior-1', 'senior-5', 'student-1', 'student-4'],
+    imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=80',
+    hostName: 'आदित्य पाटील (कॉलेज साथी लीड)',
+    companionFriendly: true
+  },
+  {
+    id: 'act-3',
+    titleMr: 'शनिवार कट्टा व नाट्यसंगीत संध्या',
+    titleEn: 'Saturday Classical Music & Chai Katta',
+    category: 'culture',
+    date: 'शनिवार (Saturday)',
+    time: '५:०० PM - ७:०० PM',
+    locationMr: 'चितळे कट्टा / यशोदा सभागृह, कोथरूड',
+    locationEn: 'Chitale Katta / Yashoda Hall, Kothrud',
+    descriptionMr: 'गरमागरम चहा, बाकरवडी आणि जुनी सुवर्णकाळातील नाट्यगीते व भावगीते. गाणी ऐकणे, गाणे आणि जुन्या आठवणींना उजाळा देणे!',
+    descriptionEn: 'Warm Maharashtrian chai, snacks and nostalgic listening to classic Natyasangeet and Bhavgeet melodies.',
+    maxParticipants: 30,
+    registeredCount: 24,
+    registeredUserIds: ['senior-2', 'senior-6', 'student-2'],
+    imageUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80',
+    hostName: 'सुनिता देशपांडे व स्नेहा देशमुख',
+    companionFriendly: true
+  },
+  {
+    id: 'act-4',
+    titleMr: 'आंतरपिढी बुद्धिबळ व कॅरम स्पर्धा',
+    titleEn: 'Intergenerational Chess & Carrom Meet',
+    category: 'games',
+    date: 'दुसरा शनिवार (2nd Saturday)',
+    time: '४:०० PM - ६:३० PM',
+    locationMr: 'रोटरी क्लब हॉल, सांगली / कोल्हापूर',
+    locationEn: 'Rotary Club Hall, Sangli / Kolhapur',
+    descriptionMr: 'ज्येष्ठ नागरिक आणि कॉलेज तरुणांची मैत्रीपूर्ण बुद्धिबळ व कॅरम जुगलबंदी. जिंकणाऱ्या जोडीला विशेष सन्मान व चहापान!',
+    descriptionEn: 'Friendly chess and carrom matches pairing grandparents and college students. Trophies and healthy fun.',
+    maxParticipants: 16,
+    registeredCount: 12,
+    registeredUserIds: ['senior-1', 'senior-3', 'student-1', 'student-3'],
+    imageUrl: 'https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=600&auto=format&fit=crop&q=80',
+    hostName: 'राजारामपुरी स्पोर्ट्स क्लब',
+    companionFriendly: true
+  },
+  {
+    id: 'act-5',
+    titleMr: 'गच्चीवरील बागकाम व औषधी वनस्पती',
+    titleEn: 'Terrace Gardening & Plant Care Circle',
+    category: 'nature',
+    date: 'रविवार (Sunday)',
+    time: '८:३० AM - १०:०० AM',
+    locationMr: 'नेचर पार्क व कम्युनिटी नर्सरी, पुणे व कोल्हापूर',
+    locationEn: 'Nature Park & Community Nursery, Pune & Kolhapur',
+    descriptionMr: 'तुळस, कोरफड आणि फुलांची कुंडी तयार करणे. सेंद्रिय खतांच्या टिप्स आणि हिरवाईच्या सान्निध्यात प्रसन्न सकाळ घालवणे.',
+    descriptionEn: 'Care for holy basil, aloe, and flowering pots. Exchange organic seeds, soil tips, and spend serene time with plants.',
+    maxParticipants: 20,
+    registeredCount: 11,
+    registeredUserIds: ['senior-3', 'senior-8', 'student-2'],
+    imageUrl: 'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=600&auto=format&fit=crop&q=80',
+    hostName: 'प्रभाकर शिंदे (माजी कृषी अधिकारी)',
+    companionFriendly: true
+  }
+];
+

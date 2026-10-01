@@ -52,10 +52,10 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
-      {/* Welcome & Senior Greeting Card */}
-      <div className="bg-gradient-to-r from-saath-700 via-amber-700 to-saath-800 rounded-3xl p-6 sm:p-8 text-white shadow-elevated relative overflow-hidden">
-        <div className="absolute right-0 top-0 bottom-0 opacity-10 pointer-events-none flex items-center pr-10">
-          <span className="text-[140px] font-black">साथ</span>
+      {/* Welcome & Senior Greeting Card (Smooth Minimalist Light Theme) */}
+      <div className="bg-gradient-to-r from-orange-50 via-amber-50 to-orange-100/60 rounded-3xl p-6 sm:p-8 text-stone-900 border border-orange-200/90 shadow-soft relative overflow-hidden">
+        <div className="absolute right-0 top-0 bottom-0 opacity-[0.04] pointer-events-none flex items-center pr-10">
+          <span className="text-[140px] font-black text-stone-900">साथ</span>
         </div>
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -63,37 +63,44 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
             <img
               src={currentSenior.profilePhoto}
               alt={currentSenior.name}
-              className="w-20 h-20 rounded-2xl object-cover border-4 border-white/80 shadow-md shrink-0"
+              className="w-20 h-20 rounded-2xl object-cover border-4 border-white shadow-md shrink-0"
             />
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/20 text-xs font-bold text-amber-200 mb-1">
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/90 border border-orange-200 text-xs font-bold text-saath-800 mb-1 shadow-2xs">
                 <span>📍 {currentSenior.area}, {currentSenior.city}</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight">
-                Good evening, {currentSenior.name.split(' ')[0]} 👋
+              <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-stone-900">
+                शुभ संध्याकाळ, {currentSenior.name.split(' ')[0]}जी 👋
               </h1>
-              <p className="text-stone-200 text-sm sm:text-base mt-0.5">
-                "Find someone to share your time, hobbies, and stories with."
+              <p className="text-stone-600 text-sm sm:text-base mt-0.5 font-normal">
+                “आपुलकीने संवाद साधणारा आणि वेळ घालवणारा तरुण साथीदार निवडा.”
               </p>
             </div>
           </div>
 
-          {/* Quick SOS and Explore buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
+          {/* Quick Actions */}
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 w-full sm:w-auto">
             <button
-              onClick={onOpenSos}
-              className="bg-rose-600 hover:bg-rose-700 text-white font-black text-sm px-5 py-3 rounded-2xl shadow-lg flex items-center justify-center gap-2 transition-all transform active:scale-95 border border-rose-400"
+              onClick={() => onNavigate('discovery')}
+              className="bg-saath-600 hover:bg-saath-700 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-sm transition-all flex items-center justify-center gap-2 active:scale-98"
             >
-              <AlertTriangle className="w-5 h-5" />
-              <span>SOS Emergency</span>
+              <Compass className="w-4 h-4" />
+              <span>सोबती शोधा</span>
             </button>
 
             <button
-              onClick={() => onNavigate('discovery')}
-              className="bg-white hover:bg-stone-50 text-saath-900 font-bold text-sm px-5 py-3 rounded-2xl shadow-md transition-all flex items-center justify-center gap-2"
+              onClick={() => onNavigate('activities')}
+              className="bg-white hover:bg-orange-50/60 text-stone-800 border border-stone-200 font-bold text-xs sm:text-sm px-4 py-3 rounded-2xl shadow-2xs transition-all flex items-center justify-center gap-2"
             >
-              <Compass className="w-5 h-5 text-saath-600" />
-              <span>Explore Companions</span>
+              <span>☕ सामाजिक कट्टा</span>
+            </button>
+
+            <button
+              onClick={onOpenSos}
+              className="bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold text-xs sm:text-sm px-4 py-3 rounded-2xl border border-rose-200 flex items-center justify-center gap-1.5 transition-all"
+            >
+              <AlertTriangle className="w-4 h-4 text-rose-600" />
+              <span>SOS</span>
             </button>
           </div>
         </div>

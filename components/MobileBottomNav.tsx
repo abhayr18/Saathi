@@ -12,7 +12,8 @@ import {
   DollarSign,
   Heart,
   Shield,
-  Sparkles
+  Sparkles,
+  Users
 } from 'lucide-react';
 
 interface MobileBottomNavProps {
@@ -26,7 +27,8 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   onTabChange,
   onOpenSos,
 }) => {
-  const { role, notifications, messages, currentSenior, currentStudent } = useApp();
+  const { role, language, notifications, messages, currentSenior, currentStudent } = useApp();
+  const isMr = language === 'mr';
 
   // Calculate unread messages
   const activeUserId =
@@ -46,28 +48,27 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       return [
         {
           id: 'dashboard',
-          label: 'Home',
+          label: isMr ? 'होम' : 'Home',
           icon: Home,
         },
         {
           id: 'discovery',
-          label: 'Find',
+          label: isMr ? 'शोधा' : 'Find',
           icon: Compass,
         },
         {
+          id: 'activities',
+          label: isMr ? 'कट्टा' : 'Katta',
+          icon: Users,
+        },
+        {
           id: 'bookings',
-          label: 'Bookings',
+          label: isMr ? 'भेटी' : 'Bookings',
           icon: Calendar,
         },
         {
-          id: 'messages',
-          label: 'Messages',
-          icon: MessageSquare,
-          badge: unreadMessagesCount > 0,
-        },
-        {
           id: 'safety',
-          label: 'Safety',
+          label: isMr ? 'सुरक्षा' : 'Safety',
           icon: ShieldAlert,
           isSos: true,
         },
@@ -78,29 +79,29 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       return [
         {
           id: 'dashboard',
-          label: 'Dashboard',
+          label: isMr ? 'हब' : 'Hub',
           icon: Home,
         },
         {
+          id: 'activities',
+          label: isMr ? 'कट्टा' : 'Katta',
+          icon: Users,
+        },
+        {
           id: 'availability',
-          label: 'Slots',
+          label: isMr ? 'वेळ' : 'Slots',
           icon: Clock,
         },
         {
           id: 'earnings',
-          label: 'Earnings',
+          label: isMr ? 'मानधन' : 'Earnings',
           icon: DollarSign,
         },
         {
           id: 'messages',
-          label: 'Messages',
+          label: isMr ? 'संदेश' : 'Messages',
           icon: MessageSquare,
           badge: unreadMessagesCount > 0,
-        },
-        {
-          id: 'safety',
-          label: 'Safety',
-          icon: ShieldAlert,
         },
       ];
     }
@@ -109,22 +110,27 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       return [
         {
           id: 'familyHub',
-          label: 'Family Hub',
+          label: isMr ? 'कुटुंब हब' : 'Family Hub',
           icon: Heart,
         },
         {
+          id: 'activities',
+          label: isMr ? 'कट्टा' : 'Katta',
+          icon: Users,
+        },
+        {
           id: 'careplans',
-          label: 'Care Plans',
+          label: isMr ? 'प्लॅन्स' : 'Care Plans',
           icon: Calendar,
         },
         {
           id: 'messages',
-          label: 'Companion',
+          label: isMr ? 'संवाद' : 'Companion',
           icon: MessageSquare,
         },
         {
           id: 'safety',
-          label: 'Safety',
+          label: isMr ? 'सुरक्षा' : 'Safety',
           icon: ShieldAlert,
         },
       ];
@@ -134,12 +140,12 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     return [
       {
         id: 'dashboard',
-        label: 'Admin Hub',
+        label: isMr ? 'ॲडमिन' : 'Admin Hub',
         icon: Shield,
       },
       {
         id: 'landing',
-        label: 'Public View',
+        label: isMr ? 'मुख्य पान' : 'Public View',
         icon: Home,
       },
     ];

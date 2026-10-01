@@ -20,7 +20,8 @@ import {
   DollarSign,
   Clock,
   Heart,
-  FileText
+  FileText,
+  Users
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -31,6 +32,8 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
   const {
     role,
+    language,
+    toggleLanguage,
     switchRole,
     currentSenior,
     currentStudent,
@@ -39,6 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
     resetDemoData
   } = useApp();
 
+  const isMr = language === 'mr';
   const [showNotifs, setShowNotifs] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -57,75 +61,86 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200/80 shadow-xs">
-      {/* Demo Switcher Quick Bar */}
-      <div className="bg-stone-900 text-stone-200 text-xs px-3 sm:px-4 py-1.5 flex items-center justify-between gap-2 border-b border-stone-800 overflow-x-auto no-scrollbar">
+      {/* Light & High-Contrast Demo Perspective Switcher Quick Bar */}
+      <div className="bg-[#FAF5EF] text-stone-800 text-xs px-3 sm:px-4 py-2 flex items-center justify-between gap-2 border-b border-orange-200/70 overflow-x-auto no-scrollbar">
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-          <span className="font-semibold text-saath-400 uppercase tracking-wider text-[10px] sm:text-[11px] flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-saath-500 animate-pulse"></span>
-            <span>Demo Roles</span>
+          <span className="font-extrabold text-saath-700 uppercase tracking-wider text-[10px] sm:text-[11px] flex items-center gap-1.5 bg-orange-100/90 px-2 py-0.5 rounded-full border border-orange-200">
+            <span className="w-2 h-2 rounded-full bg-saath-600 animate-pulse"></span>
+            <span>{isMr ? 'डेमो भूमिका' : 'Demo Perspective'}</span>
           </span>
-          <span className="hidden md:inline text-stone-600">•</span>
-          <span className="hidden md:inline text-stone-400">Switch perspective:</span>
+          <span className="hidden md:inline text-stone-500 font-medium">
+            {isMr ? 'पडताळणीसाठी रोल बदला:' : 'Switch viewpoint:'}
+          </span>
         </div>
 
-        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {/* Senior Role */}
           <button
             onClick={() => { switchRole('senior'); onTabChange('dashboard'); }}
-            className={`px-2 sm:px-2.5 py-1 rounded-md text-xs font-medium transition-all flex items-center gap-1 sm:gap-1.5 ${
+            className={`px-2.5 py-1 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs ${
               role === 'senior'
-                ? 'bg-saath-600 text-white shadow-xs font-bold'
-                : 'bg-stone-800 text-stone-300 hover:bg-stone-700'
+                ? 'bg-saath-600 text-white shadow-xs font-bold ring-2 ring-saath-400/40'
+                : 'bg-white text-stone-700 hover:bg-orange-50/50 border border-stone-200'
             }`}
           >
             <span>👴</span>
-            <span>Senior<span className="hidden sm:inline"> (Rajendra)</span></span>
+            <span>{isMr ? 'ज्येष्ठ (राजेंद्र)' : 'Senior (Rajendra)'}</span>
           </button>
 
           {/* Student Companion Role */}
           <button
             onClick={() => { switchRole('student'); onTabChange('dashboard'); }}
-            className={`px-2 sm:px-2.5 py-1 rounded-md text-xs font-medium transition-all flex items-center gap-1 sm:gap-1.5 ${
+            className={`px-2.5 py-1 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs ${
               role === 'student'
-                ? 'bg-saath-600 text-white shadow-xs font-bold'
-                : 'bg-stone-800 text-stone-300 hover:bg-stone-700'
+                ? 'bg-saath-600 text-white shadow-xs font-bold ring-2 ring-saath-400/40'
+                : 'bg-white text-stone-700 hover:bg-orange-50/50 border border-stone-200'
             }`}
           >
             <span>🎓</span>
-            <span>Companion<span className="hidden sm:inline"> (Aditya)</span></span>
+            <span>{isMr ? 'सोबती (आदित्य)' : 'Companion (Aditya)'}</span>
           </button>
 
           {/* Family Member Role */}
           <button
             onClick={() => { switchRole('family'); onTabChange('familyHub'); }}
-            className={`px-2 sm:px-2.5 py-1 rounded-md text-xs font-medium transition-all flex items-center gap-1 sm:gap-1.5 ${
+            className={`px-2.5 py-1 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs ${
               role === 'family'
-                ? 'bg-saath-600 text-white shadow-xs font-bold'
-                : 'bg-stone-800 text-stone-300 hover:bg-stone-700'
+                ? 'bg-saath-600 text-white shadow-xs font-bold ring-2 ring-saath-400/40'
+                : 'bg-white text-stone-700 hover:bg-orange-50/50 border border-stone-200'
             }`}
           >
             <span>👨‍👩‍👧</span>
-            <span>Family<span className="hidden sm:inline"> (Amit)</span></span>
+            <span>{isMr ? 'कुटुंब (अमित)' : 'Family (Amit)'}</span>
           </button>
 
           {/* Admin Role */}
           <button
             onClick={() => { switchRole('admin'); onTabChange('dashboard'); }}
-            className={`px-2 sm:px-2.5 py-1 rounded-md text-xs font-medium transition-all flex items-center gap-1 sm:gap-1.5 ${
+            className={`px-2.5 py-1 rounded-xl text-xs font-semibold transition-all flex items-center gap-1.5 shadow-2xs ${
               role === 'admin'
-                ? 'bg-saath-600 text-white shadow-xs font-bold'
-                : 'bg-stone-800 text-stone-300 hover:bg-stone-700'
+                ? 'bg-stone-900 text-white shadow-xs font-bold ring-2 ring-stone-400/40'
+                : 'bg-white text-stone-700 hover:bg-stone-50 border border-stone-200'
             }`}
           >
-            <Shield className="w-3 h-3 text-amber-400" />
-            <span>Admin</span>
+            <Shield className="w-3.5 h-3.5 text-amber-500" />
+            <span>{isMr ? 'ॲडमिन' : 'Admin'}</span>
+          </button>
+
+          {/* Language Switcher Pill */}
+          <button
+            onClick={toggleLanguage}
+            title={isMr ? 'Switch to English' : 'मराठीत बदला'}
+            className="px-2.5 py-1 rounded-xl text-xs font-extrabold bg-white border border-stone-300 text-stone-800 hover:border-saath-400 hover:bg-orange-50 transition-all ml-1 shadow-2xs flex items-center gap-1"
+          >
+            <span>🌐</span>
+            <span>{isMr ? 'ENG' : 'मराठी'}</span>
           </button>
 
           {/* Reset Demo State Button */}
           <button
             onClick={resetDemoData}
-            title="Reset demo data to initial pristine state"
-            className="p-1 rounded text-stone-400 hover:text-white hover:bg-stone-800 transition-colors ml-0.5 sm:ml-1"
+            title={isMr ? 'डेमो डेटा मूळ स्थितीत आणा' : 'Reset demo data to initial state'}
+            className="p-1 rounded-lg text-stone-500 hover:text-stone-900 hover:bg-white border border-transparent hover:border-stone-200 transition-colors"
           >
             <RotateCcw className="w-3.5 h-3.5" />
           </button>
@@ -161,11 +176,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
               onClick={() => onTabChange('landing')}
               className={`px-3 py-2 rounded-xl text-sm font-semibold transition-all ${
                 currentTab === 'landing'
-                  ? 'bg-stone-100 text-stone-900'
+                  ? 'bg-stone-100 text-stone-900 font-bold'
                   : 'text-stone-600 hover:text-stone-900 hover:bg-stone-50'
               }`}
             >
-              Home
+              {isMr ? 'मुख्य पान' : 'Home'}
             </button>
 
             {/* Senior Links */}
@@ -179,7 +194,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                       : 'text-stone-700 hover:text-stone-900 hover:bg-stone-50'
                   }`}
                 >
-                  My Dashboard
+                  {isMr ? 'माझे डॅशबोर्ड' : 'My Dashboard'}
                 </button>
                 <button
                   onClick={() => onTabChange('discovery')}
@@ -190,7 +205,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                   }`}
                 >
                   <Compass className="w-4 h-4 text-saath-600" />
-                  <span>Find Companion</span>
+                  <span>{isMr ? 'सोबती शोधा' : 'Find Companion'}</span>
+                </button>
+                <button
+                  onClick={() => onTabChange('activities')}
+                  className={`px-3 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 ${
+                    currentTab === 'activities'
+                      ? 'bg-saath-50 text-saath-700 font-bold'
+                      : 'text-stone-700 hover:text-stone-900 hover:bg-stone-50'
+                  }`}
+                >
+                  <Users className="w-4 h-4 text-saath-600" />
+                  <span>{isMr ? 'सामाजिक कट्टा' : 'Social Katta'}</span>
                 </button>
                 <button
                   onClick={() => onTabChange('careplans')}
@@ -201,7 +227,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                   }`}
                 >
                   <Calendar className="w-4 h-4 text-saath-600" />
-                  <span>Care Plans</span>
+                  <span>{isMr ? 'केअर प्लॅन्स' : 'Care Plans'}</span>
                 </button>
                 <button
                   onClick={() => onTabChange('bookings')}
@@ -211,7 +237,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                       : 'text-stone-700 hover:text-stone-900 hover:bg-stone-50'
                   }`}
                 >
-                  <span>My Bookings</span>
+                  <span>{isMr ? 'माझ्या भेटी' : 'My Bookings'}</span>
                 </button>
                 <button
                   onClick={() => onTabChange('messages')}
@@ -222,7 +248,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                   }`}
                 >
                   <MessageSquare className="w-4 h-4 text-saath-600" />
-                  <span>Messages</span>
+                  <span>{isMr ? 'संदेश' : 'Messages'}</span>
                 </button>
                 <button
                   onClick={() => onTabChange('safety')}
@@ -233,7 +259,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                   }`}
                 >
                   <ShieldAlert className="w-4 h-4 text-emerald-600" />
-                  <span>Safety</span>
+                  <span>{isMr ? 'सुरक्षा' : 'Safety'}</span>
                 </button>
               </>
             )}
@@ -249,7 +275,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                       : 'text-stone-700 hover:text-stone-900 hover:bg-stone-50'
                   }`}
                 >
-                  Companion Hub
+                  {isMr ? 'सोबती हब' : 'Companion Hub'}
+                </button>
+                <button
+                  onClick={() => onTabChange('activities')}
+                  className={`px-3 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 ${
+                    currentTab === 'activities'
+                      ? 'bg-saath-50 text-saath-700 font-bold'
+                      : 'text-stone-700 hover:text-stone-900 hover:bg-stone-50'
+                  }`}
+                >
+                  <Users className="w-4 h-4 text-saath-600" />
+                  <span>{isMr ? 'सामाजिक कट्टा' : 'Social Katta'}</span>
                 </button>
                 <button
                   onClick={() => onTabChange('availability')}
@@ -260,7 +297,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                   }`}
                 >
                   <Clock className="w-4 h-4 text-saath-600" />
-                  <span>My Availability</span>
+                  <span>{isMr ? 'माझी उपलब्धता' : 'Availability'}</span>
                 </button>
                 <button
                   onClick={() => onTabChange('earnings')}
@@ -271,7 +308,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                   }`}
                 >
                   <DollarSign className="w-4 h-4 text-saath-600" />
-                  <span>Earnings</span>
+                  <span>{isMr ? 'मानधन' : 'Earnings'}</span>
                 </button>
                 <button
                   onClick={() => onTabChange('messages')}
@@ -282,7 +319,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                   }`}
                 >
                   <MessageSquare className="w-4 h-4 text-saath-600" />
-                  <span>Messages</span>
+                  <span>{isMr ? 'संदेश' : 'Messages'}</span>
                 </button>
               </>
             )}
@@ -299,7 +336,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                   }`}
                 >
                   <Heart className="w-4 h-4 text-saath-600" />
-                  <span>Family Visibility Hub</span>
+                  <span>{isMr ? 'कुटुंब हब' : 'Family Hub'}</span>
+                </button>
+                <button
+                  onClick={() => onTabChange('activities')}
+                  className={`px-3 py-2 rounded-xl text-sm font-semibold transition-all flex items-center gap-1.5 ${
+                    currentTab === 'activities'
+                      ? 'bg-saath-50 text-saath-700 font-bold'
+                      : 'text-stone-700 hover:text-stone-900 hover:bg-stone-50'
+                  }`}
+                >
+                  <Users className="w-4 h-4 text-saath-600" />
+                  <span>{isMr ? 'सामाजिक कट्टा' : 'Social Katta'}</span>
                 </button>
                 <button
                   onClick={() => onTabChange('careplans')}
@@ -310,7 +358,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                   }`}
                 >
                   <Calendar className="w-4 h-4 text-saath-600" />
-                  <span>Care Plans (Models)</span>
+                  <span>{isMr ? 'केअर प्लॅन्स' : 'Care Plans'}</span>
                 </button>
                 <button
                   onClick={() => onTabChange('messages')}
@@ -321,7 +369,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                   }`}
                 >
                   <MessageSquare className="w-4 h-4 text-saath-600" />
-                  <span>Chat with Companion</span>
+                  <span>{isMr ? 'सोबतीशी संवाद' : 'Chat'}</span>
                 </button>
               </>
             )}
@@ -336,7 +384,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                     : 'text-stone-700 hover:text-stone-900 hover:bg-stone-50'
                 }`}
               >
-                Admin Control Room
+                {isMr ? 'ॲडमिन कंट्रोल रूम' : 'Admin Control Room'}
               </button>
             )}
           </nav>
@@ -402,8 +450,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange }) => {
                     : role === 'student'
                     ? currentStudent.profilePhoto
                     : role === 'family'
-                    ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100'
-                    : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100'
+                    ? 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=100'
+                    : 'https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?w=100'
                 }
                 alt="Profile"
                 className="w-10 h-10 rounded-full object-cover border-2 border-saath-500/40 shadow-xs"

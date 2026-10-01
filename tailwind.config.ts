@@ -38,8 +38,9 @@ const config: Config = {
         }
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-outfit)", "system-ui", "sans-serif"],
+        sans: ["'Noto Sans Devanagari'", "var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["'Baloo 2'", "var(--font-outfit)", "system-ui", "sans-serif"],
+        marathi: ["'Noto Sans Devanagari'", "'Baloo 2'", "sans-serif"],
       },
       boxShadow: {
         'soft': '0 4px 20px -2px rgba(124, 45, 18, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04)',
