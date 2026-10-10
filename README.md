@@ -1,4 +1,4 @@
-# साथी (Saathi / Saath) — Intergenerational Companionship & Family Visibility Platform
+# साथी (Saathi) — Intergenerational Companionship & Family Visibility Platform
 > *"We give seniors someone they know, trust and look forward to seeing — and give their families visibility and peace of mind from anywhere."*
 
 ---

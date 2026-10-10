@@ -250,11 +250,11 @@ export const SmartMatchmakerModal: React.FC<SmartMatchmakerModalProps> = ({
                   className="bg-white rounded-2xl p-4 border border-stone-200 hover:border-saath-400 hover:shadow-card transition-all flex flex-col justify-between space-y-3"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="relative shrink-0 w-14 h-14 rounded-2xl overflow-hidden border-2 border-white shadow-xs">
+                    <div className="relative shrink-0 w-14 h-14 rounded-full p-[2px] story-ring-gradient shadow-xs">
                       <img
                         src={student.profilePhoto}
                         alt={student.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover rounded-full bg-white p-0.5"
                       />
                     </div>
                     <div className="flex-1 min-w-0">

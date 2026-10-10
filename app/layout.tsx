@@ -4,7 +4,7 @@ import { AppProvider } from '@/context/AppContext';
 import { Toast } from '@/components/Toast';
 
 export const metadata: Metadata = {
-  title: 'साथ Saath — Intergenerational Companionship Platform',
+  title: 'साथी Saathi — Intergenerational Companionship & Care Ecosystem',
   description: 'Connecting senior citizens with verified college students for meaningful conversations, shared hobbies, technology learning, and scheduled quality time.',
 };
 

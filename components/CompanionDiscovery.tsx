@@ -401,17 +401,17 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                 {/* Card Top Banner / Match Pill */}
                 <div className="p-5 sm:p-6 space-y-4">
                   <div className="flex items-start justify-between gap-3">
-                    <div className="relative shrink-0 w-16 h-16 sm:w-20 sm:h-20">
-                      <div className="w-full h-full rounded-2xl overflow-hidden border-2 border-stone-100 shadow-xs">
+                    <div className="relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full p-[2.5px] story-ring-gradient shadow-xs">
+                      <div className="w-full h-full rounded-full overflow-hidden bg-white">
                         <img
                           src={student.profilePhoto}
                           alt={student.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform rounded-full"
                         />
                       </div>
                       {student.isVerified && (
                         <div
-                          className="absolute -bottom-1 -right-1 bg-emerald-600 text-white p-1 rounded-full border-2 border-white shadow-xs"
+                          className="absolute -bottom-0.5 -right-0.5 bg-emerald-600 text-white p-1 rounded-full border-2 border-white shadow-xs"
                           title="College Verified ID"
                         >
                           <ShieldCheck className="w-3.5 h-3.5" />

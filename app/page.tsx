@@ -91,6 +91,8 @@ export default function Home() {
             onNavigate={setCurrentTab}
             onOpenMatchmaker={() => setIsMatchmakerOpen(true)}
             onOpenRoleModal={() => setIsRoleModalOpen(true)}
+            onSelectStudent={handleOpenProfile}
+            onBookStudent={handleOpenBooking}
           />
         ) : currentTab === 'activities' ? (
           <SocialActivitiesView />

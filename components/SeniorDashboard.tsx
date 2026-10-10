@@ -54,8 +54,8 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       {/* Welcome & Senior Greeting Card (Smooth Minimalist Light Theme) */}
       <div className="bg-gradient-to-r from-orange-50 via-amber-50 to-orange-100/60 rounded-3xl p-6 sm:p-8 text-stone-900 border border-orange-200/90 shadow-soft relative overflow-hidden">
-        <div className="absolute right-0 top-0 bottom-0 opacity-[0.04] pointer-events-none flex items-center pr-10">
-          <span className="text-[140px] font-black text-stone-900">साथ</span>
+        <div className="absolute right-0 top-0 bottom-0 opacity-[0.05] pointer-events-none flex items-center pr-10">
+          <span className="text-[140px] font-black text-stone-900">साथी</span>
         </div>
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -237,16 +237,16 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
                 <div className="space-y-4">
                   {/* Top line with photo, match % and rate */}
                   <div className="flex items-start justify-between gap-3">
-                    <div className="relative shrink-0 w-14 h-14 sm:w-16 sm:h-16">
-                      <div className="w-full h-full rounded-2xl overflow-hidden border-2 border-stone-200">
+                    <div className="relative shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-full p-[2.5px] story-ring-gradient shadow-xs">
+                      <div className="w-full h-full rounded-full overflow-hidden bg-white">
                         <img
                           src={student.profilePhoto}
                           alt={student.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform rounded-full"
                         />
                       </div>
                       {student.isVerified && (
-                        <div className="absolute -bottom-1 -right-1 bg-emerald-600 text-white p-1 rounded-full border-2 border-white shadow-2xs">
+                        <div className="absolute -bottom-0.5 -right-0.5 bg-emerald-600 text-white p-1 rounded-full border-2 border-white shadow-2xs">
                           <ShieldCheck className="w-3 h-3" />
                         </div>
                       )}
