@@ -58,11 +58,11 @@ export const CarePlansView: React.FC<CarePlansViewProps> = ({ onSelectPlan, onBo
 
       {/* Model 1 & 2 Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Model 1: On-Demand */}
+        {/* On-Demand */}
         <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-stone-200 flex flex-col justify-between space-y-6">
           <div className="space-y-4">
             <span className="text-xs font-bold text-stone-500 uppercase tracking-wider block">
-              {isMr ? 'मॉडेल १: तासिका भेट' : 'Model 1: Pay-Per-Visit'}
+              {isMr ? 'लवचिक तासिका भेट' : 'Pay-Per-Visit'}
             </span>
             <h3 className="text-2xl font-black text-stone-900 font-display">
               {isMr ? 'ऑन-डिमांड तासिका भेट' : 'On-Demand Visit'}
@@ -106,11 +106,11 @@ export const CarePlansView: React.FC<CarePlansViewProps> = ({ onSelectPlan, onBo
           </button>
         </div>
 
-        {/* Model 2A: Silver Monthly */}
+        {/* Silver Monthly */}
         <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-stone-200 flex flex-col justify-between space-y-6">
           <div className="space-y-4">
             <span className="text-xs font-bold text-saath-700 uppercase tracking-wider block">
-              {isMr ? 'मॉडेल २: मासिक केअर प्लॅन' : 'Model 2: Monthly Care Plan'}
+              {isMr ? 'साप्ताहिक केअर प्लॅन' : 'Weekly Care Plan'}
             </span>
             <h3 className="text-2xl font-black text-stone-900 font-display">
               {isMr ? 'सावली साथी (४ भेटी)' : 'Silver Saath (4 Visits)'}
@@ -154,7 +154,7 @@ export const CarePlansView: React.FC<CarePlansViewProps> = ({ onSelectPlan, onBo
           </button>
         </div>
 
-        {/* Model 2B: Gold Monthly (Most Popular) */}
+        {/* Gold Monthly (Most Popular) */}
         <div className="bg-white text-stone-900 rounded-3xl p-6 sm:p-8 shadow-elevated border-2 border-saath-500 flex flex-col justify-between space-y-6 relative">
           <span className="absolute -top-3 right-6 bg-saath-600 text-white text-[10px] font-black uppercase px-3 py-1 rounded-full shadow-xs">
             {isMr ? 'कुटुंबांची पहिली पसंती ⭐' : 'Recommended by Families ⭐'}
@@ -162,7 +162,7 @@ export const CarePlansView: React.FC<CarePlansViewProps> = ({ onSelectPlan, onBo
 
           <div className="space-y-4">
             <span className="text-xs font-bold text-saath-700 uppercase tracking-wider block">
-              {isMr ? 'मॉडेल २ व ३: संपूर्ण परिवार सुरक्षा' : 'Model 2 & 3: Comprehensive Care'}
+              {isMr ? 'संपूर्ण परिवार सुरक्षा' : 'Comprehensive Care'}
             </span>
             <h3 className="text-2xl font-black text-stone-900 font-display">
               {isMr ? 'परिवार सुरक्षा (८ भेटी)' : 'Gold Saath (8 Visits)'}
@@ -207,16 +207,16 @@ export const CarePlansView: React.FC<CarePlansViewProps> = ({ onSelectPlan, onBo
         </div>
       </div>
 
-      {/* Model 3 & Model 4 Overview Banner */}
+      {/* Overview Banner */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
-        {/* Model 3 Hub */}
+        {/* Family Hub */}
         <div className="bg-stone-50 p-6 sm:p-8 rounded-3xl border border-stone-200 space-y-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-saath-100 text-saath-800 flex items-center justify-center font-bold">
               👨‍👩‍👧
             </div>
             <div>
-              <span className="text-[11px] font-bold text-stone-500 uppercase">{isMr ? 'मॉडेल ३' : 'Model 3'}</span>
+              <span className="text-[11px] font-bold text-stone-500 uppercase">{isMr ? 'कुटुंब सुरक्षा' : 'Family Oversight'}</span>
               <h4 className="text-lg font-bold text-stone-900">{isMr ? 'कुटुंब-नियंत्रित रिमोट केअर हब' : 'Family-Managed Remote Care Hub'}</h4>
             </div>
           </div>
@@ -227,14 +227,14 @@ export const CarePlansView: React.FC<CarePlansViewProps> = ({ onSelectPlan, onBo
           </p>
         </div>
 
-        {/* Model 4 B2B */}
+        {/* Corporate / Institutional */}
         <div className="bg-stone-50 p-6 sm:p-8 rounded-3xl border border-stone-200 space-y-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center font-bold">
               🏥
             </div>
             <div>
-              <span className="text-[11px] font-bold text-stone-500 uppercase">{isMr ? 'मॉडेल ४' : 'Model 4'}</span>
+              <span className="text-[11px] font-bold text-stone-500 uppercase">{isMr ? 'संस्थात्मक सहकार्य' : 'Institutional Care'}</span>
               <h4 className="text-lg font-bold text-stone-900">{isMr ? 'संस्थात्मक व हॉस्पिटल भागीदारी मॉडेल' : 'Institutional & Partner Model'}</h4>
             </div>
           </div>

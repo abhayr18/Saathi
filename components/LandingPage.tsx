@@ -493,8 +493,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <Sparkles className="w-4 h-4 text-saath-600" />
               <span>
                 {isMr
-                  ? "भारतातील पहिली जोडलेली ज्येष्ठ संगोपन परिसंस्था"
-                  : "India's First Connected Senior Care Ecosystem"}
+                  ? "ज्येष्ठांसाठी आपुलकीची परिसंस्था"
+                  : "Connected Senior Care Ecosystem"}
               </span>
             </div>
 
@@ -582,7 +582,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>
                 {isMr
-                  ? 'सध्या कोल्हापूर, पुणे, सांगली, मुंबई व दिल्ली NCR येथे सक्रिय उपलब्ध'
+                  ? 'कोल्हापूर, पुणे, सांगली, मुंबई व दिल्ली NCR येथे सक्रिय'
                   : 'Live in Kolhapur, Pune, Sangli, Mumbai & Delhi NCR'}
               </span>
             </div>
@@ -606,14 +606,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     <span className="text-xs font-black text-stone-900 flex items-center gap-1.5">
                       <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-                      {isMr ? 'कुटुंबाला अपडेट पाठवला 🌿' : 'Family Connect Transmitted 🌿'}
+                      {isMr ? 'कुटुंबाला थेट अपडेट 🌿' : 'Family Connect Update 🌿'}
                     </span>
                   </div>
                   <span className="text-[10px] text-stone-400 font-semibold">{isMr ? 'आत्ताच' : 'Just now'}</span>
                 </div>
 
                 <p className="text-xs text-stone-700 leading-snug">
-                  <strong>आदित्य (सोबती)</strong> यांनी <strong>राजेंद्र कुलकर्णी</strong> यांच्यासोबत ६० मिनिटांचे सत्र पूर्ण केले: संध्याकाळी बुद्धिबळ व वॉक झाला.
+                  <strong>{isMr ? 'आदित्य (सोबती)' : 'Aditya (Mitra)'}</strong> • <strong>{isMr ? 'राजेंद्र कुलकर्णी' : 'Rajendra Kulkarni'}</strong> {isMr ? 'यांच्यासोबत संध्याकाळी बुद्धिबळ व वॉक सत्र पूर्ण झाले.' : 'completed evening chess & walk session.'}
                 </p>
 
                 {/* Health Vitals Strip */}
@@ -628,13 +628,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   </div>
                   <div className="bg-amber-50/90 p-1.5 rounded-lg border border-amber-100">
                     <span className="text-[9px] text-stone-500 block font-bold">MOOD</span>
-                    <span className="text-[11px] font-black text-amber-700">आनंदी 😊</span>
+                    <span className="text-[11px] font-black text-amber-700">{isMr ? 'आनंदी 😊' : 'Happy 😊'}</span>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between text-[11px] pt-0.5 text-stone-500 font-medium">
                   <span className="text-emerald-700 font-bold">{isMr ? 'स्थिती: सामान्य ✓' : 'Status: Normal ✓'}</span>
-                  <span className="text-saath-700 font-bold">{isMr ? 'बेंगळुरूला व्हॉट्सॲप पोहोचले' : 'WhatsApp Sent to Son'}</span>
+                  <span className="text-saath-700 font-bold">{isMr ? 'व्हॉट्सॲप समरी पोहोचली' : 'WhatsApp Sent to Family'}</span>
                 </div>
               </div>
             </div>
@@ -642,34 +642,34 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* ─── 2. STORY-STYLE PROFILE CHOOSER (NO POPUPS! DIRECTLY ON MAIN PAGE) ─── */}
+      {/* ─── 2. STORY-STYLE PROFILE CHOOSER (DIRECTLY ON MAIN PAGE) ─── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
 
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 text-teal-800 text-xs font-black uppercase tracking-wider border border-teal-200 shadow-2xs">
             <span>🎭</span>
-            <span>{isMr ? 'थेट भूमिका निवडा • कोणत्याही पॉपअपशिवाय' : 'Choose Perspective Directly • No Popups'}</span>
+            <span>{isMr ? 'भूमिका निवडा' : 'Choose Perspective'}</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black text-stone-900 font-display">
             {isMr ? 'कोणत्या भूमिकेतून साथी अनुभवायचे आहे?' : 'Select a Profile to Experience Saathi'}
           </h2>
           <p className="text-xs sm:text-sm text-stone-600">
             {isMr
-              ? 'खालील स्टोरी-स्टाईल प्रोफाइलवर थेट टॅप करा आणि त्या भूमिकेचा डॅशबोर्ड व कार्यप्रवाह अनुभवा.'
-              : 'Tap any story profile below to instantly experience the live dashboard & workflows from that perspective.'}
+              ? 'आपल्या गरजेनुसार प्रोफाइल निवडा आणि डॅशबोर्ड अनुभवा.'
+              : 'Select a profile to experience Saathi from each perspective.'}
           </p>
         </div>
 
-        {/* ── Story Circles Bar (Social-Media-Story Tray with Story Rings) ── */}
+        {/* ── Story Circles Bar ── */}
         <div className="bg-white rounded-3xl p-5 sm:p-7 border border-stone-200 shadow-soft space-y-4">
           <div className="flex items-center justify-between pb-1">
             <span className="text-xs font-black uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>{isMr ? 'लाईव्ह प्रोफाइल स्टोरीज (टॅप करून थेट बदला)' : 'Live Profile Stories (Tap to Switch)'}</span>
+              <span>{isMr ? 'प्रोफाइल स्टोरीज' : 'Profile Stories'}</span>
             </span>
             <span className="text-[11px] text-stone-400 font-semibold hidden sm:inline-block">
-              {isMr ? '४ वेगवेगळ्या भूमिका उपलब्ध' : '4 Interactive Perspectives'}
+              {isMr ? '४ वेगवेगळ्या भूमिका' : '4 Interactive Perspectives'}
             </span>
           </div>
 

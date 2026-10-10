@@ -235,25 +235,6 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
               : `Matching companions based on your interests (${currentSenior.interests.slice(0, 3).join(', ')}), fluent languages, and proximity in Kolhapur.`}
           </p>
         </div>
-
-        {/* Demo Quick Highlight */}
-        <div className="bg-amber-50 border border-amber-200 p-3 rounded-2xl max-w-sm">
-          <p className="text-xs font-bold text-amber-900 flex items-center gap-1.5">
-            <span>🎯</span>
-            <span>{isMr ? 'सादरीकरण टीप:' : 'Presentation Tip:'}</span>
-          </p>
-          <p className="text-xs text-amber-800 mt-0.5">
-            {isMr ? (
-              <>
-                <strong>आदित्य पाटील</strong> ९४% जुळणीसह (बुद्धिबळ + मराठी + शनिवार सायं ६) अव्वल स्थानी आहे.
-              </>
-            ) : (
-              <>
-                Notice <strong>Aditya Patil</strong> ranks at top with <strong>94% Match</strong> (Chess + Marathi + Saturday 6 PM slot).
-              </>
-            )}
-          </p>
-        </div>
       </div>
 
       {/* Search and Quick Filters Bar */}

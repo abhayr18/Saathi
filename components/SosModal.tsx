@@ -39,7 +39,7 @@ export const SosModal: React.FC<SosModalProps> = ({ isOpen, onClose }) => {
                 {isMr ? 'आपत्कालीन सहाय्यता प्रणाली' : 'Emergency Support Trigger'}
               </h3>
               <p className="text-xs text-rose-600 font-bold uppercase tracking-wider">
-                {isMr ? 'सुरक्षा प्रोटोकॉल डेमो' : 'Simulated Safety Protocol'}
+                {isMr ? 'सुरक्षा प्रोटोकॉल' : 'Active Safety Protocol'}
               </p>
             </div>
           </div>

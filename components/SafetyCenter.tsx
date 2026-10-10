@@ -99,7 +99,7 @@ export const SafetyCenter: React.FC<SafetyCenterProps> = ({ onOpenSos }) => {
           className="bg-rose-600 hover:bg-rose-700 text-white font-black text-sm px-6 py-4 rounded-2xl shadow-elevated flex items-center justify-center gap-2 transition-transform transform hover:scale-105 active:scale-95 border-2 border-rose-400"
         >
           <AlertTriangle className="w-5 h-5" />
-          <span>{isMr ? 'तातडीचा आपत्कालीन SOS' : 'Simulate Emergency SOS'}</span>
+          <span>{isMr ? 'तातडीचा आपत्कालीन SOS' : 'Emergency SOS'}</span>
         </button>
       </div>
 

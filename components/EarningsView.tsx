@@ -30,8 +30,8 @@ export const EarningsView: React.FC = () => {
       setWithdrawing(false);
       showToast(
         isMr
-          ? 'सिम्युलेटेड ट्रान्सफर: ₹१,५०० आदित्यच्या पडताळणी केलेल्या UPI खात्यावर (aditya@okaxis) पाठवले!'
-          : 'Simulated Payout: ₹1,500 transferred to Aditya’s verified UPI VPA (aditya@okaxis)!'
+          ? 'खात्यात वर्ग: ₹१,५०० आदित्यच्या पडताळणी केलेल्या UPI खात्यावर (aditya@okaxis) पाठवले!'
+          : 'Payout Transferred: ₹1,500 sent to Aditya’s verified UPI ID (aditya@okaxis)!'
       );
     }, 1200);
   };
@@ -55,8 +55,8 @@ export const EarningsView: React.FC = () => {
           </h1>
           <p className="text-stone-600 text-sm mt-1">
             {isMr
-              ? 'पूर्ण झालेल्या सत्रांसाठी थेट सिम्युलेटेड जमा मानधन.'
-              : 'Real-time simulated payouts for completed quality time sessions.'}
+              ? 'पूर्ण झालेल्या सत्रांसाठी थेट जमा मानधन.'
+              : 'Direct payouts for completed companionship sessions.'}
           </p>
         </div>
 

@@ -218,16 +218,16 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
             <div>
               <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                 <h2 className="text-base sm:text-2xl font-black text-stone-900 font-display">
-                  {isMr ? 'डेमो भूमिका निवडा' : 'Select Demo Perspective'}
+                  {isMr ? 'भूमिका निवडा' : 'Select Role Perspective'}
                 </h2>
                 <span className="bg-teal-100 text-teal-800 text-[10px] sm:text-[11px] font-extrabold px-2 py-0.5 rounded-full border border-teal-200">
-                  Interactive Demo
+                  {isMr ? 'सर्व भूमिका' : 'All Roles'}
                 </span>
               </div>
               <p className="text-[11px] sm:text-xs text-stone-500 line-clamp-1 sm:line-clamp-none mt-0.5">
                 {isMr
-                  ? 'प्लॅटफॉर्मचा अनुभव कोणत्याही भूमिकेतून घ्या — संबंधित डॅशबोर्ड व फीचर्स त्वरित लोड होतील.'
-                  : 'Experience Saathi from any stakeholder viewpoint to test features and simulated real-time logs.'}
+                  ? 'प्लॅटफॉर्मचा अनुभव कोणत्याही भूमिकेतून घ्या — संबंधित डॅशबोर्ड व कार्यप्रवाह त्वरित लोड होतील.'
+                  : 'Experience Saathi from any perspective with tailored tools and workflows.'}
               </p>
             </div>
           </div>
