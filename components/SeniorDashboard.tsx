@@ -55,11 +55,11 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8 sm:space-y-10">
 
-      {/* ── 1. WARM GREETING & HIGH-CONTRAST SOS BAR ── */}
-      <div className="bg-gradient-to-r from-teal-50/95 via-sky-50/60 to-slate-50 rounded-3xl p-6 sm:p-8 text-stone-900 border-2 border-teal-200/80 shadow-soft">
+      {/* ── 1. WARM GREETING & ATTENTION-CATCHY SOS BAR ── */}
+      <div className="bg-gradient-to-r from-teal-500/15 via-white to-sky-500/15 rounded-3xl p-6 sm:p-8 text-stone-900 border-2 border-teal-200/90 shadow-soft">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-4 sm:gap-5">
-            <div className="relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-3 border-white shadow-md">
+            <div className="relative shrink-0 w-18 h-18 sm:w-22 sm:h-22 rounded-2xl overflow-hidden border-4 border-white shadow-elevated">
               <img
                 src={currentSenior.profilePhoto}
                 alt={currentSenior.name}
@@ -75,58 +75,65 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
                   ? `शुभ संध्याकाळ, ${currentSenior.name.split(' ')[0]}जी 👋`
                   : `Good evening, ${currentSenior.name.split(' ')[0]} 👋`}
               </h1>
-              <p className="text-stone-600 text-sm sm:text-base font-medium">
-                {isMr
-                  ? 'आपुलकीने संवाद साधणारा आणि वेळ देणारा हक्काचा तरुण सोबती निवडा.'
-                  : 'Choose a verified young companion to share unhurried conversations and joy.'}
-              </p>
+              <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                <span className="text-xs font-black px-2.5 py-0.5 rounded-lg bg-teal-100 text-teal-900">
+                  ♟️ बुद्धिबळ आवडते
+                </span>
+                <span className="text-xs font-black px-2.5 py-0.5 rounded-lg bg-emerald-100 text-emerald-900">
+                  🚶 मॉर्निंग वॉक
+                </span>
+              </div>
             </div>
           </div>
 
-          {/* Senior High-Contrast Emergency Action Bar */}
+          {/* High-Contrast Emergency SOS Button */}
           <div className="flex items-center gap-3">
             <button
               onClick={onOpenSos}
-              className="bg-rose-600 hover:bg-rose-700 active:scale-98 text-white font-black text-sm sm:text-base px-6 py-3.5 rounded-2xl shadow-elevated border-2 border-rose-300 flex items-center justify-center gap-2.5 transition-all"
+              className="bg-rose-600 hover:bg-rose-700 active:scale-98 text-white font-black text-sm sm:text-base px-7 py-4 rounded-2xl shadow-elevated border-2 border-rose-300 flex items-center justify-center gap-2.5 transition-all"
             >
-              <ShieldAlert className="w-5 h-5 text-white animate-pulse" />
-              <span>{isMr ? 'तात्काळ SOS मदत (112)' : 'EMERGENCY SOS'}</span>
+              <ShieldAlert className="w-6 h-6 text-white animate-pulse" />
+              <span>{isMr ? 'तात्काळ SOS मदत (112)' : 'EMERGENCY SOS (112)'}</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* ── 2. 3 LARGE SENIOR ACTION TILES (MAIN INTERFACE FOR ELDERS) ── */}
+      {/* ── 2. 3 ULTRA-VISUAL ACTION PHOTO TILES ── */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        {/* TILE 1: 🤝 सोबती निवडा (Choose Companion) */}
+        {/* TILE 1: 🤝 सोबती निवडा (Choose Companion - Photo Header) */}
         <div
           onClick={() => onNavigate('discovery')}
-          className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-teal-200 hover:border-saath-500 shadow-soft hover:shadow-card transition-all cursor-pointer flex flex-col justify-between group active:scale-98"
+          className="group bg-white rounded-3xl overflow-hidden border-2 border-teal-200 hover:border-saath-500 shadow-soft hover:shadow-card transition-all duration-300 cursor-pointer flex flex-col justify-between active:scale-98"
         >
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="w-14 h-14 rounded-2xl bg-teal-50 border border-teal-200 flex items-center justify-center text-3xl group-hover:scale-105 transition-transform">
-                🤝
+          <div>
+            <div className="relative aspect-[16/9] overflow-hidden bg-stone-100">
+              <img
+                src="/assets/activity_chess.jpg"
+                alt="Choose Companion"
+                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent"></div>
+              <div className="absolute bottom-2.5 left-3 text-white flex items-center gap-2">
+                <span className="text-2xl">🤝</span>
+                <span className="text-xs font-black bg-emerald-600 px-2.5 py-0.5 rounded-full">१४ सोबती तयार</span>
               </div>
-              <span className="text-xs font-black uppercase tracking-wider text-teal-800 bg-teal-50 px-3 py-1 rounded-full border border-teal-200">
-                {isMr ? '१-क्लिक शोध' : 'Quick Find'}
-              </span>
             </div>
 
-            <div>
+            <div className="p-5 sm:p-6 space-y-1.5">
               <h3 className="text-xl sm:text-2xl font-black text-stone-900 group-hover:text-saath-700 transition-colors">
                 {isMr ? 'सोबती निवडा' : 'Choose Companion'}
               </h3>
-              <p className="text-stone-600 text-xs sm:text-sm font-medium mt-1 leading-snug">
+              <p className="text-stone-600 text-xs sm:text-sm font-semibold">
                 {isMr
-                  ? 'बुद्धिबळ, मॉर्निंग वॉक, वाचन किंवा फोन शिकण्यासाठी विश्वासू विद्यार्थी सोबती.'
-                  : 'Find verified college youth for chess, walking, reading or phone assistance.'}
+                  ? 'बुद्धिबळ, वॉक किंवा फोन शिकण्यासाठी विश्वासू तरुण सोबती.'
+                  : 'Vetted college companions for chess, walks & phone help.'}
               </p>
             </div>
           </div>
 
-          <div className="pt-6 mt-2">
+          <div className="p-5 sm:p-6 pt-0">
             <div className="w-full bg-saath-600 group-hover:bg-saath-700 text-white font-black py-3.5 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors">
               <Compass className="w-4 h-4" />
               <span>{isMr ? 'सोबती शोधा ➔' : 'Find Companions ➔'}</span>
@@ -134,45 +141,49 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
           </div>
         </div>
 
-        {/* TILE 2: 📅 माझे वेळापत्रक (My Schedule) */}
+        {/* TILE 2: 📅 माझे वेळापत्रक (My Schedule - Visual Card) */}
         <div
           onClick={() => onNavigate('bookings')}
-          className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-blue-200 hover:border-blue-400 shadow-soft hover:shadow-card transition-all cursor-pointer flex flex-col justify-between group active:scale-98"
+          className="group bg-white rounded-3xl overflow-hidden border-2 border-blue-200 hover:border-blue-500 shadow-soft hover:shadow-card transition-all duration-300 cursor-pointer flex flex-col justify-between active:scale-98"
         >
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-3xl group-hover:scale-105 transition-transform">
-                📅
+          <div>
+            <div className="relative aspect-[16/9] overflow-hidden bg-stone-100">
+              <img
+                src="/assets/activity_walk.jpg"
+                alt="My Schedule"
+                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent"></div>
+              <div className="absolute bottom-2.5 left-3 text-white flex items-center gap-2">
+                <span className="text-2xl">📅</span>
+                <span className="text-xs font-black bg-blue-600 px-2.5 py-0.5 rounded-full">वेळापत्रक</span>
               </div>
-              <span className="text-xs font-black uppercase tracking-wider text-blue-800 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
-                {upcomingSession ? (isMr ? 'नियोजित भेट' : 'Scheduled') : (isMr ? 'वेळापत्रक' : 'Schedule')}
-              </span>
             </div>
 
-            <div>
+            <div className="p-5 sm:p-6 space-y-2">
               <h3 className="text-xl sm:text-2xl font-black text-stone-900 group-hover:text-blue-700 transition-colors">
                 {isMr ? 'माझे वेळापत्रक' : 'My Schedule'}
               </h3>
               {upcomingSession ? (
-                <div className="mt-2 p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900 space-y-0.5">
+                <div className="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900">
                   <p className="font-black text-sm">
                     {upcomingSession.activity} ({upcomingSession.companionName})
                   </p>
-                  <p className="font-semibold text-stone-600">
+                  <p className="font-bold text-stone-600">
                     {upcomingSession.date} • {upcomingSession.timeSlot}
                   </p>
                 </div>
               ) : (
-                <p className="text-stone-600 text-xs sm:text-sm font-medium mt-1 leading-snug">
+                <p className="text-stone-600 text-xs sm:text-sm font-semibold">
                   {isMr
-                    ? 'आपल्या सर्व भेटी, तारीख, वेळ आणि पूर्वीचे सत्र अहवाल येथे पहा.'
-                    : 'View your upcoming visits, date, time slots, and past session logs.'}
+                    ? 'आपल्या सर्व नियोजित भेटी व वेळ एका क्लिकवर पहा.'
+                    : 'Check your upcoming visits, date and time slots.'}
                 </p>
               )}
             </div>
           </div>
 
-          <div className="pt-6 mt-2">
+          <div className="p-5 sm:p-6 pt-0">
             <div className="w-full bg-blue-600 group-hover:bg-blue-700 text-white font-black py-3.5 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors">
               <Calendar className="w-4 h-4" />
               <span>{isMr ? 'वेळापत्रक पहा ➔' : 'View Schedule ➔'}</span>
@@ -180,34 +191,38 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
           </div>
         </div>
 
-        {/* TILE 3: ☕ कट्टा व मित्र (Community Katta) */}
+        {/* TILE 3: ☕ कट्टा व मित्रमंडळ (Community Katta - Photo Header) */}
         <div
           onClick={() => onNavigate('activities')}
-          className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-amber-200 hover:border-amber-400 shadow-soft hover:shadow-card transition-all cursor-pointer flex flex-col justify-between group active:scale-98"
+          className="group bg-white rounded-3xl overflow-hidden border-2 border-amber-200 hover:border-amber-500 shadow-soft hover:shadow-card transition-all duration-300 cursor-pointer flex flex-col justify-between active:scale-98"
         >
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-3xl group-hover:scale-105 transition-transform">
-                ☕
+          <div>
+            <div className="relative aspect-[16/9] overflow-hidden bg-stone-100">
+              <img
+                src="/assets/social_katta.jpg"
+                alt="Community Katta"
+                className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent"></div>
+              <div className="absolute bottom-2.5 left-3 text-white flex items-center gap-2">
+                <span className="text-2xl">☕</span>
+                <span className="text-xs font-black bg-amber-600 px-2.5 py-0.5 rounded-full">कट्टा क्लब</span>
               </div>
-              <span className="text-xs font-black uppercase tracking-wider text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-                {isMr ? 'सामाजिक मंडळ' : 'Social Club'}
-              </span>
             </div>
 
-            <div>
+            <div className="p-5 sm:p-6 space-y-1.5">
               <h3 className="text-xl sm:text-2xl font-black text-stone-900 group-hover:text-amber-700 transition-colors">
                 {isMr ? 'कट्टा व मित्रमंडळ' : 'Community Katta'}
               </h3>
-              <p className="text-stone-600 text-xs sm:text-sm font-medium mt-1 leading-snug">
+              <p className="text-stone-600 text-xs sm:text-sm font-semibold">
                 {isMr
-                  ? 'हास्य क्लब, चहापान गप्पागोष्टी, भजन व समवयस्क मित्रांसोबत संवाद.'
-                  : 'Laughter club, tea meetups, music circles and friendly senior gatherings.'}
+                  ? 'हास्य क्लब, चहापान गप्पागोष्टी, भजन व समवयस्क मित्रांसोबत आनंद.'
+                  : 'Laughter club, tea meetups and senior friendship circles.'}
               </p>
             </div>
           </div>
 
-          <div className="pt-6 mt-2">
+          <div className="p-5 sm:p-6 pt-0">
             <div className="w-full bg-amber-600 group-hover:bg-amber-700 text-white font-black py-3.5 px-4 rounded-2xl text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors">
               <Users className="w-4 h-4" />
               <span>{isMr ? 'कट्ट्यात सामील व्हा ➔' : 'Join Katta ➔'}</span>
@@ -217,7 +232,7 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
 
       </div>
 
-      {/* ── 3. SHIFT TO COMPANIONS: SHIFARAS KELELE SOBATI ── */}
+      {/* ── 3. SHIFARAS KELELE SOBATI (RECOMMENDED COMPANIONS) ── */}
       <div className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="space-y-1">
@@ -227,10 +242,10 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
                 {isMr ? 'आपल्यासाठी शिफारस केलेले सोबती' : 'Recommended Companions for You'}
               </h2>
             </div>
-            <p className="text-stone-600 text-xs sm:text-sm font-medium">
+            <p className="text-stone-600 text-xs sm:text-sm font-semibold">
               {isMr
                 ? `आपल्या आवडीनुसार सर्वोत्तम जुळणारे (${currentSenior.interests.join(', ')})`
-                : `Top matches tailored to your interests (${currentSenior.interests.join(', ')})`}
+                : `Tailored to your interests (${currentSenior.interests.join(', ')})`}
             </p>
           </div>
 
@@ -259,7 +274,7 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
                 }`}
               >
                 <div className="space-y-4">
-                  {/* Photo, match % and rate */}
+                  {/* Photo with verified badge & match rate */}
                   <div className="flex items-start justify-between gap-3">
                     <div className="relative shrink-0 w-20 h-20 rounded-2xl overflow-hidden border-2 border-stone-200 shadow-xs">
                       <img
@@ -295,7 +310,7 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
                     <h3 className="text-xl font-black text-stone-900 group-hover:text-saath-700 transition-colors">
                       {student.name}
                     </h3>
-                    <p className="text-xs text-stone-500 font-medium flex items-center gap-1 mt-0.5">
+                    <p className="text-xs text-stone-500 font-semibold flex items-center gap-1 mt-0.5">
                       <GraduationCap className="w-4 h-4 text-saath-600 shrink-0" />
                       <span className="truncate">{student.college}</span>
                     </p>
@@ -335,13 +350,13 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
                 <div className="pt-5 mt-4 border-t border-stone-100 flex items-center gap-2.5">
                   <button
                     onClick={() => onSelectStudent(student)}
-                    className="flex-1 bg-stone-100 hover:bg-stone-200 text-stone-800 font-black py-3 rounded-2xl text-xs transition-colors"
+                    className="flex-1 bg-stone-100 hover:bg-stone-200 text-stone-800 font-black py-3.5 rounded-2xl text-xs sm:text-sm transition-colors"
                   >
                     {isMr ? 'प्रोफाइल पहा' : 'View Profile'}
                   </button>
                   <button
                     onClick={() => onBookStudent(student)}
-                    className="flex-1 bg-saath-600 hover:bg-saath-700 text-white font-black py-3 rounded-2xl text-xs transition-all shadow-xs active:scale-98"
+                    className="flex-1 bg-saath-600 hover:bg-saath-700 text-white font-black py-3.5 rounded-2xl text-xs sm:text-sm transition-all shadow-xs active:scale-98"
                   >
                     {isMr ? 'भेट बुक करा' : 'Book Session'}
                   </button>
