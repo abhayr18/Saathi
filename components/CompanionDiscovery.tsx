@@ -30,7 +30,74 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
   onSelectStudent,
   onBookStudent,
 }) => {
-  const { currentSenior, students } = useApp();
+  const { currentSenior, students, language } = useApp();
+  const isMr = language === 'mr';
+
+  const translateActivity = (act: string) => {
+    if (!isMr) return act === 'all' ? 'All Activities' : act;
+    switch (act) {
+      case 'all': return 'सर्व उपक्रम';
+      case 'Chess': return 'बुद्धिबळ';
+      case 'Conversation': return 'गप्पागोष्टी';
+      case 'Technology Help': return 'स्मार्टफोन / तंत्रज्ञान मदत';
+      case 'Walking': return 'संध्याकाळचा फेरफटका';
+      case 'Reading': return 'वर्तमानपत्र / पुस्तक वाचन';
+      case 'Music': return 'संगीत व भजन';
+      case 'Gardening': return 'बागकाम';
+      case 'Storytelling': return 'कथाकथन';
+      default: return act;
+    }
+  };
+
+  const translateLanguage = (lang: string) => {
+    if (!isMr) return lang === 'all' ? 'Any' : lang;
+    switch (lang) {
+      case 'all': return 'कोणतीही';
+      case 'Marathi': return 'मराठी';
+      case 'Hindi': return 'हिंदी';
+      case 'English': return 'इंग्रजी';
+      case 'Kannada': return 'कन्नड';
+      default: return lang;
+    }
+  };
+
+  const translateDay = (day: string) => {
+    if (!isMr) return day === 'all' ? 'Any Day' : day;
+    switch (day) {
+      case 'all': return 'कोणताही दिवस';
+      case 'Saturday': return 'शनिवार';
+      case 'Sunday': return 'रविवार';
+      case 'Monday': return 'सोमवार';
+      case 'Tuesday': return 'मंगळवार';
+      case 'Wednesday': return 'बुधवार';
+      case 'Thursday': return 'गुरुवार';
+      case 'Friday': return 'शुक्रवार';
+      default: return day;
+    }
+  };
+
+  const translateReason = (reason: string) => {
+    if (!isMr) return reason;
+    if (reason.includes('Both enjoy')) {
+      return reason.replace('Both enjoy', 'दोघांची आवड:');
+    }
+    if (reason.includes('speaker')) {
+      return reason.replace('speaker', 'भाषक सोबती');
+    }
+    if (reason.includes('Available on your preferred')) {
+      return reason.replace('Available on your preferred', 'तुमच्या आवडीच्या दिवशी उपलब्ध:');
+    }
+    if (reason.includes('High availability:')) {
+      return reason.replace('High availability:', 'उत्तम उपलब्धता:').replace('active weekly slots', 'साप्ताहिक स्लॉट्स');
+    }
+    if (reason.includes('Within')) {
+      return reason.replace('Within', '').replace('km in', 'किमी परिसरात:');
+    }
+    if (reason.includes('Close by:')) {
+      return reason.replace('Close by:', 'जवळच:').replace('km away', 'किमी अंतरावर');
+    }
+    return reason;
+  };
 
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');
@@ -157,13 +224,15 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-saath-100 text-saath-800 text-xs font-bold mb-2">
             <Sparkles className="w-3.5 h-3.5 text-saath-600" />
-            <span>Intelligent Matching Engine</span>
+            <span>{isMr ? 'इंटेलिजंट मॅचिंग इंजिन' : 'Intelligent Matching Engine'}</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-stone-900 font-display tracking-tight">
-            Find your Saath
+            {isMr ? 'आपला सोबती शोधा' : 'Find your Saath'}
           </h1>
           <p className="text-stone-600 text-base mt-1">
-            Matching companions based on your interests ({currentSenior.interests.slice(0, 3).join(', ')}), fluent languages, and proximity in Kolhapur.
+            {isMr
+              ? `तुमच्या आवडीनिवडी (${currentSenior.interests.slice(0, 3).join(', ')}), भाषा आणि कोल्हापुरातील अंतरानुसार योग्य सोबती.`
+              : `Matching companions based on your interests (${currentSenior.interests.slice(0, 3).join(', ')}), fluent languages, and proximity in Kolhapur.`}
           </p>
         </div>
 
@@ -171,10 +240,18 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
         <div className="bg-amber-50 border border-amber-200 p-3 rounded-2xl max-w-sm">
           <p className="text-xs font-bold text-amber-900 flex items-center gap-1.5">
             <span>🎯</span>
-            <span>Presentation Tip:</span>
+            <span>{isMr ? 'सादरीकरण टीप:' : 'Presentation Tip:'}</span>
           </p>
           <p className="text-xs text-amber-800 mt-0.5">
-            Notice <strong>Aditya Patil</strong> ranks at top with <strong>94% Match</strong> (Chess + Marathi + Saturday 6 PM slot).
+            {isMr ? (
+              <>
+                <strong>आदित्य पाटील</strong> ९४% जुळणीसह (बुद्धिबळ + मराठी + शनिवार सायं ६) अव्वल स्थानी आहे.
+              </>
+            ) : (
+              <>
+                Notice <strong>Aditya Patil</strong> ranks at top with <strong>94% Match</strong> (Chess + Marathi + Saturday 6 PM slot).
+              </>
+            )}
           </p>
         </div>
       </div>
@@ -187,7 +264,7 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
             <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" />
             <input
               type="text"
-              placeholder="Search by student name, college, hobby, or area..."
+              placeholder={isMr ? 'विद्यार्थ्याचे नाव, कॉलेज, छंद किंवा परिसर शोधा...' : 'Search by student name, college, hobby, or area...'}
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-stone-50 border border-stone-200 text-stone-900 text-base focus:bg-white focus:ring-2 focus:ring-saath-500 focus:outline-none transition-all"
@@ -210,10 +287,10 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                 onChange={e => setSortBy(e.target.value as any)}
                 className="w-full sm:w-auto appearance-none bg-stone-50 border border-stone-200 font-semibold text-stone-800 text-sm py-3.5 pl-4 pr-10 rounded-2xl focus:bg-white focus:ring-2 focus:ring-saath-500 focus:outline-none cursor-pointer"
               >
-                <option value="compatibility">Sort: Highest Match %</option>
-                <option value="rating">Sort: Top Rated (★)</option>
-                <option value="price">Sort: Price: Low to High</option>
-                <option value="distance">Sort: Nearest First</option>
+                <option value="compatibility">{isMr ? 'क्रमवारी: सर्वाधिक जुळणी %' : 'Sort: Highest Match %'}</option>
+                <option value="rating">{isMr ? 'क्रमवारी: सर्वोत्तम रेटिंग (★)' : 'Sort: Top Rated (★)'}</option>
+                <option value="price">{isMr ? 'क्रमवारी: दर (कमी ते जास्त)' : 'Sort: Price: Low to High'}</option>
+                <option value="distance">{isMr ? 'क्रमवारी: सर्वात जवळचे' : 'Sort: Nearest First'}</option>
               </select>
               <ArrowUpDown className="w-4 h-4 text-stone-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             </div>
@@ -228,14 +305,14 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
               }`}
             >
               <SlidersHorizontal className="w-5 h-5" />
-              <span className="text-sm font-semibold hidden md:inline">Advanced Filters</span>
+              <span className="text-sm font-semibold hidden md:inline">{isMr ? 'अधिक फिल्टर्स' : 'Advanced Filters'}</span>
             </button>
           </div>
         </div>
 
         {/* Quick Filter Pills (Activity / Interest) */}
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 pt-1 text-xs">
-          <span className="font-bold text-stone-400 shrink-0 mr-1">Activity:</span>
+          <span className="font-bold text-stone-400 shrink-0 mr-1">{isMr ? 'उपक्रम:' : 'Activity:'}</span>
           {activitiesList.map(act => (
             <button
               key={act}
@@ -246,7 +323,7 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                   : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
               }`}
             >
-              {act === 'all' ? 'All Activities' : act}
+              {translateActivity(act)}
             </button>
           ))}
         </div>
@@ -254,7 +331,7 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
         {/* Quick Language & Day Filters */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-stone-100 text-xs">
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar shrink-0">
-            <span className="font-bold text-stone-400 shrink-0">Language:</span>
+            <span className="font-bold text-stone-400 shrink-0">{isMr ? 'भाषा:' : 'Language:'}</span>
             {languagesList.map(lang => (
               <button
                 key={lang}
@@ -265,13 +342,13 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                     : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
                 }`}
               >
-                {lang === 'all' ? 'Any' : lang}
+                {translateLanguage(lang)}
               </button>
             ))}
           </div>
 
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar shrink-0">
-            <span className="font-bold text-stone-400 shrink-0">Day:</span>
+            <span className="font-bold text-stone-400 shrink-0">{isMr ? 'वार:' : 'Day:'}</span>
             {['all', 'Saturday', 'Sunday'].map(day => (
               <button
                 key={day}
@@ -282,7 +359,7 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                     : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
                 }`}
               >
-                {day === 'all' ? 'Any Day' : day}
+                {translateDay(day)}
               </button>
             ))}
           </div>
@@ -293,7 +370,7 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
           <div className="pt-4 border-t border-stone-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-in fade-in">
             <div>
               <label className="text-xs font-bold text-stone-700 block mb-1">
-                Max Distance: {maxDistance} km
+                {isMr ? `कमाल अंतर: ${maxDistance} किमी` : `Max Distance: ${maxDistance} km`}
               </label>
               <input
                 type="range"
@@ -307,7 +384,7 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
 
             <div>
               <label className="text-xs font-bold text-stone-700 block mb-1">
-                Max Hourly Rate: ₹{maxPrice}/hr
+                {isMr ? `कमाल तासिका दर: ₹${maxPrice}/तास` : `Max Hourly Rate: ₹${maxPrice}/hr`}
               </label>
               <input
                 type="range"
@@ -322,29 +399,31 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
 
             <div>
               <label className="text-xs font-bold text-stone-700 block mb-1">
-                Minimum Rating: ★ {minRating}
+                {isMr ? `किमान रेटिंग: ★ ${minRating}` : `Minimum Rating: ★ ${minRating}`}
               </label>
               <select
                 value={minRating}
                 onChange={e => setMinRating(Number(e.target.value))}
                 className="w-full text-xs font-medium py-1.5 px-2 bg-stone-50 border border-stone-200 rounded-lg"
               >
-                <option value={4.0}>★ 4.0 & above</option>
-                <option value={4.5}>★ 4.5 & above</option>
-                <option value={4.8}>★ 4.8 & above</option>
+                <option value={4.0}>{isMr ? '★ ४.० आणि अधिक' : '★ 4.0 & above'}</option>
+                <option value={4.5}>{isMr ? '★ ४.५ आणि अधिक' : '★ 4.5 & above'}</option>
+                <option value={4.8}>{isMr ? '★ ४.८ आणि अधिक' : '★ 4.8 & above'}</option>
               </select>
             </div>
 
             <div>
-              <label className="text-xs font-bold text-stone-700 block mb-1">Gender Preference</label>
+              <label className="text-xs font-bold text-stone-700 block mb-1">
+                {isMr ? 'लिंग प्राधान्य' : 'Gender Preference'}
+              </label>
               <select
                 value={genderFilter}
                 onChange={e => setGenderFilter(e.target.value as any)}
                 className="w-full text-xs font-medium py-1.5 px-2 bg-stone-50 border border-stone-200 rounded-lg"
               >
-                <option value="any">No Preference (Any)</option>
-                <option value="male">Male Companions</option>
-                <option value="female">Female Companions</option>
+                <option value="any">{isMr ? 'काहीही (सर्व)' : 'No Preference (Any)'}</option>
+                <option value="male">{isMr ? 'पुरुष सोबती' : 'Male Companions'}</option>
+                <option value="female">{isMr ? 'स्त्री सोबती' : 'Female Companions'}</option>
               </select>
             </div>
 
@@ -353,7 +432,7 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                 onClick={resetAllFilters}
                 className="text-xs font-bold text-stone-500 hover:text-saath-600 underline"
               >
-                Reset all filters
+                {isMr ? 'सर्व फिल्टर्स रीसेट करा' : 'Reset all filters'}
               </button>
             </div>
           </div>
@@ -363,24 +442,38 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
       {/* Results Count & Active Status */}
       <div className="flex items-center justify-between text-sm text-stone-600">
         <p>
-          Showing <strong className="text-stone-900">{filteredStudents.length} verified companions</strong> matching your profile
+          {isMr ? (
+            <>
+              तुमच्या प्रोफाईलशी जुळणारे <strong className="text-stone-900">{filteredStudents.length} पडताळणी केलेले सोबती</strong>
+            </>
+          ) : (
+            <>
+              Showing <strong className="text-stone-900">{filteredStudents.length} verified companions</strong> matching your profile
+            </>
+          )}
         </p>
-        <span className="text-xs text-stone-400">Deterministic Compatibility Algorithm Active</span>
+        <span className="text-xs text-stone-400">
+          {isMr ? 'मॅचिंग अल्गोरिदम सक्रिय' : 'Deterministic Compatibility Algorithm Active'}
+        </span>
       </div>
 
       {/* Companion Cards Grid */}
       {filteredStudents.length === 0 ? (
         <div className="bg-white rounded-3xl p-12 text-center border border-stone-200 space-y-4">
           <p className="text-4xl">🔍</p>
-          <h3 className="text-xl font-bold text-stone-900">No companions match these exact filters</h3>
+          <h3 className="text-xl font-bold text-stone-900">
+            {isMr ? 'या फिल्टर्सशी जुळणारा कोणताही सोबती सापडला नाही' : 'No companions match these exact filters'}
+          </h3>
           <p className="text-stone-500 text-sm max-w-md mx-auto">
-            Try broadening your activity, price, or distance filters to see more verified student companions nearby.
+            {isMr
+              ? 'अधिक विद्यार्थी सोबती पाहण्यासाठी अंतर किंवा दराचे फिल्टर्स बदलून पहा.'
+              : 'Try broadening your activity, price, or distance filters to see more verified student companions nearby.'}
           </p>
           <button
             onClick={resetAllFilters}
             className="bg-saath-600 text-white font-bold px-6 py-2.5 rounded-xl text-sm"
           >
-            Reset Filters
+            {isMr ? 'फिल्टर्स रीसेट करा' : 'Reset Filters'}
           </button>
         </div>
       ) : (
@@ -412,7 +505,7 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                       {student.isVerified && (
                         <div
                           className="absolute -bottom-0.5 -right-0.5 bg-emerald-600 text-white p-1 rounded-full border-2 border-white shadow-xs"
-                          title="College Verified ID"
+                          title={isMr ? 'कॉलेज पडताळणी झालेले' : 'College Verified ID'}
                         >
                           <ShieldCheck className="w-3.5 h-3.5" />
                         </div>
@@ -431,10 +524,10 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                         }`}
                       >
                         <Sparkles className="w-3 h-3" />
-                        <span>{score}% Match</span>
+                        <span>{score}% {isMr ? 'जुळणी' : 'Match'}</span>
                       </div>
                       <div className="text-lg font-black text-stone-900">
-                        ₹{student.hourlyRate}<span className="text-xs font-normal text-stone-500">/hr</span>
+                        ₹{student.hourlyRate}<span className="text-xs font-normal text-stone-500">/{isMr ? 'तास' : 'hr'}</span>
                       </div>
                     </div>
                   </div>
@@ -445,7 +538,9 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                       <h3 className="text-xl font-bold text-stone-900 group-hover:text-saath-700 transition-colors">
                         {student.name}
                       </h3>
-                      <span className="text-xs font-semibold text-stone-400">{student.age} yrs</span>
+                      <span className="text-xs font-semibold text-stone-400">
+                        {student.age} {isMr ? 'वर्षे' : 'yrs'}
+                      </span>
                     </div>
 
                     <div className="flex items-center gap-1 text-xs text-stone-500 mt-1">
@@ -456,7 +551,7 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                     <div className="flex items-center gap-3 text-xs text-stone-600 mt-2 font-medium">
                       <span className="flex items-center gap-1">
                         <MapPin className="w-3.5 h-3.5 text-stone-400" />
-                        <span>{student.distanceKm} km away ({student.area})</span>
+                        <span>{student.distanceKm} {isMr ? 'किमी अंतरावर' : 'km away'} ({student.area})</span>
                       </span>
                       <span className="flex items-center gap-1 text-amber-600 font-bold">
                         <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
@@ -473,7 +568,7 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                         key={lang}
                         className="bg-stone-100 text-stone-700 text-[11px] font-semibold px-2 py-0.5 rounded-md"
                       >
-                        {lang}
+                        {translateLanguage(lang)}
                       </span>
                     ))}
                   </div>
@@ -485,22 +580,22 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                         key={interest}
                         className="bg-saath-50 text-saath-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full border border-saath-100"
                       >
-                        {interest}
+                        {translateActivity(interest)}
                       </span>
                     ))}
                   </div>
 
-                  {/* "Why this match?" Box (Core intelligent feature!) */}
+                  {/* "Why this match?" Box */}
                   <div className="bg-stone-50 rounded-2xl p-3 border border-stone-200/80 space-y-1.5">
                     <p className="text-[11px] font-bold text-stone-700 uppercase tracking-wider flex items-center gap-1">
                       <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                      <span>Why this match?</span>
+                      <span>{isMr ? 'हा सोबती का योग्य?' : 'Why this match?'}</span>
                     </p>
                     <ul className="space-y-1 text-xs text-stone-600">
                       {reasons.slice(0, 3).map((reason, idx) => (
                         <li key={idx} className="flex items-start gap-1.5">
                           <span className="text-emerald-600 font-bold">✓</span>
-                          <span className="leading-tight">{reason}</span>
+                          <span className="leading-tight">{translateReason(reason)}</span>
                         </li>
                       ))}
                     </ul>
@@ -513,14 +608,14 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                     onClick={() => onSelectStudent(student)}
                     className="flex-1 bg-white hover:bg-stone-100 text-stone-800 border border-stone-200 font-bold py-2.5 px-3 rounded-xl text-xs transition-colors"
                   >
-                    View Profile
+                    {isMr ? 'प्रोफाईल पहा' : 'View Profile'}
                   </button>
 
                   <button
                     onClick={() => onBookStudent(student)}
                     className="flex-1 bg-saath-600 hover:bg-saath-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs transition-colors shadow-xs flex items-center justify-center gap-1"
                   >
-                    <span>Book Session</span>
+                    <span>{isMr ? 'भेट बुक करा' : 'Book Session'}</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </button>
                 </div>

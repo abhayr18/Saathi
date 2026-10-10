@@ -10,12 +10,17 @@ interface SosModalProps {
 }
 
 export const SosModal: React.FC<SosModalProps> = ({ isOpen, onClose }) => {
-  const { currentSenior, showToast } = useApp();
+  const { currentSenior, showToast, language } = useApp();
+  const isMr = language === 'mr';
 
   if (!isOpen) return null;
 
   const handleSimulateCall = (target: string) => {
-    showToast(`Simulated Call Dispatched to ${target}! Alert coordinates transmitted.`);
+    showToast(
+      isMr
+        ? `${target} यांना आपत्कालीन कॉल व अलर्ट पाठवला गेला!`
+        : `Simulated Call Dispatched to ${target}! Alert coordinates transmitted.`
+    );
   };
 
   return (
@@ -31,10 +36,10 @@ export const SosModal: React.FC<SosModalProps> = ({ isOpen, onClose }) => {
             </div>
             <div>
               <h3 className="text-xl font-black text-stone-900 font-display">
-                Emergency Support Trigger
+                {isMr ? 'आपत्कालीन सहाय्यता प्रणाली' : 'Emergency Support Trigger'}
               </h3>
               <p className="text-xs text-rose-600 font-bold uppercase tracking-wider">
-                Simulated Safety Protocol
+                {isMr ? 'सुरक्षा प्रोटोकॉल डेमो' : 'Simulated Safety Protocol'}
               </p>
             </div>
           </div>
@@ -48,14 +53,18 @@ export const SosModal: React.FC<SosModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         <p className="text-sm text-stone-700 leading-relaxed">
-          In a real emergency situation, pressing this SOS button immediately broadcasts your GPS location, current companion session status, and home address to your family contact and local emergency lines.
+          {isMr
+            ? 'प्रत्यक्ष आपत्कालीन परिस्थितीत, हे SOS बटण दाबल्यास आपले जीपीएस स्थान, चालू सत्राची स्थिती आणि घराचा पत्ता तात्काळ आपल्या कुटुंबाकडे व आपत्कालीन सेवांकडे पाठवला जातो.'
+            : 'In a real emergency situation, pressing this SOS button immediately broadcasts your GPS location, current companion session status, and home address to your family contact and local emergency lines.'}
         </p>
 
         {/* Emergency Contacts List */}
         <div className="space-y-3">
           <div className="p-4 bg-rose-50 rounded-2xl border border-rose-200 flex items-center justify-between">
             <div>
-              <span className="text-[11px] font-bold text-rose-700 uppercase block">Family Primary Contact</span>
+              <span className="text-[11px] font-bold text-rose-700 uppercase block">
+                {isMr ? 'कुटुंबाचा मुख्य संपर्क' : 'Family Primary Contact'}
+              </span>
               <p className="text-sm font-black text-stone-900">
                 {currentSenior.emergencyContact.name} ({currentSenior.emergencyContact.relationship})
               </p>
@@ -68,13 +77,15 @@ export const SosModal: React.FC<SosModalProps> = ({ isOpen, onClose }) => {
               className="bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow-xs"
             >
               <Phone className="w-3.5 h-3.5" />
-              <span>Call</span>
+              <span>{isMr ? 'कॉल' : 'Call'}</span>
             </button>
           </div>
 
           <div className="p-4 bg-stone-50 rounded-2xl border border-stone-200 flex items-center justify-between">
             <div>
-              <span className="text-[11px] font-bold text-stone-500 uppercase block">National Senior Helpline</span>
+              <span className="text-[11px] font-bold text-stone-500 uppercase block">
+                {isMr ? 'राष्ट्रीय ज्येष्ठ नागरिक हेल्पलाईन' : 'National Senior Helpline'}
+              </span>
               <p className="text-sm font-black text-stone-900">Elderline (Ministry of Social Justice)</p>
               <p className="text-xs text-stone-600 font-mono mt-0.5">Toll-Free: 14567</p>
             </div>
@@ -83,13 +94,15 @@ export const SosModal: React.FC<SosModalProps> = ({ isOpen, onClose }) => {
               className="bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow-xs"
             >
               <Phone className="w-3.5 h-3.5" />
-              <span>Call</span>
+              <span>{isMr ? 'कॉल' : 'Call'}</span>
             </button>
           </div>
 
           <div className="p-4 bg-stone-50 rounded-2xl border border-stone-200 flex items-center justify-between">
             <div>
-              <span className="text-[11px] font-bold text-stone-500 uppercase block">Police & Emergency Medical</span>
+              <span className="text-[11px] font-bold text-stone-500 uppercase block">
+                {isMr ? 'पोलीस व आपत्कालीन वैद्यकीय' : 'Police & Emergency Medical'}
+              </span>
               <p className="text-sm font-black text-stone-900">Kolhapur Emergency Response</p>
               <p className="text-xs text-stone-600 font-mono mt-0.5">Dial: 112 / 100</p>
             </div>
@@ -98,7 +111,7 @@ export const SosModal: React.FC<SosModalProps> = ({ isOpen, onClose }) => {
               className="bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow-xs"
             >
               <Phone className="w-3.5 h-3.5" />
-              <span>Call</span>
+              <span>{isMr ? 'कॉल' : 'Call'}</span>
             </button>
           </div>
         </div>
@@ -108,7 +121,7 @@ export const SosModal: React.FC<SosModalProps> = ({ isOpen, onClose }) => {
           className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-2xl shadow-md transition-colors flex items-center justify-center gap-2 text-sm"
         >
           <CheckCircle className="w-4 h-4" />
-          <span>I am Safe / Close Emergency Screen</span>
+          <span>{isMr ? 'मी सुरक्षित आहे / स्क्रीन बंद करा' : 'I am Safe / Close Emergency Screen'}</span>
         </button>
       </div>
     </div>

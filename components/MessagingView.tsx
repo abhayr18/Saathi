@@ -29,7 +29,10 @@ export const MessagingView: React.FC<MessagingViewProps> = ({ initialCompanionId
     messages,
     sendMessage,
     showToast,
+    language
   } = useApp();
+
+  const isMr = language === 'mr';
 
   const [activePartnerId, setActivePartnerId] = useState<string>(
     initialCompanionId || (role === 'senior' ? 'student-1' : 'senior-1')
@@ -71,6 +74,20 @@ export const MessagingView: React.FC<MessagingViewProps> = ({ initialCompanionId
     setInputText(text);
   };
 
+  const suggestions = isMr
+    ? [
+        'आपल्या आगामी सत्राची मी वाट पाहत आहे!',
+        'मी सोबत बुद्धिबळाचा पट घेऊन येईन.',
+        'नमस्कार! संध्याकाळी ६:०० वाजता भेटूया.',
+        'मी सोसायटीच्या मुख्य प्रवेशद्वाराजवळ पोहोचलो आहे.',
+      ]
+    : [
+        'Looking forward to our session!',
+        'I will bring my tournament chess board.',
+        'Namaskar! See you at 6:00 PM.',
+        'I have reached the society gate.',
+      ];
+
   return (
     <div className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
       <div className="bg-white rounded-3xl shadow-card border border-stone-200 overflow-hidden grid grid-cols-1 md:grid-cols-12 min-h-[500px]">
@@ -81,9 +98,11 @@ export const MessagingView: React.FC<MessagingViewProps> = ({ initialCompanionId
           }`}
         >
           <div className="pb-2 border-b border-stone-200 flex items-center justify-between">
-            <h3 className="font-bold text-stone-900 text-base">Conversations</h3>
+            <h3 className="font-bold text-stone-900 text-base">
+              {isMr ? 'संभाषणे' : 'Conversations'}
+            </h3>
             <span className="text-[11px] text-stone-500 font-bold bg-white px-2 py-0.5 rounded-full border border-stone-200">
-              Active
+              {isMr ? 'सक्रिय' : 'Active'}
             </span>
           </div>
 
@@ -164,9 +183,15 @@ export const MessagingView: React.FC<MessagingViewProps> = ({ initialCompanionId
 
             <div className="flex items-center gap-2 shrink-0">
               <button
-                onClick={() => showToast(`Initiating simulated voice check-in call with ${partnerName}...`)}
+                onClick={() =>
+                  showToast(
+                    isMr
+                      ? `${partnerName} यांच्याशी थेट संपर्क कॉल सुरू करत आहे...`
+                      : `Initiating simulated voice check-in call with ${partnerName}...`
+                  )
+                }
                 className="p-2 sm:p-2.5 rounded-xl border border-stone-200 text-stone-600 hover:bg-stone-100 transition-colors"
-                title="Voice Call"
+                title={isMr ? 'व्हॉईस कॉल' : 'Voice Call'}
               >
                 <Phone className="w-4 h-4 text-saath-600" />
               </button>
@@ -177,12 +202,16 @@ export const MessagingView: React.FC<MessagingViewProps> = ({ initialCompanionId
           <div className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-4">
             {/* Safety Reminder Banner */}
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-2.5 text-center text-xs text-amber-900 leading-snug">
-              🔒 Safe & Monitored Chat: Never share banking OTPs, passwords, or personal financial details.
+              {isMr
+                ? '🔒 सुरक्षित व देखरेखीखालील चॅट: कधीही बँक OTP, पासवर्ड किंवा गुप्त आर्थिक माहिती शेअर करू नका.'
+                : '🔒 Safe & Monitored Chat: Never share banking OTPs, passwords, or personal financial details.'}
             </div>
 
             {conversationMessages.length === 0 ? (
               <div className="text-center py-12 text-stone-400 text-sm">
-                No messages yet. Say Namaskar to begin the conversation!
+                {isMr
+                  ? 'अद्याप कोणतेही संदेश नाहीत. नमस्कार पाठवून संभाषणाची सुरुवात करा!'
+                  : 'No messages yet. Say Namaskar to begin the conversation!'}
               </div>
             ) : (
               conversationMessages.map(msg => {
@@ -221,13 +250,10 @@ export const MessagingView: React.FC<MessagingViewProps> = ({ initialCompanionId
 
           {/* Quick Suggestions Chips */}
           <div className="px-3 sm:px-4 py-2 bg-stone-50/70 border-t border-stone-100 flex items-center gap-2 overflow-x-auto no-scrollbar text-xs">
-            <span className="text-stone-400 font-bold shrink-0">Suggestions:</span>
-            {[
-              'Looking forward to our session!',
-              'I will bring my tournament chess board.',
-              'Namaskar! See you at 6:00 PM.',
-              'I have reached the society gate.',
-            ].map((chip, idx) => (
+            <span className="text-stone-400 font-bold shrink-0">
+              {isMr ? 'सुचवलेले संदेश:' : 'Suggestions:'}
+            </span>
+            {suggestions.map((chip, idx) => (
               <button
                 key={idx}
                 type="button"
@@ -245,7 +271,7 @@ export const MessagingView: React.FC<MessagingViewProps> = ({ initialCompanionId
               type="text"
               value={inputText}
               onChange={e => setInputText(e.target.value)}
-              placeholder={`Message ${partnerName.split(' ')[0]}...`}
+              placeholder={isMr ? `${partnerName.split(' ')[0]} यांना संदेश पाठवा...` : `Message ${partnerName.split(' ')[0]}...`}
               className="flex-1 bg-stone-50 border border-stone-200 rounded-2xl px-4 py-3 text-base text-stone-900 focus:bg-white focus:ring-2 focus:ring-saath-500 focus:outline-none"
             />
             <button

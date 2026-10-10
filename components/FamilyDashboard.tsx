@@ -26,7 +26,8 @@ interface FamilyDashboardProps {
 }
 
 export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) => {
-  const { currentSenior, observations, carePlans, students, bookings } = useApp();
+  const { currentSenior, observations, carePlans, students, bookings, language } = useApp();
+  const isMr = language === 'mr';
 
   // Filter observations for this senior
   const seniorObservations = observations.filter(o => o.seniorId === currentSenior.id);
@@ -40,20 +41,22 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
         <div className="space-y-1">
           <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-saath-500/20 text-saath-300 text-xs font-bold border border-saath-500/30 mb-1">
             <Heart className="w-3.5 h-3.5 text-saath-400" />
-            <span>Model 3: Family Visibility & Peace of Mind Hub</span>
+            <span>{isMr ? 'मॉडेल ३: कुटुंब मनःशांती व रिमोट मॉनिटरिंग हब' : 'Model 3: Family Visibility & Peace of Mind Hub'}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-white">
-            Welcome, Amit Kulkarni 👋
+            {isMr ? 'स्वागत आहे, अमित कुलकर्णी 👋' : 'Welcome, Amit Kulkarni 👋'}
           </h1>
           <p className="text-stone-300 text-sm">
-            Remote Monitoring for <strong className="text-white">{currentSenior.name} (68)</strong> in {currentSenior.area}, {currentSenior.city}.
+            {isMr
+              ? `${currentSenior.name} (वय ६८, ${currentSenior.area}, ${currentSenior.city}) यांच्या आरोग्याची थेट माहिती.`
+              : `Remote Monitoring for ${currentSenior.name} (68) in ${currentSenior.area}, ${currentSenior.city}.`}
           </p>
-          <div className="flex items-center gap-2 text-xs text-stone-400 pt-1">
-            <span>Viewing from: <strong>Bangalore, Karnataka</strong></span>
+          <div className="flex items-center gap-2 text-xs text-stone-400 pt-1 flex-wrap">
+            <span>{isMr ? 'स्थान: बेंगळुरू, कर्नाटक' : 'Viewing from: Bangalore, Karnataka'}</span>
             <span>•</span>
             <span className="text-emerald-400 font-bold flex items-center gap-1">
               <CheckCircle2 className="w-3.5 h-3.5" />
-              <span>Know My Normal Detection: Normal</span>
+              <span>{isMr ? 'Know My Normal: सामान्य व स्थिर' : 'Know My Normal Detection: Normal'}</span>
             </span>
           </div>
         </div>
@@ -64,14 +67,14 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
             className="bg-saath-600 hover:bg-saath-700 text-white font-bold text-xs px-4 py-3 rounded-2xl transition-all shadow-xs flex items-center justify-center gap-1.5"
           >
             <MessageSquare className="w-4 h-4" />
-            <span>Chat with Companion ({activeCompanion.name.split(' ')[0]})</span>
+            <span>{isMr ? `सोबत्याशी बोला (${activeCompanion.name.split(' ')[0]})` : `Chat with Companion (${activeCompanion.name.split(' ')[0]})`}</span>
           </button>
           <button
             onClick={() => onNavigate('careplans')}
             className="bg-stone-800 hover:bg-stone-700 text-stone-200 font-bold text-xs px-4 py-3 rounded-2xl transition-all border border-stone-700 flex items-center justify-center gap-1.5"
           >
-            <Calendar className="w-4 h-4 text-amber-400" />
-            <span>Care Plans</span>
+            <Calendar className="w-4 h-4 text-teal-400" />
+            <span>{isMr ? 'केअर प्लॅन्स' : 'Care Plans'}</span>
           </button>
         </div>
       </div>
@@ -80,39 +83,43 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-3xl shadow-card border border-stone-200 space-y-3">
           <div className="flex items-center justify-between text-xs text-stone-400 font-bold">
-            <span className="uppercase tracking-wider">Mood & Engagement</span>
+            <span className="uppercase tracking-wider">{isMr ? 'मूड व सहभाग' : 'Mood & Engagement'}</span>
             <Smile className="w-5 h-5 text-emerald-600" />
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-black text-stone-900 font-display">Cheerful & Active</span>
+            <span className="text-2xl font-black text-stone-900 font-display">{isMr ? 'आनंदी व उत्साही' : 'Cheerful & Active'}</span>
             <span className="text-xs text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded-full">
-              Stable
+              {isMr ? 'स्थिर ✓' : 'Stable'}
             </span>
           </div>
           <p className="text-xs text-stone-600 leading-relaxed">
-            4 out of 4 recent companion visits logged enthusiastic participation in chess, smartphone learning, and colony strolls.
+            {isMr
+              ? 'गेल्या सर्व ४ भेटींमध्ये बुद्धिबळ, स्मार्टफोन शिकणे आणि कॉलनी पार्कमध्ये उत्साही सहभाग नोंदवला गेला.'
+              : '4 out of 4 recent companion visits logged enthusiastic participation in chess, smartphone learning, and colony strolls.'}
           </p>
         </div>
 
         <div className="bg-white p-6 rounded-3xl shadow-card border border-stone-200 space-y-3">
           <div className="flex items-center justify-between text-xs text-stone-400 font-bold">
-            <span className="uppercase tracking-wider">Mobility & Strolls</span>
+            <span className="uppercase tracking-wider">{isMr ? 'हालचाल व प्रभात फेरी' : 'Mobility & Strolls'}</span>
             <Activity className="w-5 h-5 text-saath-600" />
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-black text-stone-900 font-display">Regular Walk</span>
+            <span className="text-2xl font-black text-stone-900 font-display">{isMr ? 'नियमित वॉक' : 'Regular Walk'}</span>
             <span className="text-xs text-saath-800 font-bold bg-saath-100 px-2 py-0.5 rounded-full">
-              45 mins avg
+              {isMr ? 'सरासरी ४५ मिनिटे' : '45 mins avg'}
             </span>
           </div>
           <p className="text-xs text-stone-600 leading-relaxed">
-            Walked comfortably through Rajarampuri colony with companion Aditya on Wednesday. No fatigue or balance issues noted.
+            {isMr
+              ? 'सोबती आदित्य यांच्यासोबत राजारामपुरी कॉलनी पार्कमध्ये संध्याकाळची फेरी पूर्ण झाली. कोणताही थकवा आढळला नाही.'
+              : 'Walked comfortably through Rajarampuri colony with companion Aditya on Wednesday. No fatigue or balance issues noted.'}
           </p>
         </div>
 
         <div className="bg-white p-6 rounded-3xl shadow-card border border-stone-200 space-y-3">
           <div className="flex items-center justify-between text-xs text-stone-400 font-bold">
-            <span className="uppercase tracking-wider">Primary Companion</span>
+            <span className="uppercase tracking-wider">{isMr ? 'मुख्य सोबती (केअर मित्र)' : 'Primary Companion'}</span>
             <UserCheck className="w-5 h-5 text-blue-600" />
           </div>
           <div className="flex items-center gap-3">
@@ -124,13 +131,13 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
               />
             </div>
             <div>
-              <h4 className="font-bold text-stone-900 text-sm">{activeCompanion.name} (21)</h4>
+              <h4 className="font-bold text-stone-900 text-sm">{activeCompanion.name} ({isMr ? 'वय २१' : '21 yrs'})</h4>
               <p className="text-xs text-stone-500">ADCET Engineering • ★ {activeCompanion.rating}</p>
             </div>
           </div>
           <div className="text-[11px] text-emerald-700 font-bold bg-emerald-50 p-2 rounded-xl border border-emerald-100 flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4 shrink-0" />
-            <span>100% Background & College Verified</span>
+            <span>{isMr ? '१००% कॉलेज आयडी व पोलीस पडताळणी' : '100% Background & College Verified'}</span>
           </div>
         </div>
       </div>
@@ -140,18 +147,18 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
         <div className="bg-gradient-to-r from-teal-50 to-sky-50 border-2 border-teal-200 p-6 rounded-3xl shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-1">
             <span className="text-xs font-bold text-teal-900 uppercase tracking-wider bg-teal-100/90 px-2.5 py-0.5 rounded-full border border-teal-200">
-              Active Monthly Care Subscription
+              {isMr ? 'सक्रिय मासिक केअर सबस्क्रिप्शन' : 'Active Monthly Care Subscription'}
             </span>
             <h3 className="text-xl font-black text-stone-900 mt-1">
               {activePlan.planName}
             </h3>
             <p className="text-xs text-stone-600">
-              Sponsored by: <strong>{activePlan.sponsorName}</strong> • Monthly billing: ₹{activePlan.monthlyCost}/mo
+              {isMr ? 'प्रायोजक:' : 'Sponsored by:'} <strong>{activePlan.sponsorName}</strong> • {isMr ? 'मासिक शुल्क:' : 'Monthly billing:'} ₹{activePlan.monthlyCost}/{isMr ? 'महिना' : 'mo'}
             </p>
             <div className="flex items-center gap-4 text-xs font-semibold text-stone-700 pt-1">
-              <span>Visits Completed: <strong>{activePlan.visitsCompleted} of {activePlan.visitsPerMonth}</strong></span>
+              <span>{isMr ? 'पूर्ण झालेल्या भेटी:' : 'Visits Completed:'} <strong>{activePlan.visitsCompleted} {isMr ? 'पैकी' : 'of'} {activePlan.visitsPerMonth}</strong></span>
               <span>•</span>
-              <span className="text-saath-700">Next Visit: <strong>{activePlan.nextScheduledVisit}</strong></span>
+              <span className="text-saath-700">{isMr ? 'पुढील भेट:' : 'Next Visit:'} <strong>{activePlan.nextScheduledVisit}</strong></span>
             </div>
           </div>
 
@@ -160,7 +167,7 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
               onClick={() => onNavigate('careplans')}
               className="bg-stone-900 hover:bg-stone-800 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition-colors shadow-xs"
             >
-              Manage / Upgrade Plan
+              {isMr ? 'प्लॅन बदला किंवा व्यवस्थापित करा' : 'Manage / Upgrade Plan'}
             </button>
           </div>
         </div>
@@ -172,15 +179,17 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
           <div>
             <h3 className="text-xl font-bold text-stone-900 font-display flex items-center gap-2">
               <FileText className="w-5 h-5 text-saath-600" />
-              <span>Companion Observation Feed & Visit Reports</span>
+              <span>{isMr ? 'सोबत्यांचे निरीक्षण व भेट अहवाल' : 'Companion Observation Feed & Visit Reports'}</span>
             </h3>
             <p className="text-xs text-stone-500 mt-0.5">
-              Structured observations logged by student companions after every completed visit.
+              {isMr
+                ? 'प्रत्येक १:१ भेटीनंतर कॉलेज सोबत्याने नोंदवलेले अचूक आरोग्य, मूड व गतिशीलता तपशील.'
+                : 'Structured observations logged by student companions after every completed visit.'}
             </p>
           </div>
 
           <span className="text-xs font-bold text-stone-500 bg-stone-100 px-3 py-1 rounded-full">
-            {seniorObservations.length} Logs Available
+            {isMr ? `${seniorObservations.length} अहवाल उपलब्ध` : `${seniorObservations.length} Logs Available`}
           </span>
         </div>
 
@@ -197,20 +206,20 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-stone-900">
-                      Visit by {obs.companionName}
+                      {isMr ? `${obs.companionName} यांची भेट` : `Visit by ${obs.companionName}`}
                     </h4>
                     <p className="text-xs text-stone-500">
-                      {obs.date} • {obs.durationMinutes} mins • {obs.activity}
+                      {obs.date} • {obs.durationMinutes} {isMr ? 'मिनिटे' : 'mins'} • {obs.activity}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                    Mood: {obs.mood}
+                    {isMr ? 'मूड:' : 'Mood:'} {obs.mood}
                   </span>
                   <span className="text-xs font-bold text-blue-800 bg-blue-100 px-2.5 py-0.5 rounded-full border border-blue-200">
-                    Engagement: {obs.engagement}
+                    {isMr ? 'सहभाग:' : 'Engagement:'} {obs.engagement}
                   </span>
                 </div>
               </div>
@@ -222,9 +231,9 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
               <div className="flex items-center justify-between text-[11px] text-stone-500 pt-1">
                 <span className="flex items-center gap-1 text-emerald-700 font-semibold">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Mobility: {obs.mobilityObserved}</span>
+                  <span>{isMr ? 'हालचाल:' : 'Mobility:'} {obs.mobilityObserved}</span>
                 </span>
-                <span>Transmitted to Family WhatsApp & Dashboard</span>
+                <span>{isMr ? 'कुटुंबाला व्हॉट्सॲपवर पाठवले ✓' : 'Transmitted to Family WhatsApp & Dashboard'}</span>
               </div>
             </div>
           ))}

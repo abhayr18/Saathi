@@ -11,7 +11,8 @@ interface ReviewModalProps {
 }
 
 export const ReviewModal: React.FC<ReviewModalProps> = ({ booking, onClose }) => {
-  const { currentSenior, addReview } = useApp();
+  const { currentSenior, addReview, language } = useApp();
+  const isMr = language === 'mr';
 
   const [rating, setRating] = useState<number>(5);
   const [selectedTags, setSelectedTags] = useState<string[]>([
@@ -20,18 +21,20 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({ booking, onClose }) =>
     'Respectful',
   ]);
   const [comment, setComment] = useState<string>(
-    'Aditya was extraordinarily polite, patient, and made our chess match thoroughly enjoyable. Wonderful company!'
+    isMr
+      ? 'आदित्य खूप नम्र, संयमी आणि आदरयुक्त आहे. बुद्धिबळ खेळताना आणि गप्पा मारताना खूप आनंद झाला!'
+      : 'Aditya was extraordinarily polite, patient, and made our chess match thoroughly enjoyable. Wonderful company!'
   );
 
   if (!booking) return null;
 
   const availableTags = [
-    'Friendly',
-    'Good Listener',
-    'Punctual',
-    'Helpful',
-    'Respectful',
-    'Enjoyable Conversation',
+    { id: 'Friendly', label: isMr ? 'मनमिळाऊ' : 'Friendly' },
+    { id: 'Good Listener', label: isMr ? 'उत्तम श्रोता' : 'Good Listener' },
+    { id: 'Punctual', label: isMr ? 'वेळेचे काटेकोर' : 'Punctual' },
+    { id: 'Helpful', label: isMr ? 'मदतनीस' : 'Helpful' },
+    { id: 'Respectful', label: isMr ? 'आदरयुक्त' : 'Respectful' },
+    { id: 'Enjoyable Conversation', label: isMr ? 'आनंददायी गप्पा' : 'Enjoyable Conversation' },
   ];
 
   const toggleTag = (tag: string) => {
@@ -65,10 +68,12 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({ booking, onClose }) =>
         <div className="flex items-center justify-between pb-3 border-b border-stone-100">
           <div>
             <h3 className="text-xl font-black text-stone-900 font-display">
-              How was your time with {booking.companionName.split(' ')[0]}?
+              {isMr
+                ? `${booking.companionName.split(' ')[0]} यांच्यासोबतची भेट कशी वाटली?`
+                : `How was your time with ${booking.companionName.split(' ')[0]}?`}
             </h3>
             <p className="text-xs text-stone-500">
-              {booking.activity} session on {booking.date}
+              {isMr ? `${booking.date} रोजी ${booking.activity} सत्र` : `${booking.activity} session on ${booking.date}`}
             </p>
           </div>
 
@@ -84,7 +89,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({ booking, onClose }) =>
           {/* Star selector */}
           <div className="text-center space-y-2">
             <span className="text-xs font-bold text-stone-500 uppercase tracking-wider block">
-              Overall Rating
+              {isMr ? 'एकूण रेटिंग' : 'Overall Rating'}
             </span>
             <div className="flex items-center justify-center gap-2">
               {[1, 2, 3, 4, 5].map(star => (
@@ -107,33 +112,33 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({ booking, onClose }) =>
             </div>
             <p className="text-xs font-semibold text-saath-700">
               {rating === 5
-                ? 'Exceptional & Heartwarming ★★★★★'
+                ? (isMr ? 'उत्कृष्ट व मनसोक्त ★★★★★' : 'Exceptional & Heartwarming ★★★★★')
                 : rating === 4
-                ? 'Very Good ★★★★☆'
-                : `${rating} Stars`}
+                ? (isMr ? 'खूप छान ★★★★☆' : 'Very Good ★★★★☆')
+                : `${rating} ${isMr ? 'स्टार्स' : 'Stars'}`}
             </p>
           </div>
 
           {/* Tags */}
           <div className="space-y-2">
             <label className="text-xs font-bold text-stone-700 block">
-              What best describes your companion? (Select tags)
+              {isMr ? 'तुमच्या सोबत्याचे वर्णन कसे कराल? (पर्याय निवडा)' : 'What best describes your companion? (Select tags)'}
             </label>
             <div className="flex flex-wrap gap-2">
-              {availableTags.map(tag => {
-                const isSelected = selectedTags.includes(tag);
+              {availableTags.map(tagObj => {
+                const isSelected = selectedTags.includes(tagObj.id);
                 return (
                   <button
-                    key={tag}
+                    key={tagObj.id}
                     type="button"
-                    onClick={() => toggleTag(tag)}
+                    onClick={() => toggleTag(tagObj.id)}
                     className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all ${
                       isSelected
                         ? 'bg-emerald-50 border-emerald-500 text-emerald-800 ring-1 ring-emerald-400'
                         : 'bg-stone-50 border-stone-200 text-stone-600 hover:bg-stone-100'
                     }`}
                   >
-                    {isSelected ? '✓ ' : '+ '} {tag}
+                    {isSelected ? '✓ ' : '+ '} {tagObj.label}
                   </button>
                 );
               })}
@@ -143,13 +148,13 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({ booking, onClose }) =>
           {/* Text Review */}
           <div className="space-y-1">
             <label className="text-xs font-bold text-stone-700 block">
-              Your Review / Message of Encouragement
+              {isMr ? 'तुमचा अभिप्राय / कौतुकाचे दोन शब्द' : 'Your Review / Message of Encouragement'}
             </label>
             <textarea
               rows={3}
               value={comment}
               onChange={e => setComment(e.target.value)}
-              placeholder="Write a few kind words about your companionship experience..."
+              placeholder={isMr ? 'तुमच्या अनुभवाबद्दल दोन शब्द लिहा...' : 'Write a few kind words about your companionship experience...'}
               className="w-full p-3 rounded-2xl bg-stone-50 border border-stone-200 text-sm text-stone-900 focus:bg-white focus:ring-2 focus:ring-saath-500 focus:outline-none leading-relaxed"
             />
           </div>
@@ -160,7 +165,7 @@ export const ReviewModal: React.FC<ReviewModalProps> = ({ booking, onClose }) =>
             className="w-full bg-saath-600 hover:bg-saath-700 text-white font-bold py-3.5 rounded-2xl shadow-elevated transition-all flex items-center justify-center gap-2 text-base"
           >
             <Sparkles className="w-5 h-5 text-amber-300" />
-            <span>Submit Review</span>
+            <span>{isMr ? 'अभिप्राय सादर करा' : 'Submit Review'}</span>
           </button>
         </form>
       </div>

@@ -31,7 +31,8 @@ export const CompanionProfileModal: React.FC<CompanionProfileModalProps> = ({
   onBook,
   onMessage,
 }) => {
-  const { reviews } = useApp();
+  const { reviews, language } = useApp();
+  const isMr = language === 'mr';
 
   if (!student) return null;
 
@@ -48,7 +49,7 @@ export const CompanionProfileModal: React.FC<CompanionProfileModalProps> = ({
         <div className="relative h-40 sm:h-52 bg-gradient-to-r from-saath-700 via-amber-600 to-saath-600 rounded-t-3xl p-4 sm:p-6 flex items-start justify-between text-white">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold">
             <GraduationCap className="w-4 h-4" />
-            <span>Verified Student Companion</span>
+            <span>{isMr ? 'पडताळणी झालेला विद्यार्थी सोबती' : 'Verified Student Companion'}</span>
           </div>
 
           <button
@@ -102,10 +103,12 @@ export const CompanionProfileModal: React.FC<CompanionProfileModalProps> = ({
 
             {/* Price Badge */}
             <div className="bg-saath-50 border border-saath-200 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl text-left sm:text-center shrink-0 w-full sm:w-auto flex items-center justify-between sm:block">
-              <span className="text-xs text-stone-500 font-medium block">Standard Rate</span>
+              <span className="text-xs text-stone-500 font-medium block">
+                {isMr ? 'तासिका दर' : 'Standard Rate'}
+              </span>
               <span className="text-xl sm:text-2xl font-black text-saath-800">
                 ₹{student.hourlyRate}
-                <span className="text-xs font-normal text-stone-500"> / hour</span>
+                <span className="text-xs font-normal text-stone-500"> {isMr ? '/ तास' : '/ hour'}</span>
               </span>
             </div>
           </div>
@@ -113,7 +116,9 @@ export const CompanionProfileModal: React.FC<CompanionProfileModalProps> = ({
           {/* Quick Metrics Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-stone-50 p-4 rounded-2xl border border-stone-200/80 text-center">
             <div>
-              <span className="text-[11px] text-stone-400 uppercase font-bold block">Rating</span>
+              <span className="text-[11px] text-stone-400 uppercase font-bold block">
+                {isMr ? 'रेटिंग' : 'Rating'}
+              </span>
               <div className="flex items-center justify-center gap-1 text-stone-900 font-bold text-base mt-0.5">
                 <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                 <span>{student.rating}</span>
@@ -122,32 +127,40 @@ export const CompanionProfileModal: React.FC<CompanionProfileModalProps> = ({
             </div>
 
             <div>
-              <span className="text-[11px] text-stone-400 uppercase font-bold block">Distance</span>
+              <span className="text-[11px] text-stone-400 uppercase font-bold block">
+                {isMr ? 'अंतर' : 'Distance'}
+              </span>
               <div className="flex items-center justify-center gap-1 text-stone-900 font-bold text-base mt-0.5">
                 <MapPin className="w-4 h-4 text-saath-600" />
-                <span>{student.distanceKm} km</span>
+                <span>{student.distanceKm} {isMr ? 'किमी' : 'km'}</span>
               </div>
             </div>
 
             <div>
-              <span className="text-[11px] text-stone-400 uppercase font-bold block">Sessions</span>
+              <span className="text-[11px] text-stone-400 uppercase font-bold block">
+                {isMr ? 'सत्रे' : 'Sessions'}
+              </span>
               <div className="text-stone-900 font-bold text-base mt-0.5">
-                <span>{student.completedSessionsCount}+ visits</span>
+                <span>{student.completedSessionsCount}+ {isMr ? 'भेटी' : 'visits'}</span>
               </div>
             </div>
 
             <div>
-              <span className="text-[11px] text-stone-400 uppercase font-bold block">Identity</span>
+              <span className="text-[11px] text-stone-400 uppercase font-bold block">
+                {isMr ? 'ओळख' : 'Identity'}
+              </span>
               <div className="flex items-center justify-center gap-1 text-emerald-700 font-bold text-base mt-0.5">
                 <CheckCircle className="w-4 h-4 text-emerald-600" />
-                <span className="text-sm">Verified</span>
+                <span className="text-sm">{isMr ? 'पडताळणी पूर्ण' : 'Verified'}</span>
               </div>
             </div>
           </div>
 
           {/* About Bio */}
           <div className="space-y-2">
-            <h3 className="text-lg font-bold text-stone-900 font-display">About Aditya</h3>
+            <h3 className="text-lg font-bold text-stone-900 font-display">
+              {isMr ? `${student.name.split(' ')[0]} बद्दल माहिती` : `About ${student.name.split(' ')[0]}`}
+            </h3>
             <p className="text-stone-700 text-base leading-relaxed bg-stone-50/60 p-4 rounded-2xl border border-stone-100">
               "{student.bio}"
             </p>
@@ -157,7 +170,7 @@ export const CompanionProfileModal: React.FC<CompanionProfileModalProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <h4 className="text-sm font-bold text-stone-900 uppercase tracking-wider text-xs">
-                Languages Spoken Fluently
+                {isMr ? 'अस्खलित बोलल्या जाणाऱ्या भाषा' : 'Languages Spoken Fluently'}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {student.languages.map(l => (
@@ -173,7 +186,7 @@ export const CompanionProfileModal: React.FC<CompanionProfileModalProps> = ({
 
             <div className="space-y-2">
               <h4 className="text-sm font-bold text-stone-900 uppercase tracking-wider text-xs">
-                Activities I Enjoy
+                {isMr ? 'आवडते उपक्रम व छंद' : 'Activities I Enjoy'}
               </h4>
               <div className="flex flex-wrap gap-2">
                 {student.activities.map(a => (
@@ -193,10 +206,10 @@ export const CompanionProfileModal: React.FC<CompanionProfileModalProps> = ({
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-bold text-stone-900 font-display flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-saath-600" />
-                <span>Weekly Available Slots</span>
+                <span>{isMr ? 'साप्ताहिक उपलब्ध वेळ' : 'Weekly Available Slots'}</span>
               </h3>
               <span className="text-xs text-emerald-700 font-bold bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
-                ● Accepting Requests
+                ● {isMr ? 'विनंत्या स्वीकारत आहेत' : 'Accepting Requests'}
               </span>
             </div>
 
@@ -220,14 +233,16 @@ export const CompanionProfileModal: React.FC<CompanionProfileModalProps> = ({
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-bold text-stone-900 font-display flex items-center gap-2">
                 <Star className="w-5 h-5 text-amber-500 fill-amber-400" />
-                <span>Reviews from Seniors ({studentReviews.length})</span>
+                <span>{isMr ? `ज्येष्ठांचे अभिप्राय (${studentReviews.length})` : `Reviews from Seniors (${studentReviews.length})`}</span>
               </h3>
-              <span className="text-sm font-bold text-stone-700">★ {student.rating} average</span>
+              <span className="text-sm font-bold text-stone-700">★ {student.rating} {isMr ? 'सरासरी' : 'average'}</span>
             </div>
 
             <div className="space-y-3 max-h-64 overflow-y-auto pr-1">
               {studentReviews.length === 0 ? (
-                <p className="text-stone-500 text-sm italic">No reviews yet for this student companion.</p>
+                <p className="text-stone-500 text-sm italic">
+                  {isMr ? 'या सोबत्यासाठी अजून कोणतेही अभिप्राय नाहीत.' : 'No reviews yet for this student companion.'}
+                </p>
               ) : (
                 studentReviews.map(r => (
                   <div
@@ -280,7 +295,7 @@ export const CompanionProfileModal: React.FC<CompanionProfileModalProps> = ({
               className="px-6 py-3.5 rounded-2xl border border-stone-300 font-bold text-stone-700 hover:bg-stone-50 transition-colors flex items-center justify-center gap-2"
             >
               <MessageSquare className="w-5 h-5 text-saath-600" />
-              <span>Message {student.name.split(' ')[0]}</span>
+              <span>{isMr ? `${student.name.split(' ')[0]} यांना संदेश पाठवा` : `Message ${student.name.split(' ')[0]}`}</span>
             </button>
 
             <button
@@ -291,7 +306,11 @@ export const CompanionProfileModal: React.FC<CompanionProfileModalProps> = ({
               className="flex-1 bg-saath-600 hover:bg-saath-700 text-white font-bold py-3.5 px-6 rounded-2xl shadow-elevated transition-all flex items-center justify-center gap-2 text-base"
             >
               <Calendar className="w-5 h-5" />
-              <span>Book a Session with {student.name.split(' ')[0]} (₹{student.hourlyRate}/hr)</span>
+              <span>
+                {isMr
+                  ? `${student.name.split(' ')[0]} सह भेट बुक करा (₹${student.hourlyRate}/तास)`
+                  : `Book a Session with ${student.name.split(' ')[0]} (₹${student.hourlyRate}/hr)`}
+              </span>
             </button>
           </div>
         </div>

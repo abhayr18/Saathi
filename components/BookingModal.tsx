@@ -32,7 +32,23 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   onClose,
   onSuccessNavigate,
 }) => {
-  const { currentSenior, createBooking, showToast } = useApp();
+  const { currentSenior, createBooking, showToast, language } = useApp();
+  const isMr = language === 'mr';
+
+  const translateActivity = (act: string) => {
+    if (!isMr) return act;
+    switch (act) {
+      case 'Chess': return 'बुद्धिबळ';
+      case 'Conversation': return 'गप्पागोष्टी';
+      case 'Technology Help': return 'स्मार्टफोन / तंत्रज्ञान मदत';
+      case 'Walking': return 'संध्याकाळचा फेरफटका';
+      case 'Reading': return 'वर्तमानपत्र / पुस्तक वाचन';
+      case 'Music': return 'संगीत व भजन';
+      case 'Gardening': return 'बागकाम';
+      case 'Storytelling': return 'कथाकथन';
+      default: return act;
+    }
+  };
 
   // Booking form state
   const [step, setStep] = useState<'details' | 'payment' | 'confirmed'>('details');
@@ -145,10 +161,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             </div>
             <div>
               <h2 className="text-lg sm:text-xl font-bold text-stone-900 font-display">
-                {step === 'confirmed' ? 'Booking Confirmed! 🎉' : `Book a Session with ${student.name}`}
+                {step === 'confirmed'
+                  ? (isMr ? 'भेट यशस्वीरित्या नोंदवली गेली! 🎉' : 'Booking Confirmed! 🎉')
+                  : (isMr ? `${student.name} सोबत भेट बुक करा` : `Book a Session with ${student.name}`)}
               </h2>
               <p className="text-xs text-stone-500">
-                {student.college} • ₹{student.hourlyRate}/hour
+                {student.college} • ₹{student.hourlyRate}/{isMr ? 'तास' : 'hour'}
               </p>
             </div>
           </div>
@@ -166,14 +184,18 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           <div className="p-4 sm:p-6 space-y-6">
             {/* Step indicator */}
             <div className="flex items-center justify-between text-xs font-bold text-stone-400 border-b border-stone-100 pb-3">
-              <span className="text-saath-600">Step 1: Session Details</span>
-              <span>Step 2: Simulated Checkout</span>
+              <span className="text-saath-600">
+                {isMr ? 'पायरी १: भेटीचा तपशील' : 'Step 1: Session Details'}
+              </span>
+              <span>
+                {isMr ? 'पायरी २: पेमेंट' : 'Step 2: Simulated Checkout'}
+              </span>
             </div>
 
             {/* 1. Choose Activity */}
             <div className="space-y-2">
               <label className="text-sm font-bold text-stone-900 block">
-                1. What would you like to do together?
+                {isMr ? '१. तुम्हाला एकत्र काय करायला आवडेल?' : '1. What would you like to do together?'}
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {activitiesList.map(act => (
@@ -187,7 +209,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                         : 'bg-stone-50 border-stone-200 text-stone-700 hover:bg-stone-100'
                     }`}
                   >
-                    {act}
+                    {translateActivity(act)}
                   </button>
                 ))}
               </div>
@@ -196,7 +218,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             {/* 2. Choose Date */}
             <div className="space-y-2">
               <label className="text-sm font-bold text-stone-900 block">
-                2. Select Date
+                {isMr ? '२. तारीख निवडा' : '2. Select Date'}
               </label>
               <div className="flex flex-wrap gap-2">
                 {dateOptions.map(date => (
@@ -219,7 +241,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             {/* 3. Choose Time Slot */}
             <div className="space-y-2">
               <label className="text-sm font-bold text-stone-900 block">
-                3. Select Time Slot
+                {isMr ? '३. वेळ निवडा' : '3. Select Time Slot'}
               </label>
               <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                 {timeSlots.map(time => (
@@ -242,13 +264,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             {/* 4. Choose Duration */}
             <div className="space-y-2">
               <label className="text-sm font-bold text-stone-900 block">
-                4. Select Duration
+                {isMr ? '४. कालावधी निवडा' : '4. Select Duration'}
               </label>
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { label: '30 Minutes', mins: 30 },
-                  { label: '1 Hour (Standard)', mins: 60 },
-                  { label: '2 Hours (Extended)', mins: 120 },
+                  { label: isMr ? '३० मिनिटे' : '30 Minutes', mins: 30 },
+                  { label: isMr ? '१ तास (प्रमाणित)' : '1 Hour (Standard)', mins: 60 },
+                  { label: isMr ? '२ तास (विस्तारित)' : '2 Hours (Extended)', mins: 120 },
                 ].map(d => (
                   <button
                     key={d.mins}
@@ -269,45 +291,49 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             {/* 5. Meeting Mode */}
             <div className="space-y-2">
               <label className="text-sm font-bold text-stone-900 block">
-                5. Meeting Location Mode
+                {isMr ? '५. भेटण्याचे ठिकाण' : '5. Meeting Location Mode'}
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 {[
-                  'In-Person at Senior Home',
-                  'Nearby Park / Community Center',
-                  'Video Call Check-in',
+                  { id: 'In-Person at Senior Home', label: isMr ? 'घरी प्रत्यक्ष भेट' : 'In-Person at Senior Home' },
+                  { id: 'Nearby Park / Community Center', label: isMr ? 'जवळचे उद्यान / सोसायटी कट्टा' : 'Nearby Park / Community Center' },
+                  { id: 'Video Call Check-in', label: isMr ? 'व्हिडिओ कॉल द्वारे भेट' : 'Video Call Check-in' },
                 ].map(mode => (
                   <button
-                    key={mode}
+                    key={mode.id}
                     type="button"
-                    onClick={() => setMeetingMode(mode as any)}
+                    onClick={() => setMeetingMode(mode.id as any)}
                     className={`p-2.5 rounded-xl text-xs font-bold text-left border transition-all ${
-                      meetingMode === mode
+                      meetingMode === mode.id
                         ? 'bg-emerald-50 border-emerald-500 text-emerald-900'
                         : 'bg-stone-50 border-stone-200 text-stone-700 hover:bg-stone-100'
                     }`}
                   >
-                    {mode}
+                    {mode.label}
                   </button>
                 ))}
               </div>
               <p className="text-[11px] text-stone-500 italic">
-                Address: {currentSenior.area}, {currentSenior.city}
+                {isMr ? 'पत्ता:' : 'Address:'} {currentSenior.area}, {currentSenior.city}
               </p>
             </div>
 
             {/* Live Price Summary Box */}
             <div className="p-4 bg-stone-50 rounded-2xl border border-stone-200 space-y-2 text-sm">
               <div className="flex justify-between text-stone-600">
-                <span>Session Fee (₹{student.hourlyRate} × {durationMinutes / 60} hr):</span>
+                <span>
+                  {isMr
+                    ? `सत्र मानधन (₹${student.hourlyRate} × ${durationMinutes / 60} तास):`
+                    : `Session Fee (₹${student.hourlyRate} × ${durationMinutes / 60} hr):`}
+                </span>
                 <span className="font-semibold text-stone-900">₹{companionFee}</span>
               </div>
               <div className="flex justify-between text-stone-600">
-                <span>Saath Trust & Safety Fee:</span>
+                <span>{isMr ? 'साथी सुरक्षा व सेवा शुल्क:' : 'Saath Trust & Safety Fee:'}</span>
                 <span className="font-semibold text-stone-900">₹{serviceFee}</span>
               </div>
               <div className="pt-2 border-t border-stone-200 flex justify-between text-base font-bold text-stone-900">
-                <span>Total Amount:</span>
+                <span>{isMr ? 'एकूण रक्कम:' : 'Total Amount:'}</span>
                 <span className="text-saath-700 text-lg">₹{totalAmount}</span>
               </div>
             </div>
@@ -317,7 +343,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               onClick={handleProceedToPayment}
               className="w-full bg-saath-600 hover:bg-saath-700 text-white font-bold py-4 rounded-2xl shadow-elevated transition-all flex items-center justify-center gap-2 text-base"
             >
-              <span>Continue to Payment (₹{totalAmount})</span>
+              <span>{isMr ? `पेमेंटसाठी पुढे जा (₹${totalAmount})` : `Continue to Payment (₹${totalAmount})`}</span>
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
@@ -332,27 +358,31 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 className="text-stone-500 hover:text-stone-900 flex items-center gap-1 font-bold"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Back to Details</span>
+                <span>{isMr ? 'मागे जा' : 'Back to Details'}</span>
               </button>
-              <span className="text-saath-600">Step 2 of 2: Simulated Checkout</span>
+              <span className="text-saath-600">
+                {isMr ? 'पायरी २: पेमेंट प्रक्रिया' : 'Step 2 of 2: Simulated Checkout'}
+              </span>
             </div>
 
             {/* Session Summary Card */}
             <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200 space-y-2 text-xs">
-              <h4 className="font-bold text-stone-900 text-sm">Session Summary</h4>
+              <h4 className="font-bold text-stone-900 text-sm">
+                {isMr ? 'भेटीचा संक्षिप्त तपशील' : 'Session Summary'}
+              </h4>
               <div className="grid grid-cols-2 gap-2 text-stone-600">
-                <p><strong>Companion:</strong> {student.name}</p>
-                <p><strong>Activity:</strong> {selectedActivity}</p>
-                <p><strong>Date & Time:</strong> {selectedDate}, {selectedTime}</p>
-                <p><strong>Duration:</strong> {durationMinutes} minutes</p>
-                <p className="col-span-2"><strong>Location:</strong> {meetingMode}</p>
+                <p><strong>{isMr ? 'सोबती:' : 'Companion:'}</strong> {student.name}</p>
+                <p><strong>{isMr ? 'उपक्रम:' : 'Activity:'}</strong> {translateActivity(selectedActivity)}</p>
+                <p><strong>{isMr ? 'तारीख व वेळ:' : 'Date & Time:'}</strong> {selectedDate}, {selectedTime}</p>
+                <p><strong>{isMr ? 'कालावधी:' : 'Duration:'}</strong> {durationMinutes} {isMr ? 'मिनिटे' : 'minutes'}</p>
+                <p className="col-span-2"><strong>{isMr ? 'ठिकाण:' : 'Location:'}</strong> {meetingMode}</p>
               </div>
             </div>
 
             {/* Simulated Payment Method Selection */}
             <div className="space-y-3">
               <label className="text-sm font-bold text-stone-900 block">
-                Select Simulated Payment Option:
+                {isMr ? 'पेमेंट पर्याय निवडा:' : 'Select Simulated Payment Option:'}
               </label>
 
               <div className="grid grid-cols-3 gap-3">
@@ -394,7 +424,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   }`}
                 >
                   <Wallet className="w-6 h-6 mx-auto text-saath-600 mb-1" />
-                  <span className="text-xs font-bold block text-stone-900">Saath Wallet</span>
+                  <span className="text-xs font-bold block text-stone-900">{isMr ? 'साथी पाकीट' : 'Saath Wallet'}</span>
                   <span className="text-[10px] text-emerald-600 font-bold">Bal: ₹2,400</span>
                 </button>
               </div>
@@ -402,14 +432,18 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               {/* UPI ID input mock */}
               {paymentMethod === 'UPI' && (
                 <div className="space-y-1 pt-2">
-                  <label className="text-xs font-bold text-stone-600">Simulated UPI ID / VPA</label>
+                  <label className="text-xs font-bold text-stone-600">
+                    {isMr ? 'UPI आयडी' : 'Simulated UPI ID / VPA'}
+                  </label>
                   <input
                     type="text"
                     value={upiId}
                     onChange={e => setUpiId(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl border border-stone-300 text-base font-medium focus:ring-2 focus:ring-saath-500 focus:outline-none"
                   />
-                  <p className="text-[11px] text-stone-400">Prototype demo mode: No real money is deducted.</p>
+                  <p className="text-[11px] text-stone-400">
+                    {isMr ? 'डेमो मोड: कोणतेही खरे पैसे कापले जाणार नाहीत.' : 'Prototype demo mode: No real money is deducted.'}
+                  </p>
                 </div>
               )}
             </div>
@@ -423,10 +457,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               {isProcessingPayment ? (
                 <div className="flex items-center gap-2">
                   <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                  <span>Authorizing Simulated Payment...</span>
+                  <span>{isMr ? 'पेमेंट प्रक्रिया सुरू आहे...' : 'Authorizing Simulated Payment...'}</span>
                 </div>
               ) : (
-                <span>Pay ₹{totalAmount} & Confirm Session</span>
+                <span>{isMr ? `₹${totalAmount} भरा व भेट निश्चित करा` : `Pay ₹${totalAmount} & Confirm Session`}</span>
               )}
             </button>
           </div>
@@ -441,41 +475,49 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
             <div className="space-y-2">
               <span className="bg-emerald-100 text-emerald-800 text-xs font-black px-3 py-1 rounded-full uppercase">
-                Payment Successful • ₹{confirmedBooking.totalAmount}
+                {isMr ? `पेमेंट यशस्वी झाले • ₹${confirmedBooking.totalAmount}` : `Payment Successful • ₹${confirmedBooking.totalAmount}`}
               </span>
               <h3 className="text-3xl font-black text-stone-900 font-display">
-                Booking Confirmed! 🎉
+                {isMr ? 'भेट निश्चित झाली! 🎉' : 'Booking Confirmed! 🎉'}
               </h3>
               <p className="text-stone-600 text-base max-w-md mx-auto">
-                You've booked a companionship session with <strong className="text-stone-900">{confirmedBooking.companionName}</strong>.
+                {isMr ? (
+                  <>
+                    तुम्ही <strong className="text-stone-900">{confirmedBooking.companionName}</strong> यांच्यासोबत भेट निश्चित केली आहे.
+                  </>
+                ) : (
+                  <>
+                    You've booked a companionship session with <strong className="text-stone-900">{confirmedBooking.companionName}</strong>.
+                  </>
+                )}
               </p>
             </div>
 
             {/* Booking Receipt Card */}
             <div className="bg-stone-50 p-5 rounded-2xl border border-stone-200 text-left max-w-md mx-auto space-y-2.5 text-xs text-stone-700">
               <div className="flex justify-between pb-2 border-b border-stone-200">
-                <span className="text-stone-500">Booking Reference:</span>
+                <span className="text-stone-500">{isMr ? 'भेट संदर्भ:' : 'Booking Reference:'}</span>
                 <span className="font-mono font-bold text-stone-900">#SAATH-{confirmedBooking.id.toUpperCase()}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-stone-500">Activity:</span>
-                <span className="font-bold text-stone-900">{confirmedBooking.activity}</span>
+                <span className="text-stone-500">{isMr ? 'उपक्रम:' : 'Activity:'}</span>
+                <span className="font-bold text-stone-900">{translateActivity(confirmedBooking.activity)}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-stone-500">Date & Time:</span>
+                <span className="text-stone-500">{isMr ? 'तारीख व वेळ:' : 'Date & Time:'}</span>
                 <span className="font-bold text-stone-900">{confirmedBooking.date} • {confirmedBooking.timeSlot}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-stone-500">Duration:</span>
-                <span className="font-bold text-stone-900">{confirmedBooking.durationMinutes} Minutes</span>
+                <span className="text-stone-500">{isMr ? 'कालावधी:' : 'Duration:'}</span>
+                <span className="font-bold text-stone-900">{confirmedBooking.durationMinutes} {isMr ? 'मिनिटे' : 'Minutes'}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-stone-500">Meeting Mode:</span>
+                <span className="text-stone-500">{isMr ? 'भेटण्याचे ठिकाण:' : 'Meeting Mode:'}</span>
                 <span className="font-bold text-stone-900">{confirmedBooking.meetingMode}</span>
               </div>
               <div className="pt-2 border-t border-stone-200 flex justify-between font-bold text-stone-900">
-                <span>Amount Paid:</span>
-                <span className="text-emerald-700 font-black text-sm">₹{confirmedBooking.totalAmount} (via {confirmedBooking.paymentMethod})</span>
+                <span>{isMr ? 'भरलेली रक्कम:' : 'Amount Paid:'}</span>
+                <span className="text-emerald-700 font-black text-sm">₹{confirmedBooking.totalAmount} ({confirmedBooking.paymentMethod})</span>
               </div>
             </div>
 
@@ -483,10 +525,12 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 max-w-md mx-auto">
               <p className="font-bold flex items-center justify-center gap-1">
                 <span>💡</span>
-                <span>Next Step in Presentation Flow:</span>
+                <span>{isMr ? 'पुढील पायरी:' : 'Next Step in Presentation Flow:'}</span>
               </p>
               <p className="mt-0.5">
-                Switch to <strong>Student (Aditya)</strong> in the top black demo bar to accept this booking request!
+                {isMr
+                  ? <>वरच्या काळ्या पट्टीमध्ये <strong>विद्यार्थी (आदित्य)</strong> निवडून ही भेट विनंती स्वीकारा!</>
+                  : <>Switch to <strong>Student (Aditya)</strong> in the top black demo bar to accept this booking request!</>}
               </p>
             </div>
 
@@ -499,7 +543,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 }}
                 className="w-full sm:w-auto bg-saath-600 hover:bg-saath-700 text-white font-bold px-6 py-3 rounded-xl transition-colors shadow-md text-sm"
               >
-                View in My Bookings
+                {isMr ? 'माझ्या भेटींच्या यादीत पहा' : 'View in My Bookings'}
               </button>
 
               <button
@@ -507,7 +551,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 className="w-full sm:w-auto bg-stone-100 hover:bg-stone-200 text-stone-800 font-bold px-5 py-3 rounded-xl transition-colors text-sm flex items-center justify-center gap-1.5"
               >
                 <CalendarCheck className="w-4 h-4 text-stone-600" />
-                <span>Add to Calendar</span>
+                <span>{isMr ? 'कॅलेंडरमध्ये नोंदवा' : 'Add to Calendar'}</span>
               </button>
             </div>
           </div>

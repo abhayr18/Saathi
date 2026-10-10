@@ -11,13 +11,16 @@ interface ObservationModalProps {
 }
 
 export const ObservationModal: React.FC<ObservationModalProps> = ({ booking, onClose }) => {
-  const { currentStudent, submitVisitObservation } = useApp();
+  const { currentStudent, submitVisitObservation, language } = useApp();
+  const isMr = language === 'mr';
 
   const [mood, setMood] = useState<'Cheerful' | 'Content / Calm' | 'Quiet' | 'Low Energy'>('Cheerful');
   const [engagement, setEngagement] = useState<'Highly Active' | 'Normal' | 'Reserved'>('Highly Active');
   const [mobility, setMobility] = useState<'Walked Comfortably' | 'Light Veranda Stroll' | 'Seated Activity'>('Walked Comfortably');
   const [notes, setNotes] = useState<string>(
-    'Rajendra-kaka was in very good spirits today. We completed 2 games of chess and walked 40 minutes around the colony park. Appetite and conversation normal.'
+    isMr
+      ? 'राजेंद्र काका आज खूप छान आणि उत्साही मूडमध्ये होते. आम्ही बुद्धिबळाचे २ डाव खेळलो आणि बागेत फेरफटका मारला. गप्पागोष्टी आणि खाणेपिणे नेहमीप्रमाणे उत्तम होते.'
+      : 'Rajendra-kaka was in very good spirits today. We completed 2 games of chess and walked 40 minutes around the colony park. Appetite and conversation normal.'
   );
 
   if (!booking) return null;
@@ -42,6 +45,25 @@ export const ObservationModal: React.FC<ObservationModalProps> = ({ booking, onC
     onClose();
   };
 
+  const moodOptions = [
+    { id: 'Cheerful', label: isMr ? 'आनंदी व उत्साही' : 'Cheerful' },
+    { id: 'Content / Calm', label: isMr ? 'शांत व समाधानी' : 'Content / Calm' },
+    { id: 'Quiet', label: isMr ? 'मितभाषी' : 'Quiet' },
+    { id: 'Low Energy', label: isMr ? 'कमी ऊर्जा / थकवा' : 'Low Energy' },
+  ];
+
+  const engagementOptions = [
+    { id: 'Highly Active', label: isMr ? 'अतिशय सक्रिय' : 'Highly Active' },
+    { id: 'Normal', label: isMr ? 'सामान्य' : 'Normal' },
+    { id: 'Reserved', label: isMr ? 'संकोची' : 'Reserved' },
+  ];
+
+  const mobilityOptions = [
+    { id: 'Walked Comfortably', label: isMr ? 'सहजतेने चालले' : 'Walked Comfortably' },
+    { id: 'Light Veranda Stroll', label: isMr ? 'व्हरांड्यात फेरफटका' : 'Light Veranda Stroll' },
+    { id: 'Seated Activity', label: isMr ? 'बसून केलेले उपक्रम' : 'Seated Activity' },
+  ];
+
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-stone-900/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 md:p-6 animate-in fade-in duration-200">
       <div
@@ -55,10 +77,10 @@ export const ObservationModal: React.FC<ObservationModalProps> = ({ booking, onC
             </div>
             <div>
               <h3 className="text-xl font-black text-stone-900 font-display">
-                Log Visit Observation
+                {isMr ? 'भेटीचे निरीक्षण नोंदवा' : 'Log Visit Observation'}
               </h3>
               <p className="text-xs text-stone-500">
-                For {booking.seniorName} • {booking.activity} session
+                {isMr ? `${booking.seniorName} यांच्यासाठी • ${booking.activity} सत्र` : `For ${booking.seniorName} • ${booking.activity} session`}
               </p>
             </div>
           </div>
@@ -75,21 +97,21 @@ export const ObservationModal: React.FC<ObservationModalProps> = ({ booking, onC
           {/* Mood */}
           <div>
             <label className="text-xs font-bold text-stone-700 block mb-1">
-              Senior's Mood Observed
+              {isMr ? 'ज्येष्ठांची मनस्थिती (मूड)' : 'Senior\'s Mood Observed'}
             </label>
             <div className="grid grid-cols-2 gap-2">
-              {['Cheerful', 'Content / Calm', 'Quiet', 'Low Energy'].map(m => (
+              {moodOptions.map(m => (
                 <button
-                  key={m}
+                  key={m.id}
                   type="button"
-                  onClick={() => setMood(m as any)}
+                  onClick={() => setMood(m.id as any)}
                   className={`p-2.5 rounded-xl text-xs font-bold border transition-all text-center ${
-                    mood === m
+                    mood === m.id
                       ? 'bg-emerald-50 border-emerald-500 text-emerald-900 ring-1 ring-emerald-400'
                       : 'bg-stone-50 border-stone-200 text-stone-700'
                   }`}
                 >
-                  {m}
+                  {m.label}
                 </button>
               ))}
             </div>
@@ -98,21 +120,21 @@ export const ObservationModal: React.FC<ObservationModalProps> = ({ booking, onC
           {/* Engagement */}
           <div>
             <label className="text-xs font-bold text-stone-700 block mb-1">
-              Engagement & Responsiveness
+              {isMr ? 'सहभाग आणि प्रतिसाद' : 'Engagement & Responsiveness'}
             </label>
             <div className="grid grid-cols-3 gap-2">
-              {['Highly Active', 'Normal', 'Reserved'].map(eng => (
+              {engagementOptions.map(eng => (
                 <button
-                  key={eng}
+                  key={eng.id}
                   type="button"
-                  onClick={() => setEngagement(eng as any)}
+                  onClick={() => setEngagement(eng.id as any)}
                   className={`p-2.5 rounded-xl text-xs font-bold border transition-all text-center ${
-                    engagement === eng
+                    engagement === eng.id
                       ? 'bg-saath-50 border-saath-500 text-saath-900 ring-1 ring-saath-400'
                       : 'bg-stone-50 border-stone-200 text-stone-700'
                   }`}
                 >
-                  {eng}
+                  {eng.label}
                 </button>
               ))}
             </div>
@@ -121,21 +143,21 @@ export const ObservationModal: React.FC<ObservationModalProps> = ({ booking, onC
           {/* Mobility */}
           <div>
             <label className="text-xs font-bold text-stone-700 block mb-1">
-              Mobility / Physical Movement
+              {isMr ? 'शारीरिक हालचाल / चालणे' : 'Mobility / Physical Movement'}
             </label>
             <div className="grid grid-cols-3 gap-2">
-              {['Walked Comfortably', 'Light Veranda Stroll', 'Seated Activity'].map(mob => (
+              {mobilityOptions.map(mob => (
                 <button
-                  key={mob}
+                  key={mob.id}
                   type="button"
-                  onClick={() => setMobility(mob as any)}
+                  onClick={() => setMobility(mob.id as any)}
                   className={`p-2 rounded-xl text-[11px] font-bold border transition-all text-center ${
-                    mobility === mob
+                    mobility === mob.id
                       ? 'bg-blue-50 border-blue-500 text-blue-900 ring-1 ring-blue-400'
                       : 'bg-stone-50 border-stone-200 text-stone-700'
                   }`}
                 >
-                  {mob}
+                  {mob.label}
                 </button>
               ))}
             </div>
@@ -144,7 +166,7 @@ export const ObservationModal: React.FC<ObservationModalProps> = ({ booking, onC
           {/* Notes */}
           <div>
             <label className="text-xs font-bold text-stone-700 block mb-1">
-              Observation Notes for Family Circle
+              {isMr ? 'कुटुंबासाठी सविस्तर नोंदी' : 'Observation Notes for Family Circle'}
             </label>
             <textarea
               rows={3}
@@ -158,14 +180,18 @@ export const ObservationModal: React.FC<ObservationModalProps> = ({ booking, onC
           {/* Notice */}
           <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-[11px] text-emerald-900 flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span>This log transmits to son Amit in Bangalore and updates the family's "Know My Normal" wellness tracker.</span>
+            <span>
+              {isMr
+                ? 'ही नोंद बंगळुरूमध्ये असणारे सुपुत्र अमित यांच्याकडे जाईल आणि \"नो माय नॉर्मल\" ट्रॅकर अपडेट करेल.'
+                : 'This log transmits to son Amit in Bangalore and updates the family\'s "Know My Normal" wellness tracker.'}
+            </span>
           </div>
 
           <button
             type="submit"
             className="w-full bg-saath-600 hover:bg-saath-700 text-white font-bold py-3.5 rounded-2xl shadow-elevated transition-colors text-sm"
           >
-            Submit Observation to Family
+            {isMr ? 'कुटुंबाला निरीक्षण पाठवा' : 'Submit Observation to Family'}
           </button>
         </form>
       </div>

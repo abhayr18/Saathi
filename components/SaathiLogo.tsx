@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useApp } from '@/context/AppContext';
 
 interface SaathiLogoProps {
   className?: string;
@@ -15,6 +16,9 @@ export const SaathiLogo: React.FC<SaathiLogoProps> = ({
   showSubtitle = true,
   variant = 'auto',
 }) => {
+  const { language } = useApp();
+  const isMr = language === 'mr';
+
   const iconSizes = {
     sm: 'w-8 h-8 rounded-xl',
     md: 'w-11 h-11 rounded-2xl',
@@ -106,7 +110,7 @@ export const SaathiLogo: React.FC<SaathiLogoProps> = ({
           </span>
           {size !== 'sm' && (
             <span className="hidden sm:inline-block bg-teal-50 text-saath-800 text-[10px] font-black uppercase px-2 py-0.5 rounded-full border border-teal-200 ml-1">
-              Ecosystem
+              {isMr ? 'इकोसिस्टम' : 'Ecosystem'}
             </span>
           )}
         </div>
@@ -117,7 +121,7 @@ export const SaathiLogo: React.FC<SaathiLogoProps> = ({
               variant === 'light' ? 'text-teal-100/90' : 'text-slate-500'
             } tracking-tight leading-tight mt-0.5`}
           >
-            Connected Senior Care
+            {isMr ? 'आपुलकीची ज्येष्ठ नागरिक सेवा' : 'Connected Senior Care'}
           </p>
         )}
       </div>

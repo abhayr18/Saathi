@@ -32,7 +32,9 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
     updateBookingStatus,
     submitStudentVerification,
     showToast,
+    language,
   } = useApp();
+  const isMr = language === 'mr';
 
   // Filter bookings for this student companion
   const studentBookings = bookings.filter(b => b.companionId === currentStudent.id);
@@ -57,16 +59,18 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
           <div className="space-y-1">
             <div className="flex items-center gap-2 flex-wrap">
               <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-white">
-                Good evening, {currentStudent.name.split(' ')[0]} 👋
+                {isMr
+                  ? `शुभ संध्याकाळ, ${currentStudent.name.split(' ')[0]} 👋`
+                  : `Good evening, ${currentStudent.name.split(' ')[0]} 👋`}
               </h1>
               {currentStudent.isVerified ? (
                 <span className="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2.5 py-0.5 rounded-full border border-emerald-500/30 flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>College Verified</span>
+                  <span>{isMr ? 'कॉलेज पडताळणी झाली' : 'College Verified'}</span>
                 </span>
               ) : (
                 <span className="bg-amber-500/20 text-amber-300 text-xs font-bold px-2.5 py-0.5 rounded-full border border-amber-500/30">
-                  Verification Pending
+                  {isMr ? 'पडताळणी प्रलंबित' : 'Verification Pending'}
                 </span>
               )}
             </div>
@@ -79,7 +83,9 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
             </p>
 
             <p className="text-xs text-stone-400 font-medium">
-              Rate: ₹{currentStudent.hourlyRate}/hour • Base Location: {currentStudent.area}, {currentStudent.city}
+              {isMr
+                ? `मानधन: ₹${currentStudent.hourlyRate}/तास • परिसर: ${currentStudent.area}, ${currentStudent.city}`
+                : `Rate: ₹${currentStudent.hourlyRate}/hour • Base Location: ${currentStudent.area}, ${currentStudent.city}`}
             </p>
           </div>
         </div>
@@ -90,14 +96,14 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
             className="bg-saath-600 hover:bg-saath-700 text-white font-bold text-sm px-5 py-3 rounded-2xl transition-all shadow-md flex items-center justify-center gap-2"
           >
             <Clock className="w-4 h-4" />
-            <span>Manage Availability</span>
+            <span>{isMr ? 'उपलब्धता व्यवस्थापित करा' : 'Manage Availability'}</span>
           </button>
           <button
             onClick={() => onNavigate('earnings')}
             className="bg-stone-800 hover:bg-stone-700 text-stone-200 font-bold text-sm px-5 py-3 rounded-2xl transition-all border border-stone-700 flex items-center justify-center gap-2"
           >
             <DollarSign className="w-4 h-4 text-saath-400" />
-            <span>View Earnings</span>
+            <span>{isMr ? 'मानधन पहा' : 'View Earnings'}</span>
           </button>
         </div>
       </div>
@@ -106,68 +112,92 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-5 rounded-3xl shadow-soft border border-stone-200">
           <div className="flex items-center justify-between text-stone-400 mb-2">
-            <span className="text-xs font-bold uppercase tracking-wider">Upcoming</span>
+            <span className="text-xs font-bold uppercase tracking-wider">
+              {isMr ? 'आगामी' : 'Upcoming'}
+            </span>
             <Calendar className="w-5 h-5 text-saath-600" />
           </div>
           <div className="text-3xl font-black text-stone-900 font-display">
             {upcomingSessions.length}
           </div>
-          <p className="text-xs text-stone-500 mt-1">Confirmed appointments</p>
+          <p className="text-xs text-stone-500 mt-1">
+            {isMr ? 'निश्चित केलेल्या भेटी' : 'Confirmed appointments'}
+          </p>
         </div>
 
         <div className="bg-white p-5 rounded-3xl shadow-soft border border-stone-200">
           <div className="flex items-center justify-between text-stone-400 mb-2">
-            <span className="text-xs font-bold uppercase tracking-wider">Completed</span>
+            <span className="text-xs font-bold uppercase tracking-wider">
+              {isMr ? 'पूर्ण सत्रे' : 'Completed'}
+            </span>
             <CheckCircle className="w-5 h-5 text-emerald-600" />
           </div>
           <div className="text-3xl font-black text-stone-900 font-display">
             {currentStudent.completedSessionsCount}
           </div>
-          <p className="text-xs text-stone-500 mt-1">Total visits conducted</p>
+          <p className="text-xs text-stone-500 mt-1">
+            {isMr ? 'यशस्वीरित्या पूर्ण भेटी' : 'Total visits conducted'}
+          </p>
         </div>
 
         <div className="bg-white p-5 rounded-3xl shadow-soft border border-stone-200">
           <div className="flex items-center justify-between text-stone-400 mb-2">
-            <span className="text-xs font-bold uppercase tracking-wider">Total Earnings</span>
+            <span className="text-xs font-bold uppercase tracking-wider">
+              {isMr ? 'एकूण मानधन' : 'Total Earnings'}
+            </span>
             <DollarSign className="w-5 h-5 text-saath-600" />
           </div>
           <div className="text-3xl font-black text-emerald-700 font-display">
             ₹{currentStudent.totalEarnings.toLocaleString('en-IN')}
           </div>
-          <p className="text-xs text-emerald-600 font-medium mt-1">Available for payout</p>
+          <p className="text-xs text-emerald-600 font-medium mt-1">
+            {isMr ? 'जमा झालेले मानधन' : 'Available for payout'}
+          </p>
         </div>
 
         <div className="bg-white p-5 rounded-3xl shadow-soft border border-stone-200">
           <div className="flex items-center justify-between text-stone-400 mb-2">
-            <span className="text-xs font-bold uppercase tracking-wider">Reputation</span>
+            <span className="text-xs font-bold uppercase tracking-wider">
+              {isMr ? 'प्रतिष्ठा' : 'Reputation'}
+            </span>
             <Star className="w-5 h-5 text-amber-500 fill-amber-400" />
           </div>
           <div className="text-3xl font-black text-stone-900 font-display flex items-baseline gap-1">
             <span>{currentStudent.rating}</span>
             <span className="text-xs text-stone-400 font-normal">/ 5.0</span>
           </div>
-          <p className="text-xs text-stone-500 mt-1">From {currentStudent.reviewCount} elder reviews</p>
+          <p className="text-xs text-stone-500 mt-1">
+            {isMr
+              ? `${currentStudent.reviewCount} आजी-आजोबांच्या अभिप्रायांवरून`
+              : `From ${currentStudent.reviewCount} elder reviews`}
+          </p>
         </div>
       </div>
 
-      {/* Booking Requests Section (CRITICAL PRESENTATION FLOW ANCHOR) */}
+      {/* Booking Requests Section */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="w-3 h-3 rounded-full bg-saath-500 animate-ping"></span>
             <h2 className="text-2xl font-black text-stone-900 font-display">
-              New Booking Requests ({pendingRequests.length})
+              {isMr ? `नवीन भेट विनंत्या (${pendingRequests.length})` : `New Booking Requests (${pendingRequests.length})`}
             </h2>
           </div>
-          <span className="text-xs text-stone-500">Respond within 24 hours</span>
+          <span className="text-xs text-stone-500">
+            {isMr ? '२४ तासांत प्रतिसाद द्या' : 'Respond within 24 hours'}
+          </span>
         </div>
 
         {pendingRequests.length === 0 ? (
           <div className="bg-white rounded-3xl p-8 text-center border border-stone-200 text-stone-500 space-y-2">
             <p className="text-3xl">☕</p>
-            <p className="text-sm font-semibold">No pending requests at this moment</p>
+            <p className="text-sm font-semibold">
+              {isMr ? 'या क्षणी कोणतीही नवीन विनंती प्रलंबित नाही' : 'No pending requests at this moment'}
+            </p>
             <p className="text-xs text-stone-400">
-              When a senior requests a session, their details and requested activity will appear here.
+              {isMr
+                ? 'जेव्हा ज्येष्ठ नागरिक सत्राची विनंती करतील, तेव्हा त्यांचे तपशील येथे दिसतील.'
+                : 'When a senior requests a session, their details and requested activity will appear here.'}
             </p>
           </div>
         ) : (
@@ -187,12 +217,14 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
                         {req.seniorName}
                       </h3>
                       <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
-                        Pending Your Approval
+                        {isMr ? 'मंजुरी प्रलंबित' : 'Pending Your Approval'}
                       </span>
                     </div>
 
                     <p className="text-sm font-bold text-saath-700 mt-0.5">
-                      Requested: {req.activity} Session ({req.durationMinutes} mins)
+                      {isMr
+                        ? `विनंती: ${req.activity} सत्र (${req.durationMinutes} मिनिटे)`
+                        : `Requested: ${req.activity} Session (${req.durationMinutes} mins)`}
                     </p>
 
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-stone-600 mt-1 font-medium">
@@ -215,7 +247,9 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
                 {/* Earnings & Accept / Decline Buttons */}
                 <div className="w-full md:w-auto flex flex-col sm:flex-row md:flex-col items-end gap-3 pt-3 md:pt-0 border-t md:border-t-0 border-stone-100">
                   <div className="text-right w-full sm:w-auto">
-                    <span className="text-[11px] text-stone-400 font-medium block">You Will Earn</span>
+                    <span className="text-[11px] text-stone-400 font-medium block">
+                      {isMr ? 'तुम्हाला मिळणारे मानधन' : 'You Will Earn'}
+                    </span>
                     <span className="text-2xl font-black text-emerald-700">
                       ₹{req.totalAmount - req.serviceFee}
                     </span>
@@ -227,7 +261,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
                       className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl border border-stone-300 font-bold text-stone-600 hover:bg-stone-50 text-xs transition-colors flex items-center justify-center gap-1"
                     >
                       <X className="w-4 h-4" />
-                      <span>Decline</span>
+                      <span>{isMr ? 'नाकारा' : 'Decline'}</span>
                     </button>
 
                     <button
@@ -235,7 +269,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
                       className="flex-1 sm:flex-none bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs shadow-md transition-all flex items-center justify-center gap-1.5"
                     >
                       <Check className="w-4 h-4" />
-                      <span>Accept Request</span>
+                      <span>{isMr ? 'स्वीकारा' : 'Accept Request'}</span>
                     </button>
                   </div>
                 </div>
@@ -250,19 +284,19 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
         <div className="lg:col-span-8 space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-xl font-bold text-stone-900 font-display">
-              Upcoming Confirmed Sessions ({upcomingSessions.length})
+              {isMr ? `निश्चित झालेली आगामी सत्रे (${upcomingSessions.length})` : `Upcoming Confirmed Sessions (${upcomingSessions.length})`}
             </h3>
             <button
               onClick={() => onNavigate('availability')}
               className="text-xs font-bold text-saath-700 hover:underline"
             >
-              Update Availability Slots →
+              {isMr ? 'उपलब्ध वेळेचे स्लॉट्स बदला →' : 'Update Availability Slots →'}
             </button>
           </div>
 
           {upcomingSessions.length === 0 ? (
             <div className="bg-white rounded-3xl p-6 text-center border border-stone-200 text-stone-500 text-sm">
-              No confirmed appointments upcoming right now.
+              {isMr ? 'सध्या कोणतीही निश्चित आगामी सत्रे नाहीत.' : 'No confirmed appointments upcoming right now.'}
             </div>
           ) : (
             <div className="space-y-3">
@@ -276,8 +310,12 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
                       ✓
                     </div>
                     <div>
-                      <h4 className="font-bold text-stone-900 text-sm">{sess.activity} with {sess.seniorName}</h4>
-                      <p className="text-xs text-stone-500">{sess.date} at {sess.timeSlot} • {sess.meetingMode}</p>
+                      <h4 className="font-bold text-stone-900 text-sm">
+                        {sess.activity} {isMr ? 'सह' : 'with'} {sess.seniorName}
+                      </h4>
+                      <p className="text-xs text-stone-500">
+                        {sess.date} {isMr ? 'वेळ' : 'at'} {sess.timeSlot} • {sess.meetingMode}
+                      </p>
                     </div>
                   </div>
 
@@ -286,16 +324,20 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
                       <button
                         onClick={() => onOpenObservation(sess)}
                         className="bg-amber-100 hover:bg-amber-200 text-amber-900 font-bold px-3 py-1.5 rounded-lg text-xs transition-colors flex items-center gap-1 border border-amber-300"
-                        title="Log notes for family in Bangalore"
+                        title={isMr ? 'कुटुंबासाठी नोंदी ठेवा' : 'Log notes for family in Bangalore'}
                       >
-                        <span>✍️ Log Observation</span>
+                        <span>{isMr ? '✍️ निरीक्षण नोंदवा' : '✍️ Log Observation'}</span>
                       </button>
                     )}
                     <button
                       onClick={() => updateBookingStatus(sess.id, 'completed')}
                       className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs transition-colors flex items-center gap-1"
                     >
-                      <span>Complete & Claim ₹{sess.totalAmount - sess.serviceFee}</span>
+                      <span>
+                        {isMr
+                          ? `पूर्ण करा व ₹${sess.totalAmount - sess.serviceFee} मिळवा`
+                          : `Complete & Claim ₹${sess.totalAmount - sess.serviceFee}`}
+                      </span>
                     </button>
                   </div>
                 </div>
@@ -306,11 +348,13 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
 
         {/* Profile Completion & Verification Card */}
         <div className="lg:col-span-4 bg-white p-6 rounded-3xl shadow-soft border border-stone-200 space-y-4">
-          <h3 className="text-lg font-bold text-stone-900 font-display">Profile Status</h3>
+          <h3 className="text-lg font-bold text-stone-900 font-display">
+            {isMr ? 'प्रोफाईल स्थिती' : 'Profile Status'}
+          </h3>
 
           <div className="space-y-2">
             <div className="flex justify-between text-xs font-bold text-stone-600">
-              <span>Profile Completeness</span>
+              <span>{isMr ? 'प्रोफाईल पूर्तता' : 'Profile Completeness'}</span>
               <span className="text-saath-700">90%</span>
             </div>
             <div className="w-full bg-stone-100 rounded-full h-2.5 overflow-hidden">
@@ -321,15 +365,15 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
           <div className="pt-2 border-t border-stone-100 space-y-3 text-xs text-stone-600">
             <p className="flex items-center gap-2 text-emerald-700 font-semibold">
               <CheckCircle className="w-4 h-4" />
-              <span>Bio & Photo uploaded</span>
+              <span>{isMr ? 'बायो आणि फोटो अपलोड केले' : 'Bio & Photo uploaded'}</span>
             </p>
             <p className="flex items-center gap-2 text-emerald-700 font-semibold">
               <CheckCircle className="w-4 h-4" />
-              <span>5 weekly availability slots active</span>
+              <span>{isMr ? '५ साप्ताहिक स्लॉट्स सक्रिय' : '5 weekly availability slots active'}</span>
             </p>
             <p className="flex items-center gap-2 text-emerald-700 font-semibold">
               <CheckCircle className="w-4 h-4" />
-              <span>ADCET College ID Verified</span>
+              <span>{isMr ? 'कॉलेज ओळखपत्र पडताळणी पूर्ण' : 'ADCET College ID Verified'}</span>
             </p>
           </div>
 
@@ -337,7 +381,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
             onClick={() => submitStudentVerification(currentStudent.id)}
             className="w-full bg-stone-50 hover:bg-stone-100 text-stone-800 font-bold py-2.5 rounded-xl border border-stone-200 text-xs transition-colors"
           >
-            Re-submit Verification ID
+            {isMr ? 'ओळखपत्र पुन्हा सादर करा' : 'Re-submit Verification ID'}
           </button>
         </div>
       </div>
