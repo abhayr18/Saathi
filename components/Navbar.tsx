@@ -26,7 +26,6 @@ import {
   Sparkles,
   Layers
 } from 'lucide-react';
-import { RoleSelectorModal } from './RoleSelectorModal';
 import { SaathiLogo } from './SaathiLogo';
 
 interface NavbarProps {
@@ -51,15 +50,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
   const isMr = language === 'mr';
   const [showNotifs, setShowNotifs] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [internalRoleModalOpen, setInternalRoleModalOpen] = useState(false);
-
-  const openRoleModal = () => {
-    if (onOpenRoleModal) {
-      onOpenRoleModal();
-    } else {
-      setInternalRoleModalOpen(true);
-    }
-  };
+  const [showRoleDropdown, setShowRoleDropdown] = useState(false);
 
   // Filter notifications for active user
   const activeUserId =
@@ -264,24 +255,128 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                 {isMr ? 'प्लॅन्स पहा' : 'View Plans'}
               </button>
 
-              {/* THE REQUESTED ONE ROLE SWITCHER BUTTON */}
-              <button
-                onClick={openRoleModal}
-                className={`px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 sm:gap-2 border shadow-xs ${roleDisplayInfo.badgeColor} hover:brightness-95 hover:shadow-sm active:scale-95`}
-                title={isMr ? 'भूमिका बदलण्यासाठी येथे क्लिक करा' : 'Click to switch role perspective'}
-                aria-label="Switch Role Perspective"
-              >
-                <span className="flex items-center gap-1 sm:gap-1.5">
-                  <span className="text-sm sm:text-lg leading-none">{roleDisplayInfo.emoji}</span>
-                  <span className="hidden sm:inline font-semibold text-stone-600 text-[11px]">
-                    {isMr ? 'भूमिका:' : 'Role:'}
+              {/* STORY-STYLE ROLE SWITCHER BUTTON & INLINE DROPDOWN (NO POPUP MODAL) */}
+              <div className="relative">
+                <button
+                  onClick={() => setShowRoleDropdown(!showRoleDropdown)}
+                  className={`px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 sm:gap-2 border shadow-xs ${roleDisplayInfo.badgeColor} hover:brightness-95 hover:shadow-sm active:scale-95`}
+                  title={isMr ? 'भूमिका बदलण्यासाठी येथे क्लिक करा' : 'Click to switch role perspective'}
+                  aria-label="Switch Role Perspective"
+                >
+                  <span className="flex items-center gap-1 sm:gap-1.5">
+                    <span className="text-sm sm:text-lg leading-none">{roleDisplayInfo.emoji}</span>
+                    <span className="hidden sm:inline font-semibold text-stone-600 text-[11px]">
+                      {isMr ? 'भूमिका:' : 'Role:'}
+                    </span>
+                    <span className="font-black text-stone-900 text-xs">
+                      {isMr ? roleDisplayInfo.titleMr : roleDisplayInfo.titleEn}
+                    </span>
                   </span>
-                  <span className="font-black text-stone-900 text-xs">
-                    {isMr ? roleDisplayInfo.titleMr : roleDisplayInfo.titleEn}
-                  </span>
-                </span>
-                <ChevronDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-stone-500" />
-              </button>
+                  <ChevronDown className={`w-3 h-3 sm:w-3.5 sm:h-3.5 text-stone-500 transition-transform ${showRoleDropdown ? 'rotate-180' : ''}`} />
+                </button>
+
+                {/* Inline Story-Style Profile Dropdown */}
+                {showRoleDropdown && (
+                  <div className="absolute right-0 mt-2 w-72 sm:w-80 bg-white rounded-3xl shadow-elevated border border-stone-200 p-3 z-50 animate-in fade-in zoom-in-95">
+                    <div className="flex items-center justify-between pb-2 border-b border-stone-100 px-2">
+                      <span className="text-[11px] font-black uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-saath-600" />
+                        <span>{isMr ? 'भूमिका निवडा' : 'Select Perspective'}</span>
+                      </span>
+                      <span className="text-[10px] font-bold text-saath-700 bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200">
+                        {isMr ? 'थेट निवड' : 'Direct'}
+                      </span>
+                    </div>
+
+                    <div className="space-y-1.5 mt-2">
+                      {[
+                        {
+                          id: 'senior' as UserRole,
+                          defaultTab: 'dashboard',
+                          nameMr: 'राजेंद्र कुलकर्णी',
+                          nameEn: 'Rajendra Kulkarni',
+                          roleMr: 'ज्येष्ठ नागरिक',
+                          roleEn: 'Senior Citizen',
+                          photo: '/assets/senior_rajendra.jpg',
+                          icon: '👴',
+                        },
+                        {
+                          id: 'student' as UserRole,
+                          defaultTab: 'dashboard',
+                          nameMr: 'आदित्य पाटील',
+                          nameEn: 'Aditya Patil',
+                          roleMr: 'कॉलेज सोबती',
+                          roleEn: 'Care Mitra',
+                          photo: '/assets/student_aditya.jpg',
+                          icon: '🎓',
+                        },
+                        {
+                          id: 'family' as UserRole,
+                          defaultTab: 'familyHub',
+                          nameMr: 'अमित कुलकर्णी',
+                          nameEn: 'Amit Kulkarni',
+                          roleMr: 'कुटुंब (बेंगळुरू)',
+                          roleEn: 'Outstation Son',
+                          photo: '/assets/family_amit.jpg',
+                          icon: '👨‍👩‍👧',
+                        },
+                        {
+                          id: 'admin' as UserRole,
+                          defaultTab: 'dashboard',
+                          nameMr: 'साथी कंट्रोल रूम',
+                          nameEn: 'Saathi Operations',
+                          roleMr: 'कंट्रोल रूम ॲडमिन',
+                          roleEn: 'Safety Admin',
+                          photo: '/assets/admin_officer.jpg',
+                          icon: '🛡️',
+                        },
+                      ].map(r => {
+                        const isCurrent = role === r.id;
+
+                        return (
+                          <button
+                            key={r.id}
+                            onClick={() => {
+                              switchRole(r.id);
+                              onTabChange(r.defaultTab);
+                              setShowRoleDropdown(false);
+                            }}
+                            className={`w-full text-left p-2.5 rounded-2xl transition-all flex items-center justify-between gap-3 ${
+                              isCurrent
+                                ? 'bg-orange-50/80 border border-saath-300 ring-2 ring-saath-200'
+                                : 'hover:bg-stone-50 border border-transparent'
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <div className="relative w-10 h-10 rounded-full p-[2px] story-ring-gradient shrink-0">
+                                <img
+                                  src={r.photo}
+                                  alt={isMr ? r.nameMr : r.nameEn}
+                                  className="w-full h-full object-cover rounded-full bg-white"
+                                />
+                              </div>
+                              <div className="min-w-0">
+                                <p className="text-xs font-black text-stone-900 truncate">
+                                  {isMr ? r.nameMr : r.nameEn}
+                                </p>
+                                <p className="text-[10px] text-stone-500 font-bold truncate">
+                                  {r.icon} {isMr ? r.roleMr : r.roleEn}
+                                </p>
+                              </div>
+                            </div>
+
+                            {isCurrent && (
+                              <span className="text-[10px] font-black text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 shrink-0">
+                                ✓ {isMr ? 'सक्रिय' : 'Active'}
+                              </span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
 
               {/* Notification Alerts Bell */}
               <div className="relative">
@@ -505,13 +600,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
           </div>
         )}
       </header>
-
-      {/* Internal Role Selector Modal fallback */}
-      <RoleSelectorModal
-        isOpen={internalRoleModalOpen}
-        onClose={() => setInternalRoleModalOpen(false)}
-        onNavigateTab={onTabChange}
-      />
     </>
   );
 };

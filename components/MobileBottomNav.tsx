@@ -203,8 +203,10 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           const isActive = currentTab === item.id;
 
           const handleClick = () => {
-            if ((item as any).isRoleModal && onOpenRoleModal) {
-              onOpenRoleModal();
+            if ((item as any).isRoleModal) {
+              const rolesList = ['senior', 'student', 'family', 'admin'] as const;
+              const nextIndex = (rolesList.indexOf(role) + 1) % rolesList.length;
+              switchRole(rolesList[nextIndex]);
             } else if ((item as any).isSos && onOpenSos) {
               onOpenSos();
             } else {

@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { useApp } from '@/context/AppContext';
-import { StudentProfile } from '@/types';
+import { UserRole, StudentProfile } from '@/types';
 import {
   HeartHandshake,
   Users,
@@ -49,13 +49,13 @@ import {
   Radio,
   CheckCircle2,
   ExternalLink,
+  User,
 } from 'lucide-react';
 import { SaathiLogo } from './SaathiLogo';
 
 interface LandingPageProps {
   onNavigate: (tab: string) => void;
   onOpenMatchmaker?: () => void;
-  onOpenRoleModal?: () => void;
   onSelectStudent?: (student: StudentProfile) => void;
   onBookStudent?: (student: StudentProfile) => void;
 }
@@ -63,7 +63,6 @@ interface LandingPageProps {
 export const LandingPage: React.FC<LandingPageProps> = ({
   onNavigate,
   onOpenMatchmaker,
-  onOpenRoleModal,
   onSelectStudent,
   onBookStudent,
 }) => {
@@ -71,81 +70,147 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   const isMr = language === 'mr';
 
   const [searchCity, setSearchCity] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [activeStoryStudent, setActiveStoryStudent] = useState<StudentProfile | null>(null);
+  const [selectedCompanionCategory, setSelectedCompanionCategory] = useState<string>('all');
 
   const handleCitySearch = (e: React.FormEvent) => {
     e.preventDefault();
     onNavigate('discovery');
   };
 
-  // Activity filter options for main page profile showcase
-  const categoryFilters = [
-    { id: 'all', labelMr: 'सर्व सोबती', labelEn: 'All Companions', icon: '🌟' },
-    { id: 'Chess', labelMr: 'बुद्धिबळ', labelEn: 'Chess', icon: '♟️' },
-    { id: 'Technology Help', labelMr: 'स्मार्टफोन मदत', labelEn: 'Tech Help', icon: '📱' },
-    { id: 'Walking', labelMr: 'प्रभातफेरी', labelEn: 'Walking', icon: '🚶' },
-    { id: 'Music', labelMr: 'संगीत व भजन', labelEn: 'Music', icon: '🎵' },
-    { id: 'Reading', labelMr: 'पुस्तक वाचन', labelEn: 'Reading', icon: '📖' },
-    { id: 'Conversation', labelMr: 'गप्पा व चहा', labelEn: 'Tea & Talk', icon: '☕' },
-    { id: 'Gardening', labelMr: 'बागकाम', labelEn: 'Gardening', icon: '🌿' },
-  ];
-
-  // Filtered companions directly on main page
-  const filteredProfiles = useMemo(() => {
-    if (selectedCategory === 'all') return students;
-    return students.filter(student =>
-      student.interests.concat(student.activities).some(
-        a => a.toLowerCase() === selectedCategory.toLowerCase()
-      )
-    );
-  }, [students, selectedCategory]);
-
-  // Story companion messages for Instagram-style interactive story spotlight
-  const storyQuotes: Record<string, { quoteMr: string; quoteEn: string; tag: string }> = {
-    'student-1': {
-      quoteMr: 'आज संध्याकाळी बुद्धिबळ खेळणे, फेरफटका आणि नवीन ॲप्स शिकवण्यासाठी मी तयार आहे!',
-      quoteEn: 'Ready for an evening game of chess, a colony stroll, and smartphone help!',
-      tag: '♟️ Chess & Tech Champion',
-    },
-    'student-2': {
-      quoteMr: 'नाट्यसंगीत, जुनी गाणी आणि मराठी कथा वाचत छान वेळ घालवूया!',
-      quoteEn: 'Passionate about classical vocals, old natyasangeet, and reading literature aloud!',
-      tag: '🎵 Classical Music & Books',
-    },
-    'student-3': {
-      quoteMr: 'संध्याकाळची प्रभातफेरी आणि गच्चीवरील बागेची काळजी घेण्यात मला खूप आनंद मिळतो.',
-      quoteEn: 'Love morning terrace gardening, park walks, and hearing old stories.',
-      tag: '🌿 Walks & Terrace Gardening',
-    },
-    'student-4': {
-      quoteMr: 'स्मार्टफोन, व्हॉट्सॲप आणि ऑनलाईन पेमेंट्स अगदी सोप्या भाषेत समजावून सांगते!',
-      quoteEn: 'Specialized in friendly, patient digital literacy and WhatsApp safety for seniors!',
-      tag: '📱 Friendly Tech Tutor',
-    },
-    'student-5': {
-      quoteMr: 'आपुलकीने संवाद साधणे आणि स्पर्धात्मक बुद्धिबळ खेळणे हा माझा आवडता छंद आहे.',
-      quoteEn: 'Patient listener, respectful companion, and passionate chess partner.',
-      tag: '♟️ Strategy & Daily Walk',
-    },
-    'student-6': {
-      quoteMr: 'वर्तमानपत्र वाचन, लायब्ररी पुस्तके आणि शांत मनमोकळ्या गप्पांसाठी हक्काची सोबत.',
-      quoteEn: 'Love reading newspaper editorials together and sharing calm afternoon tea.',
-      tag: '📖 Literature & Calm Chai',
-    },
-    'student-7': {
-      quoteMr: 'स्मार्ट टीव्ही, टॅब्लेट, यूट्यूब आणि रेट्रो बॉलिवूड संगीतासोबत छान गप्पा!',
-      quoteEn: 'Helping seniors with smart gadgets, TV remotes, and retro golden songs.',
-      tag: '📱 Smart Gadgets & Music',
-    },
-    'student-8': {
-      quoteMr: 'आजी-आजोबांच्या जुन्या आठवणी ऐकणे आणि पारंपारिक पाककृतींवर गप्पा मारणे आवडते.',
-      quoteEn: 'Respectful and cheerful. Love listening to ancestral stories and sharing tea.',
-      tag: '☕ Nostalgia & Warm Tea',
-    },
+  const handleSelectRole = (targetRole: UserRole, targetTab: string) => {
+    switchRole(targetRole);
+    onNavigate(targetTab);
   };
 
-  // Quick Trust Metrics - Visual & Concise
+  // ── THE 4 PROFILES TO EXPERIENCE THE APP (STORY-STYLE PROFILE CHOOSER) ──
+  const roleProfiles = [
+    {
+      id: 'senior' as UserRole,
+      defaultTab: 'dashboard',
+      icon: '👴',
+      photo: '/assets/senior_rajendra.jpg',
+      lucideIcon: <User className="w-5 h-5 text-orange-600" />,
+      titleMr: 'ज्येष्ठ नागरिक',
+      titleEn: 'Senior Citizen',
+      personNameMr: 'राजेंद्र कुलकर्णी',
+      personNameEn: 'Rajendra Kulkarni',
+      ageMr: 'वय ६८ • कोल्हापूर',
+      ageEn: 'Age 68 • Kolhapur',
+      subtitleMr: 'सेवेचे मुख्य लाभार्थी',
+      subtitleEn: 'Primary Care Recipient',
+      quoteMr: 'बुद्धिबळ, मॉर्निंग वॉक, वाचन आणि स्मार्टफोन शिकण्यासाठी तरुण सोबती शोधत असलेले आजोबा.',
+      quoteEn: 'Seeking warmth, tea time, chess, walks & tech help from compassionate youth.',
+      badgeColor: 'bg-orange-50 text-orange-800 border-orange-200',
+      ringGradient: 'from-orange-500 via-amber-500 to-rose-500',
+      accentBg: 'from-orange-50/80 via-white to-amber-50/40',
+      accentBorder: 'border-orange-300',
+      featuresMr: [
+        'पडताळणी झालेले सोबती शोधा व १:१ भेट बुक करा',
+        'सामाजिक कट्टा व हास्य क्लबमध्ये सहभागी व्हा',
+        'तात्काळ इमर्जन्सी SOS आणि सुरक्षितता बटण',
+      ],
+      featuresEn: [
+        'Browse vetted companions & book 1:1 sessions',
+        'Join Social Katta, chess & gardening circles',
+        'One-touch Emergency SOS assistance',
+      ],
+    },
+    {
+      id: 'student' as UserRole,
+      defaultTab: 'dashboard',
+      icon: '🎓',
+      photo: '/assets/student_aditya.jpg',
+      lucideIcon: <GraduationCap className="w-5 h-5 text-blue-600" />,
+      titleMr: 'कॉलेज सोबती / केअर मित्र',
+      titleEn: 'Care Mitra (Student)',
+      personNameMr: 'आदित्य पाटील',
+      personNameEn: 'Aditya Patil',
+      ageMr: 'वय २१ • इंजिनिअरिंग',
+      ageEn: 'Age 21 • Engineering Student',
+      subtitleMr: 'प्रशिक्षित व पडताळणी झालेला तरुण',
+      subtitleEn: 'Vetted College Youth',
+      quoteMr: 'फावल्या वेळेत ज्येष्ठांना सोबत करून स्वाभिमानाने कॉलेज मानधन कमावणारा संवेदनशील तरुण.',
+      quoteEn: 'Empathetic student earning dignified stipend while providing warm senior care.',
+      badgeColor: 'bg-blue-50 text-blue-800 border-blue-200',
+      ringGradient: 'from-blue-500 via-indigo-500 to-cyan-500',
+      accentBg: 'from-blue-50/80 via-white to-cyan-50/40',
+      accentBorder: 'border-blue-300',
+      featuresMr: [
+        'कॉलेज वेळेनुसार उपलब्ध स्लॉट्स निश्चित करा',
+        'भेटीनंतर "Know My Normal" मूड व व्हायटल्स नोंदवा',
+        'पारदर्शक मानधन व थेट बँक खात्यात जमा पहा',
+      ],
+      featuresEn: [
+        'Set weekly availability around college schedule',
+        'Submit Know-My-Normal mood & vitals logs',
+        'Track student stipend earnings & verified payouts',
+      ],
+    },
+    {
+      id: 'family' as UserRole,
+      defaultTab: 'familyHub',
+      icon: '👨‍👩‍👧',
+      photo: '/assets/family_amit.jpg',
+      lucideIcon: <Heart className="w-5 h-5 text-rose-600" />,
+      titleMr: 'दूर राहणारे कुटुंब (Family)',
+      titleEn: 'Outstation Family / Son',
+      personNameMr: 'अमित कुलकर्णी',
+      personNameEn: 'Amit Kulkarni',
+      ageMr: 'मुलगा • IT Lead, बेंगळुरू',
+      ageEn: 'Son • Tech Lead in Bangalore',
+      subtitleMr: 'आई-वडिलांच्या आरोग्याची काळजी',
+      subtitleEn: 'Caring Adult Children',
+      quoteMr: 'परगावी राहणाऱ्या मुलांसाठी पालकांच्या काळजीची रिअल-टाइम माहिती व संपूर्ण मनःशांती.',
+      quoteEn: 'Working in metros away from parents, needing continuous health visibility.',
+      badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+      ringGradient: 'from-emerald-500 via-teal-500 to-green-500',
+      accentBg: 'from-emerald-50/80 via-white to-teal-50/40',
+      accentBorder: 'border-emerald-300',
+      featuresMr: [
+        'प्रत्येक भेटीचे रिअल-टाइम व्हॉट्सॲप समरी अलर्ट',
+        'लाईव्ह हॅपीनेस स्कोअर आणि मूड ट्रेंड ग्राफ',
+        'सावली व परिवार सुरक्षा केअर प्लॅनचे व्यवस्थापन',
+      ],
+      featuresEn: [
+        'Instant WhatsApp & dashboard alerts after visits',
+        'Live Happiness Score & weekly vitals trends',
+        'Manage recurring Care Plan subscriptions',
+      ],
+    },
+    {
+      id: 'admin' as UserRole,
+      defaultTab: 'dashboard',
+      icon: '🛡️',
+      photo: '/assets/admin_officer.jpg',
+      lucideIcon: <Shield className="w-5 h-5 text-amber-600" />,
+      titleMr: 'सुरक्षा व ऑपरेशन्स ॲडमिन',
+      titleEn: 'Trust & Safety Admin',
+      personNameMr: 'साथी कंट्रोल रूम',
+      personNameEn: 'Saathi Operations Console',
+      ageMr: '२४x७ सुरक्षा नियंत्रण कक्ष',
+      ageEn: '24/7 Safety Command Center',
+      subtitleMr: 'प्लॅटफॉर्म व्यवस्थापन कक्ष',
+      subtitleEn: 'Platform Oversight & Dispatch',
+      quoteMr: 'विद्यार्थी आयडी पडताळणी, जिओ-फेन्सिंग ऑडिट आणि इमर्जन्सी हेल्पलाइन सांभाळणारी टीम.',
+      quoteEn: 'Central team managing ID vetting, geo-fenced visit compliance, and SOS escalations.',
+      badgeColor: 'bg-amber-50 text-amber-800 border-amber-200',
+      ringGradient: 'from-amber-500 via-orange-500 to-rose-500',
+      accentBg: 'from-amber-50/80 via-white to-orange-50/40',
+      accentBorder: 'border-amber-300',
+      featuresMr: [
+        'कॉलेज विद्यार्थ्यांचे आयडी व चारित्र्य पडताळणी',
+        'जिओ-फेन्स चेक-इन व रिअल-टाइम सेशन ऑडिट',
+        '२४x७ इमर्जन्सी SOS ट्रॅकिंग व कॉल डिस्पॅच',
+      ],
+      featuresEn: [
+        'Review pending college companion ID verification queues',
+        'Audit geo-fenced check-in timestamps & logs',
+        '24/7 SOS alert console with instant escalation',
+      ],
+    },
+  ];
+
+  // Quick Trust Metrics
   const trustMetrics = [
     {
       icon: <ShieldCheck className="w-5 h-5 text-emerald-600" />,
@@ -181,7 +246,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     },
   ];
 
-  // Visual Challenge Metric Cards (More Visuals, Less Reading)
+  // Visual Challenge Metric Cards
   const challengeStats = [
     {
       value: '72M+',
@@ -215,7 +280,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     },
   ];
 
-  // 4 Ecosystem Pillars (More Visuals, Less Reading)
+  // 4 Ecosystem Pillars
   const ecosystemPillars = [
     {
       emoji: '🤝',
@@ -259,7 +324,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     },
   ];
 
-  // Visual Wellness Metrics (Visual Health Monitor Card)
+  // Visual Wellness Metrics
   const wellnessFeatures = [
     {
       id: 'vitals',
@@ -323,7 +388,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     },
   ];
 
-  // How It Works - Visual 5-Step Process
+  // How It Works
   const processSteps = [
     { step: '१', titleMr: 'कुटुंबाची माहिती द्या', titleEn: 'Tell us needs', icon: '📝', subMr: 'आवडीनिवडी व वेळ' },
     { step: '२', titleMr: 'योग्य केअर प्लॅन निवडा', titleEn: 'Choose a plan', icon: '💳', subMr: 'तासिका किंवा मासिक' },
@@ -332,7 +397,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
     { step: '५', titleMr: 'कुठूनही जोडलेले राहा', titleEn: 'Family updates', icon: '📱', subMr: 'व्हॉट्सॲप रिअल-टाइम' },
   ];
 
-  // Pricing Plans (Clear, visual, light-themed)
+  // Pricing Plans
   const pricingPlans = [
     {
       id: 'ondemand',
@@ -415,40 +480,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   return (
     <div className="space-y-10 sm:space-y-16 pb-20">
 
-      {/* ─── 0. TOP DEMO PERSPECTIVES BAR ─── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 sm:pt-5">
-        <div className="bg-gradient-to-r from-saath-600 via-amber-500 to-saath-500 rounded-2xl sm:rounded-3xl p-4 sm:p-7 text-white shadow-soft flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="space-y-1.5 max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 bg-white/20 text-white text-[11px] font-extrabold uppercase px-3 py-0.5 rounded-full border border-white/30">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{isMr ? 'लाईव्ह चाचणी व प्रात्यक्षिक' : 'Interactive Prototype'}</span>
-            </div>
-            <h2 className="text-xl sm:text-2xl font-black font-display text-white">
-              {isMr ? 'साथी प्लॅटफॉर्मचा अनुभव विविध भूमिकेतून घ्या' : 'Experience Saathi from all 4 Perspectives'}
-            </h2>
-            <p className="text-xs sm:text-sm text-orange-100/90 leading-relaxed">
-              {isMr
-                ? 'ज्येष्ठ नागरिक, कॉलेज सोबती, दूर राहणारे कुटुंब किंवा ॲडमिन कंट्रोल रूम — एका क्लिकवर थेट भूमिका बदला.'
-                : 'Explore real-time workflows as an elderly senior, a student companion, an outstation family member, or admin.'}
-            </p>
-          </div>
-
-          <button
-            onClick={() => onOpenRoleModal && onOpenRoleModal()}
-            className="bg-white text-stone-900 hover:bg-orange-50 font-black text-xs sm:text-sm px-5 sm:px-6 py-3 rounded-2xl transition-all shadow-md shrink-0 flex items-center justify-center gap-2 active:scale-98 w-full sm:w-auto"
-          >
-            <span>🎭</span>
-            <span>{isMr ? 'भूमिका निवडा' : 'Switch Perspective'}</span>
-            <ArrowRight className="w-4 h-4 text-saath-600" />
-          </button>
-        </div>
-      </section>
-
-      {/* ─── 1. HERO SECTION (Punchy, Modern Light Theme) ─── */}
-      <section className="relative pt-1 sm:pt-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+      {/* ─── 1. HERO SECTION (Warm Light Palette, High Contrast) ─── */}
+      <section className="relative pt-3 sm:pt-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-          {/* Left Column: Headlines, Quick Search & Badges */}
+          {/* Left Column */}
           <div className="lg:col-span-7 space-y-5 sm:space-y-6">
 
             {/* Eyebrow Badge */}
@@ -481,7 +517,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               )}
             </h1>
 
-            {/* Visual Value Badges (Replaces wordy paragraphs with glanceable badges) */}
+            {/* Visual Value Badges */}
             <div className="flex flex-wrap items-center gap-2 pt-1">
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-stone-200 text-xs font-bold text-stone-800 shadow-2xs">
                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
@@ -520,7 +556,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               </div>
             </form>
 
-            {/* Quick CTAs */}
+            {/* Quick Action Buttons */}
             <div className="flex flex-wrap items-center gap-2.5 pt-1">
               <button
                 onClick={() => onNavigate('careplans')}
@@ -606,7 +642,202 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* ─── 2. TRUST & VERIFICATION STRIP ─── */}
+      {/* ─── 2. STORY-STYLE PROFILE CHOOSER (NO POPUPS! DIRECTLY ON MAIN PAGE) ─── */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 text-saath-800 text-xs font-black uppercase tracking-wider border border-orange-200 shadow-2xs">
+            <span>🎭</span>
+            <span>{isMr ? 'थेट भूमिका निवडा • कोणत्याही पॉपअपशिवाय' : 'Choose Perspective Directly • No Popups'}</span>
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-black text-stone-900 font-display">
+            {isMr ? 'कोणत्या भूमिकेतून साथी अनुभवायचे आहे?' : 'Select a Profile to Experience Saathi'}
+          </h2>
+          <p className="text-xs sm:text-sm text-stone-600">
+            {isMr
+              ? 'खालील स्टोरी-स्टाईल प्रोफाइलवर थेट टॅप करा आणि त्या भूमिकेचा डॅशबोर्ड व कार्यप्रवाह अनुभवा.'
+              : 'Tap any story profile below to instantly experience the live dashboard & workflows from that perspective.'}
+          </p>
+        </div>
+
+        {/* ── Story Circles Bar (Social-Media-Story Tray with Story Rings) ── */}
+        <div className="bg-white rounded-3xl p-5 sm:p-7 border border-stone-200 shadow-soft space-y-4">
+          <div className="flex items-center justify-between pb-1">
+            <span className="text-xs font-black uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>{isMr ? 'लाईव्ह प्रोफाइल स्टोरीज (टॅप करून थेट बदला)' : 'Live Profile Stories (Tap to Switch)'}</span>
+            </span>
+            <span className="text-[11px] text-stone-400 font-semibold hidden sm:inline-block">
+              {isMr ? '४ वेगवेगळ्या भूमिका उपलब्ध' : '4 Interactive Perspectives'}
+            </span>
+          </div>
+
+          {/* Horizontal Snap Scroll Story Tray */}
+          <div className="flex items-center justify-start sm:justify-around gap-5 sm:gap-6 overflow-x-auto pb-2 pt-1 no-scrollbar scroll-smooth">
+            {roleProfiles.map(p => {
+              const isActive = role === p.id;
+
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => handleSelectRole(p.id, p.defaultTab)}
+                  className="flex flex-col items-center gap-2 shrink-0 group focus:outline-none"
+                  title={`${isMr ? p.personNameMr : p.personNameEn} - ${isMr ? p.titleMr : p.titleEn}`}
+                >
+                  {/* Story Avatar Ring */}
+                  <div
+                    className={`relative w-18 h-18 sm:w-22 sm:h-22 rounded-full p-[3px] transition-all transform group-hover:scale-105 active:scale-95 ${
+                      isActive
+                        ? 'story-ring-gradient story-ring-glow ring-4 ring-saath-400/40'
+                        : 'story-ring-gradient opacity-85 group-hover:opacity-100 group-hover:story-ring-glow'
+                    }`}
+                  >
+                    <div className="w-full h-full rounded-full overflow-hidden bg-white p-0.5">
+                      <img
+                        src={p.photo}
+                        alt={isMr ? p.personNameMr : p.personNameEn}
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    </div>
+
+                    {/* Active Checkmark or Online Indicator */}
+                    {isActive ? (
+                      <div className="absolute bottom-0 right-0 w-6 h-6 bg-emerald-600 border-2 border-white rounded-full flex items-center justify-center shadow-xs text-white">
+                        <Check className="w-3.5 h-3.5 stroke-[3]" />
+                      </div>
+                    ) : (
+                      <div className="absolute bottom-0.5 right-0.5 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full flex items-center justify-center shadow-2xs">
+                        <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Name & Role Label underneath */}
+                  <div className="text-center w-24 sm:w-28">
+                    <p className="text-xs font-black text-stone-900 truncate group-hover:text-saath-700 transition-colors flex items-center justify-center gap-1">
+                      <span>{p.icon}</span>
+                      <span className="truncate">{isMr ? p.personNameMr.split(' ')[0] : p.personNameEn.split(' ')[0]}</span>
+                    </p>
+                    <span
+                      className={`inline-block text-[10px] font-extrabold px-2 py-0.5 rounded-full border mt-0.5 truncate max-w-full ${
+                        isActive
+                          ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                          : 'bg-stone-100 text-stone-600 border-stone-200'
+                      }`}
+                    >
+                      {isActive ? (isMr ? 'सक्रिय ✓' : 'Active ✓') : (isMr ? p.titleMr.split(' ')[0] : p.titleEn.split(' ')[0])}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ── Story Profile Cards Grid (Key Information Immediately Accessible!) ── */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {roleProfiles.map(p => {
+            const isActive = role === p.id;
+
+            return (
+              <div
+                key={p.id}
+                className={`rounded-3xl border transition-all flex flex-col justify-between overflow-hidden group ${
+                  isActive
+                    ? 'bg-white border-2 border-saath-500 shadow-elevated ring-4 ring-saath-400/20'
+                    : 'bg-white border-stone-200 shadow-soft hover:shadow-card hover:border-orange-300'
+                }`}
+              >
+                <div>
+                  {/* Top Bar with Story Avatar Accent */}
+                  <div className={`p-4 bg-gradient-to-r ${p.accentBg} border-b border-stone-100 flex items-start justify-between`}>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">{p.icon}</span>
+                      <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-full border ${p.badgeColor}`}>
+                        {isMr ? p.titleMr : p.titleEn}
+                      </span>
+                    </div>
+
+                    {isActive && (
+                      <span className="inline-flex items-center gap-1 bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-2xs">
+                        <Check className="w-3 h-3 stroke-[3]" />
+                        <span>{isMr ? 'सक्रिय' : 'Active'}</span>
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Body with Circular Story Ring Portrait */}
+                  <div className="p-4 space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-14 h-14 rounded-full p-[2.5px] story-ring-gradient shrink-0 shadow-xs">
+                        <img
+                          src={p.photo}
+                          alt={isMr ? p.personNameMr : p.personNameEn}
+                          className="w-full h-full object-cover rounded-full bg-white"
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-sm font-black text-stone-900 truncate">
+                          {isMr ? p.personNameMr : p.personNameEn}
+                        </h3>
+                        <p className="text-[11px] text-stone-500 font-semibold truncate">
+                          {isMr ? p.ageMr : p.ageEn}
+                        </p>
+                        <span className="text-[10px] text-saath-700 font-bold block truncate mt-0.5">
+                          {isMr ? p.subtitleMr : p.subtitleEn}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Concise Quote */}
+                    <p className="text-xs text-stone-600 italic leading-snug bg-stone-50 p-2.5 rounded-xl border border-stone-100">
+                      “{isMr ? p.quoteMr : p.quoteEn}”
+                    </p>
+
+                    {/* 3 Visual Key Feature Points */}
+                    <div className="space-y-1.5 pt-1">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-stone-400 block">
+                        {isMr ? 'या भूमिकेचे मुख्य अधिकार:' : 'Key Capabilities:'}
+                      </span>
+                      <ul className="space-y-1 text-xs text-stone-700">
+                        {(isMr ? p.featuresMr : p.featuresEn).map((feat, fi) => (
+                          <li key={fi} className="flex items-start gap-1.5">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                            <span className="leading-snug text-[11px] font-medium">{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Direct Action Button */}
+                <div className="p-4 pt-0">
+                  <button
+                    onClick={() => handleSelectRole(p.id, p.defaultTab)}
+                    className={`w-full py-2.5 px-3 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-2 active:scale-98 ${
+                      isActive
+                        ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs'
+                        : 'bg-saath-600 hover:bg-saath-700 text-white shadow-xs'
+                    }`}
+                  >
+                    <span>
+                      {isActive
+                        ? (isMr ? 'डॅशबोर्ड उघडा' : 'Open Active Dashboard')
+                        : (isMr ? 'हा अनुभव घ्या' : 'Experience This Role')}
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+      </section>
+
+      {/* ─── 3. TRUST & VERIFICATION STRIP ─── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white rounded-3xl p-5 sm:p-7 border border-stone-200 shadow-soft">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -627,294 +858,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             ))}
           </div>
         </div>
-      </section>
-
-      {/* ─── 3. STORY-STYLE PROFILES DIRECTLY ON MAIN PAGE (REQUIREMENTS 3 & 4) ─── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-
-        {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-          <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-saath-800 text-xs font-black uppercase tracking-wider mb-2 border border-orange-200">
-              <Sparkles className="w-3.5 h-3.5 text-saath-600" />
-              <span>{isMr ? 'थेट उपलब्ध सोबती • मुख्य पान' : 'Live Verified Companions • Story Showcase'}</span>
-            </div>
-            <h2 className="text-2xl sm:text-4xl font-black text-stone-900 font-display">
-              {isMr ? 'आपल्या परिसरातील हक्काचे साथीदार' : 'Meet Your Neighborhood Companions'}
-            </h2>
-            <p className="text-xs sm:text-sm text-stone-600 mt-1">
-              {isMr
-                ? 'कोणत्याही पॉपअपशिवाय सर्व माहिती थेट उपलब्ध — एका क्लिकवर भेट बुक करा किंवा प्रोफाइल पहा.'
-                : 'Key profile details immediately accessible right here without opening any modal.'}
-            </p>
-          </div>
-
-          <button
-            onClick={() => onNavigate('discovery')}
-            className="text-xs sm:text-sm font-extrabold text-saath-700 hover:text-saath-800 flex items-center gap-1.5 shrink-0 self-start sm:self-end hover:underline"
-          >
-            <span>{isMr ? 'सर्व सोबती फिल्टर करा' : 'Explore All With Advanced Filters'}</span>
-            <ChevronRight className="w-4 h-4" />
-          </button>
-        </div>
-
-        {/* ── Story Circles Bar (Social-Media-Story-Inspired Tray) ── */}
-        <div className="bg-white rounded-3xl p-4 sm:p-6 border border-stone-200 shadow-soft space-y-4">
-          <div className="flex items-center justify-between pb-1">
-            <span className="text-xs font-black uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>{isMr ? 'थेट सोबती स्टोरीज (टॅप करून पहा)' : 'Live Story Highlights (Tap to Spotlight)'}</span>
-            </span>
-            <span className="text-[11px] text-stone-400 font-semibold hidden sm:inline-block">
-              {isMr ? '८ पडताळणी झालेले सोबती उपलब्ध' : '8 Verified Companions Online'}
-            </span>
-          </div>
-
-          {/* Horizontal Snap Scroll Story Tray */}
-          <div className="flex items-center gap-4 sm:gap-6 overflow-x-auto pb-2 pt-1 no-scrollbar scroll-smooth">
-            {students.map(student => {
-              const isSelected = activeStoryStudent?.id === student.id;
-              const storyData = storyQuotes[student.id];
-
-              return (
-                <button
-                  key={student.id}
-                  onClick={() => setActiveStoryStudent(student)}
-                  className="flex flex-col items-center gap-2 shrink-0 group focus:outline-none"
-                  title={`${student.name} - ${storyData?.tag || 'Companion'}`}
-                >
-                  {/* Story Avatar Ring */}
-                  <div
-                    className={`relative w-16 h-16 sm:w-20 sm:h-20 rounded-full p-[3px] transition-all transform group-hover:scale-105 active:scale-95 ${
-                      isSelected
-                        ? 'story-ring-gradient story-ring-glow ring-2 ring-saath-500'
-                        : 'story-ring-gradient group-hover:story-ring-glow'
-                    }`}
-                  >
-                    <div className="w-full h-full rounded-full overflow-hidden bg-white p-0.5">
-                      <img
-                        src={student.profilePhoto}
-                        alt={student.name}
-                        className="w-full h-full object-cover rounded-full"
-                      />
-                    </div>
-
-                    {/* Online Pulse Indicator */}
-                    <div className="absolute bottom-0 right-0 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full flex items-center justify-center shadow-xs">
-                      <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
-                    </div>
-                  </div>
-
-                  {/* Name & Quick Activity Emoji */}
-                  <div className="text-center w-20 sm:w-22">
-                    <p className="text-xs font-black text-stone-900 truncate group-hover:text-saath-700 transition-colors">
-                      {student.name.split(' ')[0]}
-                    </p>
-                    <p className="text-[10px] text-stone-500 truncate font-semibold">
-                      {storyData ? storyData.tag.split(' ')[0] : '★ 4.9'}
-                    </p>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Interactive Story Spotlight Callout (When a story is tapped) */}
-          {activeStoryStudent && (
-            <div className="mt-2 bg-gradient-to-r from-orange-50 via-amber-50 to-orange-100/60 p-4 rounded-2xl border border-orange-200/90 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 animate-in fade-in duration-200">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full p-0.5 story-ring-gradient shrink-0">
-                  <img
-                    src={activeStoryStudent.profilePhoto}
-                    alt={activeStoryStudent.name}
-                    className="w-full h-full object-cover rounded-full"
-                  />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-black text-stone-900">{activeStoryStudent.name}</span>
-                    <span className="text-[10px] font-bold bg-white px-2 py-0.5 rounded-full border border-orange-200 text-saath-800">
-                      ₹{activeStoryStudent.hourlyRate}/तास
-                    </span>
-                    <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                      ★ {activeStoryStudent.rating}
-                    </span>
-                  </div>
-                  <p className="text-xs text-stone-700 mt-0.5 font-medium italic">
-                    “{isMr ? storyQuotes[activeStoryStudent.id]?.quoteMr : storyQuotes[activeStoryStudent.id]?.quoteEn}”
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2 self-end sm:self-center shrink-0">
-                <button
-                  onClick={() => onBookStudent && onBookStudent(activeStoryStudent)}
-                  className="bg-saath-600 hover:bg-saath-700 text-white font-extrabold text-xs px-4 py-2 rounded-xl shadow-xs transition-all flex items-center gap-1.5"
-                >
-                  <CalendarCheck className="w-3.5 h-3.5" />
-                  <span>{isMr ? 'लगेच बुक करा' : 'Book Visit'}</span>
-                </button>
-                <button
-                  onClick={() => setActiveStoryStudent(null)}
-                  className="text-stone-400 hover:text-stone-600 p-1.5 rounded-lg hover:bg-white"
-                  title="Close spotlight"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* ── Visual Filter Pills ── */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
-          {categoryFilters.map(filter => (
-            <button
-              key={filter.id}
-              onClick={() => setSelectedCategory(filter.id)}
-              className={`px-3.5 py-2 rounded-full text-xs font-extrabold transition-all shrink-0 flex items-center gap-1.5 shadow-2xs ${
-                selectedCategory === filter.id
-                  ? 'bg-saath-600 text-white shadow-xs'
-                  : 'bg-white hover:bg-orange-50 text-stone-700 border border-stone-200'
-              }`}
-            >
-              <span>{filter.icon}</span>
-              <span>{isMr ? filter.labelMr : filter.labelEn}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* ── Story-Style Profile Cards Grid (Key Info Directly Accessible!) ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {filteredProfiles.map(student => (
-            <div
-              key={student.id}
-              className="bg-white rounded-3xl border border-stone-200 shadow-soft hover:shadow-elevated transition-all flex flex-col justify-between overflow-hidden group hover:border-orange-300"
-            >
-              {/* Card Top Banner with Story Ring Portrait */}
-              <div>
-                <div className="relative h-24 bg-gradient-to-r from-orange-100 via-amber-50 to-orange-50 p-3.5 flex items-start justify-between">
-                  {/* Verified ID badge */}
-                  <span className="inline-flex items-center gap-1 bg-white/95 backdrop-blur-sm text-[10px] font-black text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-200 shadow-2xs">
-                    <ShieldCheck className="w-3 h-3 text-emerald-600" />
-                    <span>{isMr ? 'पडताळणी पूर्ण' : '100% Verified'}</span>
-                  </span>
-
-                  {/* Hourly Rate Chip */}
-                  <span className="inline-flex items-center gap-1 bg-saath-600 text-white text-xs font-black px-2.5 py-0.5 rounded-full shadow-2xs">
-                    ₹{student.hourlyRate}
-                    <span className="text-[10px] font-medium opacity-90">{isMr ? '/तास' : '/hr'}</span>
-                  </span>
-                </div>
-
-                {/* Circular Portrait with Story Ring Accent overlapping banner */}
-                <div className="px-4 -mt-10 flex items-end justify-between">
-                  <div className="relative w-18 h-18 sm:w-20 sm:h-20 rounded-full p-[2.5px] story-ring-gradient shadow-md bg-white">
-                    <img
-                      src={student.profilePhoto}
-                      alt={student.name}
-                      className="w-full h-full object-cover rounded-full"
-                    />
-                    {student.isVerified && (
-                      <div
-                        className="absolute bottom-0 right-0 bg-emerald-600 text-white p-1 rounded-full border-2 border-white shadow-xs"
-                        title="College Verified ID"
-                      >
-                        <ShieldCheck className="w-3 h-3" />
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Star Rating Badge */}
-                  <div className="bg-amber-50 border border-amber-200 px-2.5 py-1 rounded-xl text-right">
-                    <div className="flex items-center gap-1 text-xs font-black text-amber-900">
-                      <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
-                      <span>{student.rating}</span>
-                    </div>
-                    <span className="text-[10px] text-stone-500 font-bold block">
-                      {student.completedSessionsCount || student.reviewCount} {isMr ? 'भेटी' : 'visits'}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Companion Details (Immediately visible without modal!) */}
-                <div className="p-4 space-y-3">
-                  <div>
-                    <h3 className="text-base font-black text-stone-900 flex items-center gap-1.5 group-hover:text-saath-700 transition-colors">
-                      <span>{student.name}</span>
-                      <span className="text-xs font-bold text-stone-400">({student.age} {isMr ? 'वर्षे' : 'yrs'})</span>
-                    </h3>
-                    <p className="text-xs text-stone-600 font-medium flex items-center gap-1 mt-0.5 truncate">
-                      <GraduationCap className="w-3.5 h-3.5 text-saath-600 shrink-0" />
-                      <span className="truncate">{student.college.split(',')[0]}</span>
-                    </p>
-                    <p className="text-[11px] text-stone-500 font-medium flex items-center gap-1 mt-0.5">
-                      <MapPin className="w-3.5 h-3.5 text-stone-400 shrink-0" />
-                      <span>{student.area}, {student.city} • {student.distanceKm} km</span>
-                    </p>
-                  </div>
-
-                  {/* Visual Activity Badges */}
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-black uppercase tracking-wider text-stone-400 block">
-                      {isMr ? 'प्रमुख कौशल्ये व आवडी:' : 'Key Hobbies & Activities:'}
-                    </span>
-                    <div className="flex flex-wrap gap-1">
-                      {student.interests.slice(0, 3).map((interest, i) => (
-                        <span
-                          key={i}
-                          className="text-[10px] font-bold px-2 py-0.5 rounded-lg bg-orange-50 border border-orange-100 text-saath-800"
-                        >
-                          {interest === 'Chess' ? '♟️ बुद्धिबळ' :
-                           interest === 'Technology Help' ? '📱 टेक मदत' :
-                           interest === 'Walking' ? '🚶 प्रभातफेरी' :
-                           interest === 'Music' ? '🎵 संगीत' :
-                           interest === 'Reading' ? '📖 वाचन' :
-                           interest === 'Gardening' ? '🌿 बागकाम' :
-                           interest === 'Conversation' ? '☕ गप्पा' : interest}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Languages Spoken */}
-                  <div className="text-[11px] text-stone-600 font-medium flex items-center gap-1.5 pt-1 border-t border-stone-100">
-                    <span className="text-stone-400 font-bold">🗣️</span>
-                    <span className="truncate">{student.languages.join(' • ')}</span>
-                  </div>
-
-                  {/* Availability Pill */}
-                  <div className="text-[11px] text-stone-500 font-medium flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-stone-400 shrink-0" />
-                    <span className="truncate">
-                      {student.availability.map(a => a.day.slice(0, 3)).slice(0, 3).join(', ')} {isMr ? 'उपलब्ध' : 'available'}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Buttons (Direct Actions) */}
-              <div className="p-4 pt-0 grid grid-cols-2 gap-2">
-                <button
-                  onClick={() => onBookStudent && onBookStudent(student)}
-                  className="bg-saath-600 hover:bg-saath-700 text-white font-black text-xs py-2.5 px-3 rounded-xl shadow-xs transition-all flex items-center justify-center gap-1.5 active:scale-98"
-                >
-                  <CalendarCheck className="w-3.5 h-3.5" />
-                  <span>{isMr ? 'भेट बुक करा' : 'Book Visit'}</span>
-                </button>
-
-                <button
-                  onClick={() => onSelectStudent && onSelectStudent(student)}
-                  className="bg-stone-50 hover:bg-orange-50 text-stone-800 border border-stone-200 font-black text-xs py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-1.5"
-                >
-                  <Eye className="w-3.5 h-3.5 text-stone-600" />
-                  <span>{isMr ? 'तपशील' : 'View Profile'}</span>
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-
       </section>
 
       {/* ─── 4. THE CHALLENGE & IMPACT (Infographic Visuals) ─── */}
@@ -1108,7 +1051,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* ─── 8. CARE PLANS & PRICING (Modern Light Comparison Cards) ─── */}
+      {/* ─── 8. CARE PLANS & PRICING ─── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-black uppercase tracking-wider text-saath-700 bg-orange-100 px-3.5 py-1 rounded-full border border-orange-200">
@@ -1186,7 +1129,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
       </section>
 
-      {/* ─── 9. ECOSYSTEM FOOTER (Clean, Light Theme) ─── */}
+      {/* ─── 9. ECOSYSTEM FOOTER ─── */}
       <footer className="border-t border-stone-200 bg-white pt-10 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
