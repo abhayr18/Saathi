@@ -302,15 +302,15 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
                     </p>
 
                     {/* Feature Highlights */}
-                    <div className="space-y-1 pt-0.5">
-                      <span className="text-[9px] sm:text-[10px] font-extrabold text-stone-400 uppercase tracking-wider block">
+                    <div className="space-y-1.5 pt-0.5">
+                      <span className="text-[10px] sm:text-[11px] font-extrabold text-stone-400 uppercase tracking-wider block">
                         {isMr ? 'या भूमिकेतील मुख्य सुविधा:' : 'What you can explore:'}
                       </span>
-                      <ul className="space-y-1 text-xs text-stone-700">
+                      <ul className="space-y-1.5 text-xs text-stone-700">
                         {(isMr ? item.featuresMr : item.featuresEn).map((f, i) => (
-                          <li key={i} className="flex items-center gap-1.5 sm:gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-saath-500 shrink-0"></span>
-                            <span className="text-[11px] leading-tight text-stone-600">{f}</span>
+                          <li key={i} className="flex items-start gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-saath-500 shrink-0 mt-1.5"></span>
+                            <span className="text-xs sm:text-[11px] leading-relaxed text-stone-600 break-words flex-1">{f}</span>
                           </li>
                         ))}
                       </ul>

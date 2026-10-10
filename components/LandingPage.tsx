@@ -687,7 +687,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 >
                   {/* Story Avatar Ring */}
                   <div
-                    className={`relative w-18 h-18 sm:w-22 sm:h-22 rounded-full p-[3px] transition-all transform group-hover:scale-105 active:scale-95 ${
+                    className={`relative w-16 h-16 sm:w-20 sm:h-20 rounded-full p-[3px] shrink-0 transition-all transform group-hover:scale-105 active:scale-95 ${
                       isActive
                         ? 'story-ring-gradient story-ring-glow ring-4 ring-saath-400/40'
                         : 'story-ring-gradient opacity-85 group-hover:opacity-100 group-hover:story-ring-glow'
@@ -736,31 +736,31 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </div>
 
         {/* ── Story Profile Cards Grid (Key Information Immediately Accessible!) ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {roleProfiles.map(p => {
             const isActive = role === p.id;
 
             return (
               <div
                 key={p.id}
-                className={`rounded-3xl border transition-all flex flex-col justify-between overflow-hidden group ${
+                className={`rounded-3xl border transition-all flex flex-col justify-between overflow-hidden group h-full ${
                   isActive
                     ? 'bg-white border-2 border-saath-500 shadow-elevated ring-4 ring-saath-400/20'
                     : 'bg-white border-stone-200 shadow-soft hover:shadow-card hover:border-teal-300'
                 }`}
               >
-                <div>
+                <div className="flex flex-col flex-1">
                   {/* Top Bar with Story Avatar Accent */}
-                  <div className={`p-4 bg-gradient-to-r ${p.accentBg} border-b border-stone-100 flex items-start justify-between`}>
+                  <div className={`p-3.5 sm:p-4 bg-gradient-to-r ${p.accentBg} border-b border-stone-100 flex items-center justify-between`}>
                     <div className="flex items-center gap-2">
-                      <span className="text-xl">{p.icon}</span>
-                      <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-full border ${p.badgeColor}`}>
+                      <span className="text-xl shrink-0">{p.icon}</span>
+                      <span className={`text-[11px] sm:text-[10px] font-black uppercase tracking-wide px-2.5 py-0.5 rounded-full border ${p.badgeColor}`}>
                         {isMr ? p.titleMr : p.titleEn}
                       </span>
                     </div>
 
                     {isActive && (
-                      <span className="inline-flex items-center gap-1 bg-emerald-600 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-2xs">
+                      <span className="inline-flex items-center gap-1 bg-emerald-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow-2xs shrink-0">
                         <Check className="w-3 h-3 stroke-[3]" />
                         <span>{isMr ? 'सक्रिय' : 'Active'}</span>
                       </span>
@@ -768,43 +768,50 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                   </div>
 
                   {/* Body with Circular Story Ring Portrait */}
-                  <div className="p-4 space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="relative w-14 h-14 rounded-full p-[2.5px] story-ring-gradient shrink-0 shadow-xs">
-                        <img
-                          src={p.photo}
-                          alt={isMr ? p.personNameMr : p.personNameEn}
-                          className="w-full h-full object-cover rounded-full bg-white"
-                        />
+                  <div className="p-4 sm:p-5 space-y-3.5 flex-1 flex flex-col justify-between">
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full p-[2px] story-ring-gradient shrink-0 shadow-xs">
+                          <img
+                            src={p.photo}
+                            alt={isMr ? p.personNameMr : p.personNameEn}
+                            className="w-full h-full object-cover rounded-full bg-white"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h3 className="text-sm sm:text-base font-black text-stone-900 leading-snug">
+                            {isMr ? p.personNameMr : p.personNameEn}
+                          </h3>
+                          <p className="text-xs text-stone-500 font-semibold mt-0.5">
+                            {isMr ? p.ageMr : p.ageEn}
+                          </p>
+                          <span className="text-[11px] text-teal-700 font-bold block mt-0.5">
+                            {isMr ? p.subtitleMr : p.subtitleEn}
+                          </span>
+                        </div>
                       </div>
-                      <div className="min-w-0">
-                        <h3 className="text-sm font-black text-stone-900 truncate">
-                          {isMr ? p.personNameMr : p.personNameEn}
-                        </h3>
-                        <p className="text-[11px] text-stone-500 font-semibold truncate">
-                          {isMr ? p.ageMr : p.ageEn}
-                        </p>
-                        <span className="text-[10px] text-saath-700 font-bold block truncate mt-0.5">
-                          {isMr ? p.subtitleMr : p.subtitleEn}
-                        </span>
-                      </div>
+
+                      {/* Concise Quote */}
+                      <p className="text-xs text-stone-600 italic leading-relaxed bg-slate-50 p-3 rounded-2xl border border-slate-100/90">
+                        “{isMr ? p.quoteMr : p.quoteEn}”
+                      </p>
                     </div>
 
-                    {/* Concise Quote */}
-                    <p className="text-xs text-stone-600 italic leading-snug bg-stone-50 p-2.5 rounded-xl border border-stone-100">
-                      “{isMr ? p.quoteMr : p.quoteEn}”
-                    </p>
-
-                    {/* 3 Visual Key Feature Points */}
-                    <div className="space-y-1.5 pt-1">
-                      <span className="text-[10px] font-black uppercase tracking-wider text-stone-400 block">
+                    {/* 3 Visual Key Feature Points - Mobile Optimized */}
+                    <div className="space-y-2 pt-1">
+                      <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-stone-400 block">
                         {isMr ? 'या भूमिकेचे मुख्य अधिकार:' : 'Key Capabilities:'}
                       </span>
-                      <ul className="space-y-1 text-xs text-stone-700">
+                      <ul className="space-y-1.5 text-xs text-stone-700">
                         {(isMr ? p.featuresMr : p.featuresEn).map((feat, fi) => (
-                          <li key={fi} className="flex items-start gap-1.5">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                            <span className="leading-snug text-[11px] font-medium">{feat}</span>
+                          <li
+                            key={fi}
+                            className="flex items-start gap-2 p-2 sm:p-2.5 rounded-xl bg-slate-50/80 border border-slate-100 hover:border-teal-200 transition-colors"
+                          >
+                            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                            <span className="text-xs sm:text-[11px] leading-relaxed font-medium text-stone-800 break-words flex-1">
+                              {feat}
+                            </span>
                           </li>
                         ))}
                       </ul>
@@ -813,10 +820,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 </div>
 
                 {/* Direct Action Button */}
-                <div className="p-4 pt-0">
+                <div className="p-4 sm:p-5 pt-0">
                   <button
                     onClick={() => handleSelectRole(p.id, p.defaultTab)}
-                    className={`w-full py-2.5 px-3 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-2 active:scale-98 ${
+                    className={`w-full py-3 px-4 rounded-xl text-xs sm:text-sm font-black transition-all flex items-center justify-center gap-2 active:scale-98 ${
                       isActive
                         ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-xs'
                         : 'bg-saath-600 hover:bg-saath-700 text-white shadow-xs'
@@ -827,7 +834,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                         ? (isMr ? 'डॅशबोर्ड उघडा' : 'Open Active Dashboard')
                         : (isMr ? 'हा अनुभव घ्या' : 'Experience This Role')}
                     </span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
