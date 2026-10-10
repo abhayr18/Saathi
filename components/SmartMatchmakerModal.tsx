@@ -115,7 +115,7 @@ export const SmartMatchmakerModal: React.FC<SmartMatchmakerModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-stone-900/60 backdrop-blur-xs animate-in fade-in">
       <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-stone-200 overflow-hidden">
         {/* Modal Header */}
-        <div className="p-6 bg-gradient-to-r from-orange-50 via-amber-50 to-orange-100/50 border-b border-orange-200/80 flex items-center justify-between">
+        <div className="p-6 bg-gradient-to-r from-teal-50/90 via-sky-50/50 to-slate-50 border-b border-teal-100 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-saath-600 text-white flex items-center justify-center shadow-md shadow-saath-600/30">
               <Sparkles className="w-5 h-5" />
@@ -166,8 +166,8 @@ export const SmartMatchmakerModal: React.FC<SmartMatchmakerModalProps> = ({
                     onClick={() => toggleInterest(opt.id)}
                     className={`p-3 rounded-2xl text-left border transition-all flex items-center gap-2.5 ${
                       isSelected
-                        ? 'bg-orange-50/80 border-saath-500 text-stone-900 shadow-xs'
-                        : 'bg-stone-50/50 border-stone-200 text-stone-600 hover:border-orange-300 hover:bg-white'
+                        ? 'bg-teal-50/80 border-saath-500 text-stone-900 shadow-xs'
+                        : 'bg-stone-50/50 border-stone-200 text-stone-600 hover:border-teal-300 hover:bg-white'
                     }`}
                   >
                     <span className="text-xl shrink-0">{opt.icon}</span>
@@ -262,7 +262,7 @@ export const SmartMatchmakerModal: React.FC<SmartMatchmakerModalProps> = ({
                         <h4 className="text-sm font-bold text-stone-900 truncate">
                           {student.name}
                         </h4>
-                        <span className="px-2 py-0.5 rounded-md bg-orange-100 text-saath-800 font-extrabold text-[11px] shrink-0">
+                        <span className="px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 border border-teal-200 font-extrabold text-[11px] shrink-0">
                           {student.matchResult.score}% {isMr ? 'मॅच' : 'Match'}
                         </span>
                       </div>

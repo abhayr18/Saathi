@@ -53,7 +53,7 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       {/* Welcome & Senior Greeting Card (Smooth Minimalist Light Theme) */}
-      <div className="bg-gradient-to-r from-orange-50 via-amber-50 to-orange-100/60 rounded-3xl p-6 sm:p-8 text-stone-900 border border-orange-200/90 shadow-soft relative overflow-hidden">
+      <div className="bg-gradient-to-r from-teal-50/90 via-sky-50/50 to-slate-50 rounded-3xl p-6 sm:p-8 text-stone-900 border border-teal-100 shadow-soft relative overflow-hidden">
         <div className="absolute right-0 top-0 bottom-0 opacity-[0.05] pointer-events-none flex items-center pr-10">
           <span className="text-[140px] font-black text-stone-900">साथी</span>
         </div>
@@ -68,7 +68,7 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
               />
             </div>
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/90 border border-orange-200 text-xs font-bold text-saath-800 mb-1 shadow-2xs">
+              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/90 border border-teal-200 text-xs font-bold text-teal-800 mb-1 shadow-2xs">
                 <span>📍 {currentSenior.area}, {currentSenior.city}</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-stone-900">
@@ -92,7 +92,7 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
 
             <button
               onClick={() => onNavigate('activities')}
-              className="bg-white hover:bg-orange-50/60 text-stone-800 border border-stone-200 font-bold text-xs sm:text-sm px-4 py-3 rounded-2xl shadow-2xs transition-all flex items-center justify-center gap-2"
+              className="bg-white hover:bg-teal-50/60 text-stone-800 border border-stone-200 font-bold text-xs sm:text-sm px-4 py-3 rounded-2xl shadow-2xs transition-all flex items-center justify-center gap-2"
             >
               <span>☕ सामाजिक कट्टा</span>
             </button>

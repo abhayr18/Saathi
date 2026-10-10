@@ -67,10 +67,10 @@ export const SocialActivitiesView: React.FC<SocialActivitiesViewProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 animate-in fade-in duration-300">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-orange-50 via-amber-50 to-orange-100/60 rounded-3xl p-6 sm:p-8 border border-orange-200/70 shadow-sm relative overflow-hidden">
+      <div className="bg-gradient-to-r from-teal-50/90 via-sky-50/50 to-slate-50 rounded-3xl p-6 sm:p-8 border border-teal-100 shadow-sm relative overflow-hidden">
         <div className="max-w-3xl space-y-3 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/90 border border-orange-200 text-saath-700 text-xs font-bold shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-orange-500" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/90 border border-teal-200 text-teal-800 text-xs font-bold shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 text-teal-600" />
             <span>{isMr ? 'सामुदायिक कट्टा व सामाजिक उपक्रम' : 'Community Katta & Social Activities'}</span>
           </div>
 
@@ -121,7 +121,7 @@ export const SocialActivitiesView: React.FC<SocialActivitiesViewProps> = ({
                   className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold shrink-0 transition-all flex items-center gap-2 border ${
                     isSelected
                       ? 'bg-saath-600 text-white border-saath-600 shadow-sm shadow-saath-500/20'
-                      : 'bg-white text-stone-700 border-stone-200 hover:border-orange-300 hover:bg-orange-50/50'
+                      : 'bg-white text-stone-700 border-stone-200 hover:border-teal-300 hover:bg-teal-50/50'
                   }`}
                 >
                   <Icon className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-stone-500'}`} />

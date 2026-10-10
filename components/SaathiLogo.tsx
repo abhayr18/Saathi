@@ -35,9 +35,9 @@ export const SaathiLogo: React.FC<SaathiLogoProps> = ({
 
   return (
     <div className={`flex items-center gap-3 select-none ${className}`}>
-      {/* Visual Logo Mark: Generational Embrace in Warm Saffron */}
+      {/* Visual Logo Mark: Generational Embrace in Clean Caring Teal */}
       <div
-        className={`${iconSizes[size]} bg-gradient-to-tr from-amber-600 via-saath-600 to-orange-400 p-0.5 shadow-md shadow-saath-500/25 flex items-center justify-center shrink-0 border border-white/30`}
+        className={`${iconSizes[size]} bg-gradient-to-tr from-teal-700 via-saath-600 to-cyan-500 p-0.5 shadow-md shadow-saath-500/20 flex items-center justify-center shrink-0 border border-white/30`}
       >
         <svg
           viewBox="0 0 48 48"
@@ -62,10 +62,10 @@ export const SaathiLogo: React.FC<SaathiLogoProps> = ({
           />
 
           {/* Youth Student Companion (Leaning in warmly) */}
-          <circle cx="31" cy="13" r="4.5" fill="#FFE5CC" />
+          <circle cx="31" cy="13" r="4.5" fill="#E0F2FE" />
           <path
             d="M25 28C26 23.5 28.5 20.5 31.5 20.5C35 20.5 38 23.5 38 28.5"
-            stroke="#FFE5CC"
+            stroke="#E0F2FE"
             strokeWidth="3.2"
             strokeLinecap="round"
           />
@@ -79,10 +79,10 @@ export const SaathiLogo: React.FC<SaathiLogoProps> = ({
           />
 
           {/* Diya / Sunshine Spark of Joy */}
-          <circle cx="38" cy="8" r="2.2" fill="#FDE047" />
+          <circle cx="38" cy="8" r="2.2" fill="#38BDF8" />
           <path
             d="M38 2.5V4.5M42 4L40.5 5.5M43.5 8H41.5"
-            stroke="#FDE047"
+            stroke="#38BDF8"
             strokeWidth="1.8"
             strokeLinecap="round"
           />
@@ -94,7 +94,7 @@ export const SaathiLogo: React.FC<SaathiLogoProps> = ({
         <div className="flex items-baseline gap-1.5 leading-none">
           <span
             className={`${devanagariSizes[size]} font-black tracking-tight ${
-              variant === 'light' ? 'text-white' : 'text-stone-900'
+              variant === 'light' ? 'text-white' : 'text-slate-900'
             } font-display`}
           >
             साथी
@@ -105,7 +105,7 @@ export const SaathiLogo: React.FC<SaathiLogoProps> = ({
             Saathi
           </span>
           {size !== 'sm' && (
-            <span className="hidden sm:inline-block bg-orange-100 text-saath-800 text-[10px] font-black uppercase px-2 py-0.5 rounded-full border border-orange-200 ml-1">
+            <span className="hidden sm:inline-block bg-teal-50 text-saath-800 text-[10px] font-black uppercase px-2 py-0.5 rounded-full border border-teal-200 ml-1">
               Ecosystem
             </span>
           )}
@@ -114,7 +114,7 @@ export const SaathiLogo: React.FC<SaathiLogoProps> = ({
         {showSubtitle && (
           <p
             className={`text-[10px] sm:text-[11px] font-bold ${
-              variant === 'light' ? 'text-orange-100/90' : 'text-stone-500'
+              variant === 'light' ? 'text-teal-100/90' : 'text-slate-500'
             } tracking-tight leading-tight mt-0.5`}
           >
             Connected Senior Care

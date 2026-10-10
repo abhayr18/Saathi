@@ -89,7 +89,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       defaultTab: 'dashboard',
       icon: '👴',
       photo: '/assets/senior_rajendra.jpg',
-      lucideIcon: <User className="w-5 h-5 text-orange-600" />,
+      lucideIcon: <User className="w-5 h-5 text-teal-600" />,
       titleMr: 'ज्येष्ठ नागरिक',
       titleEn: 'Senior Citizen',
       personNameMr: 'राजेंद्र कुलकर्णी',
@@ -100,10 +100,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       subtitleEn: 'Primary Care Recipient',
       quoteMr: 'बुद्धिबळ, मॉर्निंग वॉक, वाचन आणि स्मार्टफोन शिकण्यासाठी तरुण सोबती शोधत असलेले आजोबा.',
       quoteEn: 'Seeking warmth, tea time, chess, walks & tech help from compassionate youth.',
-      badgeColor: 'bg-orange-50 text-orange-800 border-orange-200',
-      ringGradient: 'from-orange-500 via-amber-500 to-rose-500',
-      accentBg: 'from-orange-50/80 via-white to-amber-50/40',
-      accentBorder: 'border-orange-300',
+      badgeColor: 'bg-teal-50 text-teal-800 border-teal-200',
+      ringGradient: 'from-teal-500 via-cyan-500 to-sky-500',
+      accentBg: 'from-teal-50/80 via-white to-sky-50/40',
+      accentBorder: 'border-teal-300',
       featuresMr: [
         'पडताळणी झालेले सोबती शोधा व १:१ भेट बुक करा',
         'सामाजिक कट्टा व हास्य क्लबमध्ये सहभागी व्हा',
@@ -182,7 +182,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       defaultTab: 'dashboard',
       icon: '🛡️',
       photo: '/assets/admin_officer.jpg',
-      lucideIcon: <Shield className="w-5 h-5 text-amber-600" />,
+      lucideIcon: <Shield className="w-5 h-5 text-indigo-600" />,
       titleMr: 'सुरक्षा व ऑपरेशन्स ॲडमिन',
       titleEn: 'Trust & Safety Admin',
       personNameMr: 'साथी कंट्रोल रूम',
@@ -193,10 +193,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       subtitleEn: 'Platform Oversight & Dispatch',
       quoteMr: 'विद्यार्थी आयडी पडताळणी, जिओ-फेन्सिंग ऑडिट आणि इमर्जन्सी हेल्पलाइन सांभाळणारी टीम.',
       quoteEn: 'Central team managing ID vetting, geo-fenced visit compliance, and SOS escalations.',
-      badgeColor: 'bg-amber-50 text-amber-800 border-amber-200',
-      ringGradient: 'from-amber-500 via-orange-500 to-rose-500',
-      accentBg: 'from-amber-50/80 via-white to-orange-50/40',
-      accentBorder: 'border-amber-300',
+      badgeColor: 'bg-indigo-50 text-indigo-800 border-indigo-200',
+      ringGradient: 'from-indigo-500 via-purple-500 to-sky-500',
+      accentBg: 'from-indigo-50/80 via-white to-purple-50/40',
+      accentBorder: 'border-indigo-300',
       featuresMr: [
         'कॉलेज विद्यार्थ्यांचे आयडी व चारित्र्य पडताळणी',
         'जिओ-फेन्स चेक-इन व रिअल-टाइम सेशन ऑडिट',
@@ -226,7 +226,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       titleEn: 'GPS Geo-fenced',
       badgeMr: 'प्रत्येक फेरी अचूक प्रमाणित',
       badgeEn: 'Live Visit Timestamped',
-      color: 'bg-orange-50 border-orange-200 text-saath-800',
+      color: 'bg-teal-50 border-teal-200 text-teal-800',
     },
     {
       icon: <ShieldAlert className="w-5 h-5 text-amber-600" />,
@@ -488,7 +488,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <div className="lg:col-span-7 space-y-5 sm:space-y-6">
 
             {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-saath-800 text-xs sm:text-sm font-extrabold shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs sm:text-sm font-extrabold shadow-2xs">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <Sparkles className="w-4 h-4 text-saath-600" />
               <span>
@@ -535,7 +535,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
             {/* Instant Locality Search Bar */}
             <form onSubmit={handleCitySearch} className="max-w-xl">
-              <div className="bg-white p-2 rounded-2xl border-2 border-orange-200 shadow-soft flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <div className="bg-white p-2 rounded-2xl border-2 border-slate-200 focus-within:border-teal-500 shadow-soft flex flex-col sm:flex-row items-stretch sm:items-center gap-2 transition-colors">
                 <div className="flex items-center gap-2.5 px-3 flex-1 py-1 sm:py-0">
                   <MapPin className="w-5 h-5 text-saath-600 shrink-0" />
                   <input
@@ -569,9 +569,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               {onOpenMatchmaker && (
                 <button
                   onClick={onOpenMatchmaker}
-                  className="bg-gradient-to-r from-amber-50 to-orange-50 hover:from-amber-100 hover:to-orange-100 text-saath-800 border border-orange-300 font-extrabold text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all shadow-2xs flex items-center gap-2"
+                  className="bg-gradient-to-r from-teal-50 to-cyan-50 hover:from-teal-100 hover:to-cyan-100 text-teal-800 border border-teal-200 font-extrabold text-xs sm:text-sm px-5 py-2.5 rounded-full transition-all shadow-2xs flex items-center gap-2"
                 >
-                  <Sparkles className="w-4 h-4 text-amber-500" />
+                  <Sparkles className="w-4 h-4 text-teal-600" />
                   <span>{isMr ? 'स्मार्ट मॅचमेकर' : 'Smart Matchmaker'}</span>
                 </button>
               )}
@@ -618,7 +618,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
                 {/* Health Vitals Strip */}
                 <div className="grid grid-cols-3 gap-1.5 pt-1 border-t border-stone-100 text-center">
-                  <div className="bg-orange-50/90 p-1.5 rounded-lg border border-orange-100">
+                  <div className="bg-teal-50/90 p-1.5 rounded-lg border border-teal-100">
                     <span className="text-[9px] text-stone-500 block font-bold">BP</span>
                     <span className="text-[11px] font-black text-stone-900">120/80</span>
                   </div>
@@ -647,7 +647,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
 
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 text-saath-800 text-xs font-black uppercase tracking-wider border border-orange-200 shadow-2xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 text-teal-800 text-xs font-black uppercase tracking-wider border border-teal-200 shadow-2xs">
             <span>🎭</span>
             <span>{isMr ? 'थेट भूमिका निवडा • कोणत्याही पॉपअपशिवाय' : 'Choose Perspective Directly • No Popups'}</span>
           </div>
@@ -746,7 +746,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
                 className={`rounded-3xl border transition-all flex flex-col justify-between overflow-hidden group ${
                   isActive
                     ? 'bg-white border-2 border-saath-500 shadow-elevated ring-4 ring-saath-400/20'
-                    : 'bg-white border-stone-200 shadow-soft hover:shadow-card hover:border-orange-300'
+                    : 'bg-white border-stone-200 shadow-soft hover:shadow-card hover:border-teal-300'
                 }`}
               >
                 <div>
@@ -843,7 +843,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {trustMetrics.map((item, idx) => (
               <div key={idx} className="flex items-center gap-3.5 p-2 rounded-2xl hover:bg-stone-50 transition-colors">
-                <div className="w-11 h-11 rounded-2xl bg-orange-50 border border-orange-200 flex items-center justify-center shrink-0 shadow-2xs">
+                <div className="w-11 h-11 rounded-2xl bg-teal-50 border border-teal-200 flex items-center justify-center shrink-0 shadow-2xs">
                   {item.icon}
                 </div>
                 <div>
@@ -864,7 +864,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#FAF9F6] rounded-3xl p-6 sm:p-10 border border-stone-200 space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-black uppercase tracking-wider text-saath-700 bg-orange-100 px-3.5 py-1 rounded-full border border-orange-200">
+            <span className="text-xs font-black uppercase tracking-wider text-teal-800 bg-teal-50 px-3.5 py-1 rounded-full border border-teal-200">
               {isMr ? 'वास्तव व गरज' : 'THE REALITY & PURPOSE'}
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-stone-900 font-display">
@@ -881,9 +881,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             {challengeStats.map((stat, idx) => (
               <div
                 key={idx}
-                className="bg-white p-6 rounded-2xl border border-stone-200 shadow-xs flex flex-col items-center text-center space-y-2.5 hover:border-orange-300 transition-all"
+                className="bg-white p-6 rounded-2xl border border-stone-200 shadow-xs flex flex-col items-center text-center space-y-2.5 hover:border-teal-300 transition-all"
               >
-                <div className="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-100 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100 flex items-center justify-center">
                   {stat.icon}
                 </div>
                 <strong className="text-3xl sm:text-4xl font-black text-stone-900 font-display">
@@ -907,7 +907,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* ─── 5. OUR CONNECTED ECOSYSTEM (4 Pillars - Concise Visuals) ─── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-black uppercase tracking-wider text-saath-700 bg-orange-100 px-3.5 py-1 rounded-full border border-orange-200">
+          <span className="text-xs font-black uppercase tracking-wider text-teal-800 bg-teal-50 px-3.5 py-1 rounded-full border border-teal-200">
             {isMr ? 'आपुलकीची व्यवस्था' : 'CONNECTED ECOSYSTEM'}
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-stone-900 font-display">
@@ -924,7 +924,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           {ecosystemPillars.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white p-5 rounded-3xl border border-stone-200 shadow-soft hover:shadow-card transition-all flex flex-col justify-between space-y-4 group hover:border-orange-300"
+              className="bg-white p-5 rounded-3xl border border-stone-200 shadow-soft hover:shadow-card transition-all flex flex-col justify-between space-y-4 group hover:border-teal-300"
             >
               <div className="space-y-3">
                 <span className="text-3xl block">{item.emoji}</span>
@@ -958,7 +958,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
 
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-black uppercase tracking-wider text-saath-700 bg-orange-100 px-3.5 py-1 rounded-full border border-orange-200">
+            <span className="text-xs font-black uppercase tracking-wider text-teal-800 bg-teal-50 px-3.5 py-1 rounded-full border border-teal-200">
               {isMr ? 'आरोग्य व मनःशांती' : 'HEALTH & PEACE OF MIND'}
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-stone-900 font-display">
@@ -975,14 +975,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             {wellnessFeatures.map(item => (
               <div
                 key={item.id}
-                className="bg-[#FAF9F6] p-5 rounded-3xl border border-stone-200 shadow-xs flex flex-col justify-between space-y-4 hover:border-orange-300 transition-all"
+                className="bg-[#FAF9F6] p-5 rounded-3xl border border-stone-200 shadow-xs flex flex-col justify-between space-y-4 hover:border-teal-300 transition-all"
               >
                 <div className="space-y-2.5">
                   <div className="flex items-center justify-between">
                     <div className="w-10 h-10 rounded-2xl bg-white border border-stone-200 flex items-center justify-center shadow-2xs">
                       {item.icon}
                     </div>
-                    <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-orange-100 text-saath-800 border border-orange-200">
+                    <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200">
                       {isMr ? item.badgeMr : item.badgeEn}
                     </span>
                   </div>
@@ -1019,7 +1019,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* ─── 7. HOW IT WORKS TIMELINE (5 Clean Steps) ─── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-black uppercase tracking-wider text-saath-700 bg-orange-100 px-3.5 py-1 rounded-full border border-orange-200">
+          <span className="text-xs font-black uppercase tracking-wider text-teal-800 bg-teal-50 px-3.5 py-1 rounded-full border border-teal-200">
             {isMr ? 'सोपी कार्यपद्धती' : 'HOW IT WORKS'}
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-stone-900 font-display">
@@ -1034,7 +1034,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           {processSteps.map((step, idx) => (
             <div
               key={idx}
-              className="bg-white p-4 rounded-2xl border border-stone-200 shadow-soft flex flex-col space-y-2 hover:border-orange-400 transition-all text-center items-center group"
+              className="bg-white p-4 rounded-2xl border border-stone-200 shadow-soft flex flex-col space-y-2 hover:border-teal-400 transition-all text-center items-center group"
             >
               <div className="w-10 h-10 rounded-xl bg-saath-600 text-white font-black text-sm flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
                 {step.step}
@@ -1054,7 +1054,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* ─── 8. CARE PLANS & PRICING ─── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-black uppercase tracking-wider text-saath-700 bg-orange-100 px-3.5 py-1 rounded-full border border-orange-200">
+          <span className="text-xs font-black uppercase tracking-wider text-teal-800 bg-teal-50 px-3.5 py-1 rounded-full border border-teal-200">
             {isMr ? 'केअर प्लॅन्स व वर्गणी' : 'CARE PLANS & PRICING'}
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-stone-900 font-display">
@@ -1073,7 +1073,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               key={plan.id}
               className={`rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all relative ${
                 plan.popular
-                  ? 'bg-gradient-to-b from-orange-50/80 via-white to-orange-50/30 border-2 border-saath-500 shadow-elevated scale-102 ring-4 ring-saath-400/20'
+                  ? 'bg-gradient-to-b from-teal-50/80 via-white to-teal-50/30 border-2 border-saath-500 shadow-elevated scale-102 ring-4 ring-saath-400/20'
                   : 'bg-white border border-stone-200 shadow-soft hover:shadow-card hover:border-stone-300'
               }`}
             >
@@ -1084,7 +1084,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
               )}
 
               <div className="space-y-3">
-                <span className="text-[11px] font-black uppercase tracking-wide text-saath-700 bg-orange-100 px-2.5 py-0.5 rounded-full inline-block">
+                <span className="text-[11px] font-black uppercase tracking-wide text-teal-800 bg-teal-50 border border-teal-200 px-2.5 py-0.5 rounded-full inline-block">
                   {isMr ? plan.badgeMr : plan.badgeEn}
                 </span>
 

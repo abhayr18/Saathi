@@ -73,7 +73,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
       titleEn: 'Senior',
       fullNameMr: 'राजेंद्र कुलकर्णी',
       fullNameEn: 'Rajendra Kulkarni',
-      badgeColor: 'bg-orange-50 text-orange-700 border-orange-200',
+      badgeColor: 'bg-teal-50 text-teal-800 border-teal-200',
     },
     student: {
       emoji: '🎓',
@@ -131,8 +131,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                 onClick={() => onTabChange('landing')}
                 className={`px-3 py-2 rounded-xl text-xs font-extrabold tracking-wide uppercase transition-all ${
                   currentTab === 'landing'
-                    ? 'text-saath-600 font-black bg-orange-50/70'
-                    : 'text-stone-600 hover:text-saath-600 hover:bg-stone-50'
+                    ? 'text-teal-700 font-black bg-teal-50'
+                    : 'text-stone-600 hover:text-teal-700 hover:bg-stone-50'
                 }`}
               >
                 {isMr ? 'मुख्य पान' : 'Home'}
@@ -143,8 +143,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                 onClick={() => onTabChange('discovery')}
                 className={`px-3 py-2 rounded-xl text-xs font-extrabold tracking-wide uppercase transition-all ${
                   currentTab === 'discovery'
-                    ? 'text-saath-600 font-black bg-orange-50/70'
-                    : 'text-stone-600 hover:text-saath-600 hover:bg-stone-50'
+                    ? 'text-teal-700 font-black bg-teal-50'
+                    : 'text-stone-600 hover:text-teal-700 hover:bg-stone-50'
                 }`}
               >
                 {isMr ? 'सोबती शोधा' : 'Our Services'}
@@ -155,8 +155,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                 onClick={() => onTabChange('activities')}
                 className={`px-3 py-2 rounded-xl text-xs font-extrabold tracking-wide uppercase transition-all ${
                   currentTab === 'activities'
-                    ? 'text-saath-600 font-black bg-orange-50/70'
-                    : 'text-stone-600 hover:text-saath-600 hover:bg-stone-50'
+                    ? 'text-teal-700 font-black bg-teal-50'
+                    : 'text-stone-600 hover:text-teal-700 hover:bg-stone-50'
                 }`}
               >
                 {isMr ? 'साथी कट्टा' : 'Saathi Network'}
@@ -167,8 +167,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                 onClick={() => onTabChange('careplans')}
                 className={`px-3 py-2 rounded-xl text-xs font-extrabold tracking-wide uppercase transition-all ${
                   currentTab === 'careplans'
-                    ? 'text-saath-600 font-black bg-orange-50/70'
-                    : 'text-stone-600 hover:text-saath-600 hover:bg-stone-50'
+                    ? 'text-teal-700 font-black bg-teal-50'
+                    : 'text-stone-600 hover:text-teal-700 hover:bg-stone-50'
                 }`}
               >
                 {isMr ? 'केअर प्लॅन्स' : 'Care Plans'}
@@ -180,8 +180,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                   onClick={() => onTabChange('dashboard')}
                   className={`px-3 py-2 rounded-xl text-xs font-extrabold tracking-wide uppercase transition-all ${
                     currentTab === 'dashboard'
-                      ? 'text-saath-600 font-black bg-orange-50/70'
-                      : 'text-stone-600 hover:text-saath-600 hover:bg-stone-50'
+                      ? 'text-teal-700 font-black bg-teal-50'
+                      : 'text-stone-600 hover:text-teal-700 hover:bg-stone-50'
                   }`}
                 >
                   {isMr ? 'माझे डॅशबोर्ड' : 'Senior Dashboard'}
@@ -193,8 +193,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                   onClick={() => onTabChange('dashboard')}
                   className={`px-3 py-2 rounded-xl text-xs font-extrabold tracking-wide uppercase transition-all ${
                     currentTab === 'dashboard'
-                      ? 'text-saath-600 font-black bg-orange-50/70'
-                      : 'text-stone-600 hover:text-saath-600 hover:bg-stone-50'
+                      ? 'text-teal-700 font-black bg-teal-50'
+                      : 'text-stone-600 hover:text-teal-700 hover:bg-stone-50'
                   }`}
                 >
                   {isMr ? 'सोबती हब' : 'Companion Hub'}
@@ -206,8 +206,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                   onClick={() => onTabChange('familyHub')}
                   className={`px-3 py-2 rounded-xl text-xs font-extrabold tracking-wide uppercase transition-all ${
                     currentTab === 'familyHub'
-                      ? 'text-saath-600 font-black bg-orange-50/70'
-                      : 'text-stone-600 hover:text-saath-600 hover:bg-stone-50'
+                      ? 'text-teal-700 font-black bg-teal-50'
+                      : 'text-stone-600 hover:text-teal-700 hover:bg-stone-50'
                   }`}
                 >
                   {isMr ? 'कुटुंब हब' : 'Family Hub'}
@@ -249,7 +249,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                 className={`hidden md:inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-extrabold tracking-tight border transition-all ${
                   currentTab === 'careplans'
                     ? 'bg-saath-600 text-white border-saath-600 shadow-xs'
-                    : 'bg-white text-stone-800 border-stone-300 hover:border-saath-500 hover:text-saath-700 hover:bg-orange-50/30'
+                    : 'bg-white text-stone-800 border-stone-300 hover:border-saath-500 hover:text-saath-700 hover:bg-teal-50/30'
                 }`}
               >
                 {isMr ? 'प्लॅन्स पहा' : 'View Plans'}
@@ -283,7 +283,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                         <Sparkles className="w-3.5 h-3.5 text-saath-600" />
                         <span>{isMr ? 'भूमिका निवडा' : 'Select Perspective'}</span>
                       </span>
-                      <span className="text-[10px] font-bold text-saath-700 bg-orange-50 px-2 py-0.5 rounded-full border border-orange-200">
+                      <span className="text-[10px] font-bold text-teal-800 bg-teal-50 px-2 py-0.5 rounded-full border border-teal-200">
                         {isMr ? 'थेट निवड' : 'Direct'}
                       </span>
                     </div>
@@ -343,7 +343,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                             }}
                             className={`w-full text-left p-2.5 rounded-2xl transition-all flex items-center justify-between gap-3 ${
                               isCurrent
-                                ? 'bg-orange-50/80 border border-saath-300 ring-2 ring-saath-200'
+                                ? 'bg-teal-50/80 border border-teal-300 ring-2 ring-teal-200'
                                 : 'hover:bg-stone-50 border border-transparent'
                             }`}
                           >
@@ -412,7 +412,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                             key={n.id}
                             onClick={() => markNotificationAsRead(n.id)}
                             className={`py-2.5 px-2 rounded-xl transition-colors cursor-pointer ${
-                              !n.read ? 'bg-orange-50/60' : 'hover:bg-stone-50'
+                              !n.read ? 'bg-teal-50/60' : 'hover:bg-stone-50'
                             }`}
                           >
                             <div className="flex items-start justify-between gap-2">
@@ -454,7 +454,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white border-b border-stone-200 px-4 py-4 space-y-2 shadow-lg animate-in slide-in-from-top-2 duration-150">
             {/* Quick Role Status Bar in Mobile Menu */}
-            <div className="p-3 rounded-2xl bg-orange-50/70 border border-orange-200 flex items-center justify-between mb-3">
+            <div className="p-3 rounded-2xl bg-teal-50/70 border border-teal-200 flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">{roleDisplayInfo.emoji}</span>
                 <div>
@@ -470,7 +470,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  openRoleModal();
+                  if (onOpenRoleModal) {
+                    onOpenRoleModal();
+                  } else {
+                    setShowRoleDropdown(prev => !prev);
+                  }
                 }}
                 className="px-3 py-1 rounded-xl text-xs font-bold bg-saath-600 text-white shadow-xs"
               >
@@ -483,7 +487,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
               <button
                 onClick={() => { onTabChange('landing'); setMobileMenuOpen(false); }}
                 className={`w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide flex items-center gap-2.5 ${
-                  currentTab === 'landing' ? 'bg-orange-50 text-saath-700' : 'text-stone-700 hover:bg-stone-50'
+                  currentTab === 'landing' ? 'bg-teal-50 text-teal-800' : 'text-stone-700 hover:bg-stone-50'
                 }`}
               >
                 <span>🏠</span>
@@ -493,7 +497,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
               <button
                 onClick={() => { onTabChange('discovery'); setMobileMenuOpen(false); }}
                 className={`w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide flex items-center gap-2.5 ${
-                  currentTab === 'discovery' ? 'bg-orange-50 text-saath-700' : 'text-stone-700 hover:bg-stone-50'
+                  currentTab === 'discovery' ? 'bg-teal-50 text-teal-800' : 'text-stone-700 hover:bg-stone-50'
                 }`}
               >
                 <Compass className="w-4 h-4 text-saath-600" />
@@ -503,7 +507,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
               <button
                 onClick={() => { onTabChange('activities'); setMobileMenuOpen(false); }}
                 className={`w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide flex items-center gap-2.5 ${
-                  currentTab === 'activities' ? 'bg-orange-50 text-saath-700' : 'text-stone-700 hover:bg-stone-50'
+                  currentTab === 'activities' ? 'bg-teal-50 text-teal-800' : 'text-stone-700 hover:bg-stone-50'
                 }`}
               >
                 <Users className="w-4 h-4 text-saath-600" />
@@ -513,7 +517,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
               <button
                 onClick={() => { onTabChange('careplans'); setMobileMenuOpen(false); }}
                 className={`w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide flex items-center gap-2.5 ${
-                  currentTab === 'careplans' ? 'bg-orange-50 text-saath-700' : 'text-stone-700 hover:bg-stone-50'
+                  currentTab === 'careplans' ? 'bg-teal-50 text-teal-800' : 'text-stone-700 hover:bg-stone-50'
                 }`}
               >
                 <Calendar className="w-4 h-4 text-saath-600" />
@@ -524,7 +528,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                 <button
                   onClick={() => { onTabChange('dashboard'); setMobileMenuOpen(false); }}
                   className={`w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide flex items-center gap-2.5 ${
-                    currentTab === 'dashboard' ? 'bg-orange-50 text-saath-700' : 'text-stone-700 hover:bg-stone-50'
+                    currentTab === 'dashboard' ? 'bg-teal-50 text-teal-800' : 'text-stone-700 hover:bg-stone-50'
                   }`}
                 >
                   <User className="w-4 h-4 text-saath-600" />
@@ -536,7 +540,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                 <button
                   onClick={() => { onTabChange('dashboard'); setMobileMenuOpen(false); }}
                   className={`w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide flex items-center gap-2.5 ${
-                    currentTab === 'dashboard' ? 'bg-orange-50 text-saath-700' : 'text-stone-700 hover:bg-stone-50'
+                    currentTab === 'dashboard' ? 'bg-teal-50 text-teal-800' : 'text-stone-700 hover:bg-stone-50'
                   }`}
                 >
                   <GraduationCap className="w-4 h-4 text-blue-600" />
@@ -548,7 +552,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                 <button
                   onClick={() => { onTabChange('familyHub'); setMobileMenuOpen(false); }}
                   className={`w-full text-left px-3.5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide flex items-center gap-2.5 ${
-                    currentTab === 'familyHub' ? 'bg-orange-50 text-saath-700' : 'text-stone-700 hover:bg-stone-50'
+                    currentTab === 'familyHub' ? 'bg-teal-50 text-teal-800' : 'text-stone-700 hover:bg-stone-50'
                   }`}
                 >
                   <Heart className="w-4 h-4 text-rose-600" />

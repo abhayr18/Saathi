@@ -137,9 +137,9 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
 
       {/* Active Care Subscription Plan (Model 2/3) */}
       {activePlan && (
-        <div className="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 p-6 rounded-3xl shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="bg-gradient-to-r from-teal-50 to-sky-50 border-2 border-teal-200 p-6 rounded-3xl shadow-soft flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-1">
-            <span className="text-xs font-bold text-amber-900 uppercase tracking-wider bg-amber-200/80 px-2.5 py-0.5 rounded-full">
+            <span className="text-xs font-bold text-teal-900 uppercase tracking-wider bg-teal-100/90 px-2.5 py-0.5 rounded-full border border-teal-200">
               Active Monthly Care Subscription
             </span>
             <h3 className="text-xl font-black text-stone-900 mt-1">

@@ -62,7 +62,7 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
       defaultTab: 'discovery',
       icon: '👴',
       photo: '/assets/senior_rajendra.jpg',
-      lucideIcon: <User className="w-5 h-5 text-orange-600" />,
+      lucideIcon: <User className="w-5 h-5 text-teal-600" />,
       titleMr: 'ज्येष्ठ नागरिक',
       titleEn: 'Senior Citizen',
       personNameMr: 'राजेंद्र कुलकर्णी (वय ६८, कोल्हापूर)',
@@ -85,9 +85,9 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
       ],
       tagMr: 'ज्येष्ठ दृष्टिकोन',
       tagEn: 'Senior Perspective',
-      themeGradient: 'from-orange-500/10 to-amber-500/10 hover:border-orange-400',
-      accentBorder: 'border-orange-200',
-      badgeStyle: 'bg-orange-100 text-orange-800 border-orange-200',
+      themeGradient: 'from-teal-500/10 to-cyan-500/10 hover:border-teal-400',
+      accentBorder: 'border-teal-200',
+      badgeStyle: 'bg-teal-100 text-teal-800 border-teal-200',
     },
     {
       id: 'student',
@@ -210,9 +210,9 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
         onClick={e => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="px-4 py-3.5 sm:px-6 sm:py-5 border-b border-stone-200/80 bg-gradient-to-r from-orange-50/60 via-white to-amber-50/40 flex items-center justify-between shrink-0">
+        <div className="px-4 py-3.5 sm:px-6 sm:py-5 border-b border-stone-200/80 bg-gradient-to-r from-teal-50/60 via-white to-sky-50/40 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2.5 sm:gap-3">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-saath-500 to-amber-500 text-white flex items-center justify-center shadow-md shadow-saath-500/20 text-base sm:text-xl font-bold shrink-0">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-saath-600 to-cyan-500 text-white flex items-center justify-center shadow-md shadow-saath-500/20 text-base sm:text-xl font-bold shrink-0">
               🎭
             </div>
             <div>
@@ -220,7 +220,7 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
                 <h2 className="text-base sm:text-2xl font-black text-stone-900 font-display">
                   {isMr ? 'डेमो भूमिका निवडा' : 'Select Demo Perspective'}
                 </h2>
-                <span className="bg-orange-100 text-saath-800 text-[10px] sm:text-[11px] font-extrabold px-2 py-0.5 rounded-full border border-orange-200">
+                <span className="bg-teal-100 text-teal-800 text-[10px] sm:text-[11px] font-extrabold px-2 py-0.5 rounded-full border border-teal-200">
                   Interactive Demo
                 </span>
               </div>
@@ -255,7 +255,7 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
                     item.themeGradient
                   } ${
                     isActive
-                      ? 'border-saath-600 bg-orange-50/50 ring-2 ring-saath-500/30'
+                      ? 'border-saath-600 bg-teal-50/50 ring-2 ring-saath-500/30'
                       : 'border-stone-200 bg-white hover:bg-stone-50/80'
                   }`}
                 >
