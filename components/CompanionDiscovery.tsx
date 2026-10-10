@@ -291,22 +291,36 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
           </div>
         </div>
 
-        {/* Quick Filter Pills (Activity / Interest) */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 pt-1 text-xs">
-          <span className="font-bold text-stone-400 shrink-0 mr-1">{isMr ? 'उपक्रम:' : 'Activity:'}</span>
-          {activitiesList.map(act => (
-            <button
-              key={act}
-              onClick={() => setSelectedActivity(act)}
-              className={`px-3 py-1.5 rounded-xl font-bold whitespace-nowrap transition-all shrink-0 ${
-                selectedActivity === act
-                  ? 'bg-saath-600 text-white shadow-xs'
-                  : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
-              }`}
-            >
-              {translateActivity(act)}
-            </button>
-          ))}
+        {/* Senior-Friendly 1-Tap Visual Pills (Activity / Interest) */}
+        <div className="space-y-2">
+          <span className="text-xs font-black uppercase tracking-wider text-stone-500 block">
+            {isMr ? '🎯 १-टॅप उपक्रम निवडा:' : '🎯 1-Tap Activity Filter:'}
+          </span>
+          <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-2 pt-1">
+            {[
+              { id: 'all', icon: '🌟', mr: 'सर्व उपक्रम', en: 'All' },
+              { id: 'Chess', icon: '♟️', mr: 'बुद्धिबळ', en: 'Chess' },
+              { id: 'Walking', icon: '🚶', mr: 'प्रभात फेरी / वॉक', en: 'Walk' },
+              { id: 'Technology Help', icon: '📱', mr: 'स्मार्टफोन मदत', en: 'Phone Help' },
+              { id: 'Conversation', icon: '☕', mr: 'गप्पागोष्टी', en: 'Conversation' },
+              { id: 'Reading', icon: '📖', mr: 'वाचन', en: 'Reading' },
+              { id: 'Music', icon: '🎵', mr: 'संगीत', en: 'Music' },
+              { id: 'Gardening', icon: '🌿', mr: 'बागकाम', en: 'Gardening' },
+            ].map(act => (
+              <button
+                key={act.id}
+                onClick={() => setSelectedActivity(act.id)}
+                className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-black whitespace-nowrap transition-all shrink-0 flex items-center gap-2 border shadow-2xs active:scale-95 ${
+                  selectedActivity === act.id
+                    ? 'bg-saath-600 text-white border-saath-600 shadow-sm scale-102'
+                    : 'bg-stone-50 text-stone-700 border-stone-200 hover:bg-stone-100 hover:border-stone-300'
+                }`}
+              >
+                <span className="text-base">{act.icon}</span>
+                <span>{isMr ? act.mr : act.en}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Quick Language & Day Filters */}
@@ -583,21 +597,21 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
                   </div>
                 </div>
 
-                {/* Card Actions */}
-                <div className="p-4 bg-stone-50/70 border-t border-stone-100 flex items-center gap-2">
+                {/* Card Actions - Senior-Friendly Touch Targets */}
+                <div className="p-4 sm:p-5 bg-stone-50/70 border-t border-stone-100 flex items-center gap-2.5">
                   <button
                     onClick={() => onSelectStudent(student)}
-                    className="flex-1 bg-white hover:bg-stone-100 text-stone-800 border border-stone-200 font-bold py-2.5 px-3 rounded-xl text-xs transition-colors"
+                    className="flex-1 bg-white hover:bg-stone-100 text-stone-800 border border-stone-200 font-black py-3.5 px-3 rounded-2xl text-xs sm:text-sm transition-colors"
                   >
                     {isMr ? 'प्रोफाईल पहा' : 'View Profile'}
                   </button>
 
                   <button
                     onClick={() => onBookStudent(student)}
-                    className="flex-1 bg-saath-600 hover:bg-saath-700 text-white font-bold py-2.5 px-3 rounded-xl text-xs transition-colors shadow-xs flex items-center justify-center gap-1"
+                    className="flex-1 bg-saath-600 hover:bg-saath-700 active:scale-98 text-white font-black py-3.5 px-3 rounded-2xl text-xs sm:text-sm transition-all shadow-xs flex items-center justify-center gap-1.5"
                   >
                     <span>{isMr ? 'भेट बुक करा' : 'Book Session'}</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
+                    <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
               </div>
