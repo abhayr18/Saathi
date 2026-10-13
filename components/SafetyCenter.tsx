@@ -76,18 +76,18 @@ export const SafetyCenter: React.FC<SafetyCenterProps> = ({ onOpenSos }) => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="max-w-5xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-8">
       {/* Top Banner */}
-      <div className="bg-stone-900 text-white rounded-3xl p-6 sm:p-8 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-stone-900 text-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
         <div className="space-y-1">
-          <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30 mb-1">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] sm:text-xs font-bold border border-emerald-500/30 mb-1">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>{isMr ? 'साथी विश्वास व सुरक्षा केंद्र' : 'Saath Trust & Safety Center'}</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-white">
+          <h1 className="text-xl sm:text-3xl font-black font-display tracking-tight text-white">
             {isMr ? 'तुमची सुरक्षा व सन्मान हेच आमचे प्राधान्य' : 'Your Safety & Dignity Always Come First'}
           </h1>
-          <p className="text-stone-300 text-sm">
+          <p className="text-stone-300 text-xs sm:text-sm">
             {isMr
               ? 'सुरक्षित भेट, कॉलेज ओळखपत्रांची पडताळणी आणि कुटुंबाला तात्काळ सूचना.'
               : 'Monitored companionship, verified identity checks, and family notification circles.'}
@@ -96,7 +96,7 @@ export const SafetyCenter: React.FC<SafetyCenterProps> = ({ onOpenSos }) => {
 
         <button
           onClick={onOpenSos}
-          className="bg-rose-600 hover:bg-rose-700 text-white font-black text-sm px-6 py-4 rounded-2xl shadow-elevated flex items-center justify-center gap-2 transition-transform transform hover:scale-105 active:scale-95 border-2 border-rose-400"
+          className="w-full md:w-auto bg-rose-600 hover:bg-rose-700 text-white font-black text-xs sm:text-sm px-5 sm:px-6 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl shadow-elevated flex items-center justify-center gap-2 active:scale-95 border-2 border-rose-400 text-center"
         >
           <AlertTriangle className="w-5 h-5" />
           <span>{isMr ? 'तातडीचा आपत्कालीन SOS' : 'Emergency SOS'}</span>

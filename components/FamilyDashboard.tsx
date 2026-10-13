@@ -35,18 +35,18 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
   const activeCompanion = students.find(s => s.name.includes('Aditya')) || students[0];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 animate-in fade-in">
+    <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-8 animate-in fade-in">
       {/* Top Banner: Remote Family View */}
-      <div className="bg-gradient-to-r from-stone-900 via-stone-800 to-saath-950 rounded-3xl p-6 sm:p-8 text-white shadow-card flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-gradient-to-r from-stone-900 via-stone-800 to-saath-950 rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-white shadow-card flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
         <div className="space-y-1">
-          <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-saath-500/20 text-saath-300 text-xs font-bold border border-saath-500/30 mb-1">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-saath-500/20 text-saath-300 text-[11px] sm:text-xs font-bold border border-saath-500/30 mb-1">
             <Heart className="w-3.5 h-3.5 text-saath-400" />
-            <span>{isMr ? 'मॉडेल ३: कुटुंब मनःशांती व रिमोट मॉनिटरिंग हब' : 'Model 3: Family Visibility & Peace of Mind Hub'}</span>
+            <span>{isMr ? 'मॉडेल ३: कुटुंब मनःशांती व रिमोट मॉनिटरिंग' : 'Model 3: Family Visibility & Peace of Mind Hub'}</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-white">
+          <h1 className="text-xl sm:text-3xl font-black font-display tracking-tight text-white">
             {isMr ? 'स्वागत आहे, अमित कुलकर्णी 👋' : 'Welcome, Amit Kulkarni 👋'}
           </h1>
-          <p className="text-stone-300 text-sm">
+          <p className="text-stone-300 text-xs sm:text-sm">
             {isMr
               ? `${currentSenior.name} (वय ६८, ${currentSenior.area}, ${currentSenior.city}) यांच्या आरोग्याची थेट माहिती.`
               : `Remote Monitoring for ${currentSenior.name} (68) in ${currentSenior.area}, ${currentSenior.city}.`}
@@ -61,17 +61,17 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full md:w-auto">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-2.5 w-full md:w-auto">
           <button
             onClick={() => onNavigate('messages')}
-            className="bg-saath-600 hover:bg-saath-700 text-white font-bold text-xs px-4 py-3 rounded-2xl transition-all shadow-xs flex items-center justify-center gap-1.5"
+            className="bg-saath-600 hover:bg-saath-700 text-white font-bold text-xs px-4 py-3 rounded-xl sm:rounded-2xl transition-all shadow-xs flex items-center justify-center gap-1.5 text-center"
           >
             <MessageSquare className="w-4 h-4" />
             <span>{isMr ? `सोबत्याशी बोला (${activeCompanion.name.split(' ')[0]})` : `Chat with Companion (${activeCompanion.name.split(' ')[0]})`}</span>
           </button>
           <button
             onClick={() => onNavigate('careplans')}
-            className="bg-stone-800 hover:bg-stone-700 text-stone-200 font-bold text-xs px-4 py-3 rounded-2xl transition-all border border-stone-700 flex items-center justify-center gap-1.5"
+            className="bg-stone-800 hover:bg-stone-700 text-stone-200 font-bold text-xs px-4 py-3 rounded-xl sm:rounded-2xl transition-all border border-stone-700 flex items-center justify-center gap-1.5 text-center"
           >
             <Calendar className="w-4 h-4 text-teal-400" />
             <span>{isMr ? 'केअर प्लॅन्स' : 'Care Plans'}</span>
@@ -80,8 +80,8 @@ export const FamilyDashboard: React.FC<FamilyDashboardProps> = ({ onNavigate }) 
       </div>
 
       {/* Novelty Spotlight: "Know My Normal" Detection & Status */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-3xl shadow-card border border-stone-200 space-y-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="bg-white p-4 sm:p-6 rounded-2xl sm:rounded-3xl shadow-card border border-stone-200 space-y-3">
           <div className="flex items-center justify-between text-xs text-stone-400 font-bold">
             <span className="uppercase tracking-wider">{isMr ? 'मूड व सहभाग' : 'Mood & Engagement'}</span>
             <Smile className="w-5 h-5 text-emerald-600" />

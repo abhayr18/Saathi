@@ -241,7 +241,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
             </nav>
 
             {/* 3. Right: Unified Role Switcher Button + View Plans + Profile & Alerts */}
-            <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
               
               {/* MaiHoonNa Iconic 'View Plans' Pill Button */}
               <button
@@ -259,7 +259,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
               <div className="relative">
                 <button
                   onClick={() => setShowRoleDropdown(!showRoleDropdown)}
-                  className={`px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 sm:gap-2 border shadow-xs ${roleDisplayInfo.badgeColor} hover:brightness-95 hover:shadow-sm active:scale-95`}
+                  className={`px-2 sm:px-3.5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all flex items-center gap-1 sm:gap-2 border shadow-xs ${roleDisplayInfo.badgeColor} hover:brightness-95 hover:shadow-sm active:scale-95`}
                   title={isMr ? 'भूमिका बदलण्यासाठी येथे क्लिक करा' : 'Click to switch role perspective'}
                   aria-label="Switch Role Perspective"
                 >
@@ -268,7 +268,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                     <span className="hidden sm:inline font-semibold text-stone-600 text-[11px]">
                       {isMr ? 'भूमिका:' : 'Role:'}
                     </span>
-                    <span className="font-black text-stone-900 text-xs">
+                    <span className="font-black text-stone-900 text-xs truncate max-w-[70px] sm:max-w-none">
                       {isMr ? roleDisplayInfo.titleMr : roleDisplayInfo.titleEn}
                     </span>
                   </span>
@@ -277,7 +277,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
 
                 {/* Inline Story-Style Profile Dropdown */}
                 {showRoleDropdown && (
-                  <div className="absolute right-0 mt-2 w-72 sm:w-80 bg-white rounded-3xl shadow-elevated border border-stone-200 p-3 z-50 animate-in fade-in zoom-in-95">
+                  <div className="absolute right-0 mt-2 w-[calc(100vw-2rem)] max-w-xs sm:w-80 bg-white rounded-3xl shadow-elevated border border-stone-200 p-3 z-50 animate-in fade-in zoom-in-95">
                     <div className="flex items-center justify-between pb-2 border-b border-stone-100 px-2">
                       <span className="text-[11px] font-black uppercase tracking-wider text-stone-500 flex items-center gap-1.5">
                         <Sparkles className="w-3.5 h-3.5 text-saath-600" />
@@ -348,11 +348,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
                             }`}
                           >
                             <div className="flex items-center gap-2.5 min-w-0">
-                              <div className="relative w-10 h-10 rounded-full p-[2px] story-ring-gradient shrink-0">
+                              <div className="relative w-10 h-10 aspect-square rounded-full p-[2px] story-ring-gradient shrink-0">
                                 <img
                                   src={r.photo}
                                   alt={isMr ? r.nameMr : r.nameEn}
-                                  className="w-full h-full object-cover rounded-full bg-white"
+                                  className="w-full h-full aspect-square object-cover rounded-full bg-white"
                                 />
                               </div>
                               <div className="min-w-0">
@@ -452,7 +452,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onTabChange, onOpenR
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-stone-200 px-4 py-4 space-y-2 shadow-lg animate-in slide-in-from-top-2 duration-150">
+          <div className="lg:hidden bg-white border-b border-stone-200 px-4 py-4 space-y-2 shadow-lg animate-in slide-in-from-top-2 duration-150 max-h-[calc(100dvh-5rem)] overflow-y-auto">
             {/* Quick Role Status Bar in Mobile Menu */}
             <div className="p-3 rounded-2xl bg-teal-50/70 border border-teal-200 flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">

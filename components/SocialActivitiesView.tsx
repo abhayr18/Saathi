@@ -65,20 +65,20 @@ export const SocialActivitiesView: React.FC<SocialActivitiesViewProps> = ({
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 animate-in fade-in duration-300">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-10 animate-in fade-in duration-300">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-teal-50/90 via-sky-50/50 to-slate-50 rounded-3xl p-6 sm:p-8 border border-teal-100 shadow-sm relative overflow-hidden">
-        <div className="max-w-3xl space-y-3 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/90 border border-teal-200 text-teal-800 text-xs font-bold shadow-xs">
+      <div className="bg-gradient-to-r from-teal-50/90 via-sky-50/50 to-slate-50 rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-teal-100 shadow-sm relative overflow-hidden">
+        <div className="max-w-3xl space-y-2 sm:space-y-3 relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-0.5 sm:py-1 rounded-full bg-white/90 border border-teal-200 text-teal-800 text-[11px] sm:text-xs font-bold shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-teal-600" />
             <span>{isMr ? 'सामुदायिक कट्टा व सामाजिक उपक्रम' : 'Community Katta & Social Activities'}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-stone-900 font-display tracking-tight">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-stone-900 font-display tracking-tight">
             {isMr ? 'आपला हक्काचा सामाजिक कट्टा' : 'Social Activities & Community Katta'}
           </h1>
 
-          <p className="text-stone-700 text-sm sm:text-base leading-relaxed">
+          <p className="text-stone-700 text-xs sm:text-base leading-relaxed">
             {isMr
               ? 'ज्येष्ठ नागरिक आणि तरुण मित्रांसाठी खास एकत्र येण्याचे, शिकण्याचे आणि आनंद लुटण्याचे स्थानिक उपक्रम. एकटेपणाला निरोप द्या, नवीन मित्र जोडा!'
               : 'Curated local gatherings, morning walking clubs, digital workshops, and nostalgic music kattas bridging generations.'}

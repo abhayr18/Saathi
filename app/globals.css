@@ -12,13 +12,35 @@
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   body {
-    @apply bg-[#F8FAFC] text-slate-900 font-sans antialiased overflow-x-hidden;
-    font-size: 17px;
-    line-height: 1.65;
+    @apply bg-[#F8FAFC] text-slate-900 font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.6;
     letter-spacing: -0.01em;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 17px;
+      line-height: 1.65;
+    }
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   /* High contrast readable focus rings for senior accessibility */
@@ -28,11 +50,25 @@
 
   /* Ensure inputs never trigger iOS Safari auto-zoom and are senior-friendly */
   input, select, textarea {
-    font-size: 17px;
+    font-size: 16px;
   }
 
-  /* Senior-friendly minimum touch targets (WCAG AAA standard: 48px to 56px) */
-  button, a.button-touch {
+  @media (min-width: 768px) {
+    input, select, textarea {
+      font-size: 17px;
+    }
+  }
+
+  /* Touch action optimization on buttons */
+  button {
+    touch-action: manipulation;
+  }
+
+  /* Senior-friendly primary touch targets */
+  .button-touch,
+  .btn-touch,
+  button.btn-primary,
+  a.button-touch {
     min-height: 48px;
   }
 }

@@ -218,18 +218,18 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-8">
       {/* Top Banner / Heading */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-saath-100 text-saath-800 text-xs font-bold mb-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-saath-100 text-saath-800 text-[11px] sm:text-xs font-bold mb-1.5 sm:mb-2">
             <Sparkles className="w-3.5 h-3.5 text-saath-600" />
             <span>{isMr ? 'इंटेलिजंट मॅचिंग इंजिन' : 'Intelligent Matching Engine'}</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black text-stone-900 font-display tracking-tight">
+          <h1 className="text-2xl sm:text-4xl font-black text-stone-900 font-display tracking-tight">
             {isMr ? 'आपला सोबती शोधा' : 'Find your Saath'}
           </h1>
-          <p className="text-stone-600 text-base mt-1">
+          <p className="text-stone-600 text-xs sm:text-base mt-1">
             {isMr
               ? `तुमच्या आवडीनिवडी (${currentSenior.interests.slice(0, 3).join(', ')}), भाषा आणि कोल्हापुरातील अंतरानुसार योग्य सोबती.`
               : `Matching companions based on your interests (${currentSenior.interests.slice(0, 3).join(', ')}), fluent languages, and proximity in Kolhapur.`}
@@ -238,11 +238,11 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
       </div>
 
       {/* Search and Quick Filters Bar */}
-      <div className="bg-white p-4 sm:p-6 rounded-3xl shadow-card border border-stone-200/80 space-y-4">
-        <div className="flex flex-col sm:flex-row items-center gap-3">
+      <div className="bg-white p-3.5 sm:p-6 rounded-2xl sm:rounded-3xl shadow-card border border-stone-200/80 space-y-3.5 sm:space-y-4">
+        <div className="flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3">
           {/* Search bar */}
           <div className="relative flex-1 w-full">
-            <Search className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" />
+            <Search className="w-5 h-5 absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2 text-stone-400" />
             <input
               type="text"
               placeholder={isMr ? 'विद्यार्थ्याचे नाव, कॉलेज, छंद किंवा परिसर शोधा...' : 'Search by student name, college, hobby, or area...'}
@@ -310,9 +310,9 @@ export const CompanionDiscovery: React.FC<CompanionDiscoveryProps> = ({
               <button
                 key={act.id}
                 onClick={() => setSelectedActivity(act.id)}
-                className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-black whitespace-nowrap transition-all shrink-0 flex items-center gap-2 border shadow-2xs active:scale-95 ${
+                className={`px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-black whitespace-nowrap transition-all shrink-0 flex items-center gap-1.5 sm:gap-2 border shadow-2xs active:scale-95 ${
                   selectedActivity === act.id
-                    ? 'bg-saath-600 text-white border-saath-600 shadow-sm scale-102'
+                    ? 'bg-saath-600 text-white border-saath-600 shadow-md ring-2 ring-saath-400/40'
                     : 'bg-stone-50 text-stone-700 border-stone-200 hover:bg-stone-100 hover:border-stone-300'
                 }`}
               >

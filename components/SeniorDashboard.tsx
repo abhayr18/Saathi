@@ -53,33 +53,33 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
     .slice(0, 6);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8 sm:space-y-10">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-10">
 
       {/* ── 1. WARM GREETING & ATTENTION-CATCHY SOS BAR ── */}
-      <div className="bg-gradient-to-r from-teal-500/15 via-white to-sky-500/15 rounded-3xl p-6 sm:p-8 text-stone-900 border-2 border-teal-200/90 shadow-soft">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="flex items-center gap-4 sm:gap-5">
-            <div className="relative shrink-0 w-18 h-18 sm:w-22 sm:h-22 rounded-2xl overflow-hidden border-4 border-white shadow-elevated">
+      <div className="bg-gradient-to-r from-teal-500/15 via-white to-sky-500/15 rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-stone-900 border-2 border-teal-200/90 shadow-soft">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
+          <div className="flex items-center gap-3.5 sm:gap-5">
+            <div className="relative shrink-0 w-14 h-14 sm:w-16 sm:h-16 aspect-square rounded-2xl overflow-hidden border-2 sm:border-3 border-white shadow-elevated">
               <img
                 src={currentSenior.profilePhoto}
                 alt={currentSenior.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full aspect-square object-cover"
               />
             </div>
             <div className="space-y-1">
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white border border-teal-200 text-xs font-black text-teal-800 shadow-2xs">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white border border-teal-200 text-[11px] sm:text-xs font-black text-teal-800 shadow-2xs">
                 <span>📍 {currentSenior.area}, {currentSenior.city}</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-stone-900">
+              <h1 className="text-xl sm:text-3xl font-black font-display tracking-tight text-stone-900">
                 {isMr
                   ? `शुभ संध्याकाळ, ${currentSenior.name.split(' ')[0]}जी 👋`
                   : `Good evening, ${currentSenior.name.split(' ')[0]} 👋`}
               </h1>
-              <div className="flex flex-wrap items-center gap-2 pt-0.5">
-                <span className="text-xs font-black px-2.5 py-0.5 rounded-lg bg-teal-100 text-teal-900">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-0.5">
+                <span className="text-[11px] sm:text-xs font-black px-2 sm:px-2.5 py-0.5 rounded-lg bg-teal-100 text-teal-900">
                   ♟️ बुद्धिबळ आवडते
                 </span>
-                <span className="text-xs font-black px-2.5 py-0.5 rounded-lg bg-emerald-100 text-emerald-900">
+                <span className="text-[11px] sm:text-xs font-black px-2 sm:px-2.5 py-0.5 rounded-lg bg-emerald-100 text-emerald-900">
                   🚶 मॉर्निंग वॉक
                 </span>
               </div>
@@ -87,12 +87,12 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
           </div>
 
           {/* High-Contrast Emergency SOS Button */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 w-full md:w-auto">
             <button
               onClick={onOpenSos}
-              className="bg-rose-600 hover:bg-rose-700 active:scale-98 text-white font-black text-sm sm:text-base px-7 py-4 rounded-2xl shadow-elevated border-2 border-rose-300 flex items-center justify-center gap-2.5 transition-all"
+              className="w-full md:w-auto bg-rose-600 hover:bg-rose-700 active:scale-98 text-white font-black text-xs sm:text-base px-5 sm:px-7 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl shadow-elevated border-2 border-rose-300 flex items-center justify-center gap-2 sm:gap-2.5 transition-all text-center"
             >
-              <ShieldAlert className="w-6 h-6 text-white animate-pulse" />
+              <ShieldAlert className="w-5 h-5 sm:w-6 sm:h-6 text-white animate-pulse" />
               <span>{isMr ? 'तात्काळ SOS मदत (112)' : 'EMERGENCY SOS (112)'}</span>
             </button>
           </div>
@@ -100,7 +100,7 @@ export const SeniorDashboard: React.FC<SeniorDashboardProps> = ({
       </div>
 
       {/* ── 2. 3 ULTRA-VISUAL ACTION PHOTO TILES ── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
 
         {/* TILE 1: 🤝 सोबती निवडा (Choose Companion - Photo Header) */}
         <div

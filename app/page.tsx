@@ -82,7 +82,7 @@ export default function Home() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 pb-24 md:pb-8">
+      <main className="flex-1 pb-28 md:pb-8 w-full max-w-full overflow-x-hidden">
         {currentTab === 'landing' ? (
           <LandingPage
             onNavigate={setCurrentTab}

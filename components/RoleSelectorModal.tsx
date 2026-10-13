@@ -271,11 +271,11 @@ export const RoleSelectorModal: React.FC<RoleSelectorModalProps> = ({
                     {/* Role Header */}
                     <div className="flex items-start gap-2.5 sm:gap-3">
                       {/* Strictly constrained avatar container */}
-                      <div className="relative shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden bg-stone-100 border-2 border-white shadow-xs">
+                      <div className="relative shrink-0 w-12 h-12 sm:w-14 sm:h-14 aspect-square rounded-2xl overflow-hidden bg-stone-100 border-2 border-white shadow-xs">
                         <img
                           src={item.photo}
                           alt={item.personNameEn}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full aspect-square object-cover"
                           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         />
                         <span className="absolute bottom-0 right-0 text-[10px] bg-white/95 rounded-tl-md px-1 py-0.5 shadow-2xs">

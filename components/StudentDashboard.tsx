@@ -45,11 +45,11 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
   const upcomingSessions = studentBookings.filter(b => b.status === 'accepted');
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-8">
       {/* Student Header */}
-      <div className="bg-stone-900 rounded-3xl p-6 sm:p-8 text-white shadow-card flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3.5 sm:gap-4">
-          <div className="relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden border-4 border-saath-500 shadow-md">
+      <div className="bg-stone-900 rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-white shadow-card flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+          <div className="relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl overflow-hidden border-2 sm:border-4 border-saath-500 shadow-md">
             <img
               src={currentStudent.profilePhoto}
               alt={currentStudent.name}
@@ -58,7 +58,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
           </div>
           <div className="space-y-1">
             <div className="flex items-center gap-2 flex-wrap">
-              <h1 className="text-2xl sm:text-3xl font-black font-display tracking-tight text-white">
+              <h1 className="text-xl sm:text-3xl font-black font-display tracking-tight text-white">
                 {isMr
                   ? `शुभ संध्याकाळ, ${currentStudent.name.split(' ')[0]} 👋`
                   : `Good evening, ${currentStudent.name.split(' ')[0]} 👋`}
@@ -93,14 +93,14 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full md:w-auto">
           <button
             onClick={() => onNavigate('availability')}
-            className="bg-saath-600 hover:bg-saath-700 text-white font-bold text-sm px-5 py-3 rounded-2xl transition-all shadow-md flex items-center justify-center gap-2"
+            className="bg-saath-600 hover:bg-saath-700 text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-3 rounded-xl sm:rounded-2xl transition-all shadow-md flex items-center justify-center gap-2 text-center"
           >
             <Clock className="w-4 h-4" />
             <span>{isMr ? 'उपलब्धता व्यवस्थापित करा' : 'Manage Availability'}</span>
           </button>
           <button
             onClick={() => onNavigate('earnings')}
-            className="bg-stone-800 hover:bg-stone-700 text-stone-200 font-bold text-sm px-5 py-3 rounded-2xl transition-all border border-stone-700 flex items-center justify-center gap-2"
+            className="bg-stone-800 hover:bg-stone-700 text-stone-200 font-bold text-xs sm:text-sm px-4 sm:px-5 py-3 rounded-xl sm:rounded-2xl transition-all border border-stone-700 flex items-center justify-center gap-2 text-center"
           >
             <DollarSign className="w-4 h-4 text-saath-400" />
             <span>{isMr ? 'मानधन पहा' : 'View Earnings'}</span>
@@ -109,8 +109,8 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onNavigate, 
       </div>
 
       {/* Top 4 KPI Metrics Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white p-5 rounded-3xl shadow-soft border border-stone-200">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="bg-white p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl shadow-soft border border-stone-200">
           <div className="flex items-center justify-between text-stone-400 mb-2">
             <span className="text-xs font-bold uppercase tracking-wider">
               {isMr ? 'आगामी' : 'Upcoming'}

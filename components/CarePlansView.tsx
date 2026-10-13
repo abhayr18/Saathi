@@ -40,16 +40,16 @@ export const CarePlansView: React.FC<CarePlansViewProps> = ({ onSelectPlan, onBo
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12 animate-in fade-in">
+    <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8 space-y-6 sm:space-y-12 animate-in fade-in">
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto space-y-3">
-        <span className="text-xs font-bold uppercase tracking-wider text-saath-700 bg-saath-100 px-3.5 py-1 rounded-full border border-saath-200">
+      <div className="text-center max-w-3xl mx-auto space-y-2 sm:space-y-3">
+        <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-saath-700 bg-saath-100 px-3 py-1 rounded-full border border-saath-200">
           {isMr ? 'लवचिक सोबती व कुटुंब सुरक्षा मॉडेल' : 'Flexible Companionship & Support Models'}
         </span>
-        <h1 className="text-3xl sm:text-4xl font-black text-stone-900 font-display">
+        <h1 className="text-2xl sm:text-4xl font-black text-stone-900 font-display">
           {isMr ? 'आपुलकीचे सोबती व परिवार मनःशांती प्लॅन्स' : 'Companionship & Family Visibility Plans'}
         </h1>
-        <p className="text-stone-600 text-sm sm:text-base leading-relaxed">
+        <p className="text-stone-600 text-xs sm:text-base leading-relaxed">
           {isMr
             ? 'स्वावलंबी ज्येष्ठ नागरिकांसाठी आणि परगावी राहणाऱ्या मुलांच्या मनातील काळजी दूर करण्यासाठी खास तयार केलेले सुरक्षित प्लॅन्स.'
             : 'Flexible service models designed for seniors living independently and families seeking consistent care and peace of mind from anywhere.'}
@@ -57,9 +57,9 @@ export const CarePlansView: React.FC<CarePlansViewProps> = ({ onSelectPlan, onBo
       </div>
 
       {/* Model 1 & 2 Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8">
         {/* On-Demand */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-stone-200 flex flex-col justify-between space-y-6">
+        <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-card border border-stone-200 flex flex-col justify-between space-y-5 sm:space-y-6">
           <div className="space-y-4">
             <span className="text-xs font-bold text-stone-500 uppercase tracking-wider block">
               {isMr ? 'लवचिक तासिका भेट' : 'Pay-Per-Visit'}
